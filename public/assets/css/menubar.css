@@ -1,0 +1,66 @@
+.menubar ul {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--cor-menubar);
+    margin: 1px ;
+    color: var(--menu-texto);
+    list-style-type: none;
+    padding: 0;
+    color: var(--cor-menubar-text);
+  }
+  
+  .menubar ul li{
+    position: relative;
+    background-color: var(--cor-menubar);
+    width: 150px;
+    min-width: 150px;
+    align-content: center;
+    height: 40px;
+    
+  }
+  .menubar ul li ul {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-menubar);
+    visibility: hidden;
+  }
+  .menubar ul li ul li{
+    position: relative;
+    background-color: var(--cor-menulist);
+    width: 300px;
+    z-index: 2;
+  }
+.menubar a{
+  text-decoration: none;
+}
+.menubar a, ul a :visited{
+  color: var(--cor-menubar-text);
+}
+.menubar ul :hover{
+    background-color: var(--cor-menuhover);
+    color : var(--cor-menuhover-text);
+    transition: 200ms;
+}
+.menubar ul :hover > ul {
+  visibility: visible;
+  background-color: var(--cor-menuhover);
+  color : var(--cor-menuhover-text);
+  transition: 200ms;
+}
+.menubar ul li :hover {
+  background-color: var(--cor-menuhover);
+  color : var(--cor-menuhover-text);
+  transition: 200ms;
+  a {
+    display: block;
+    color : var(--cor-menuhover-text);
+  }
+}
+
+.menubar a  {
+    display: block;
+    :hover {
+        color : var(--cor-menuhover-text);
+    }
+}

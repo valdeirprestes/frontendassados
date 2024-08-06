@@ -1,0 +1,30 @@
+<nav class="menubar">
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <% if(permissaoatendente){ %>
+        <li>Atendimento
+            <ul>
+                <li><a href="/atendimento">Atender</a></li>
+            </ul>
+        </li>
+        <% }%>
+        <% if(permissaoadm){ %>
+        <li> Administração
+            <ul>
+                <li><a href="/movimento/abrir">Abrir movimento</a></li>
+                <li><a href="/movimento/fechar">Fechar movimento</a></li>
+            </ul>
+        </li>
+        <% }%>
+        <% if(user){ %>
+            <li> Conta
+                <ul>
+                    <li><a href="/login/logoff">Sair</a></li>
+                </ul>
+            </li>
+        <% } else { %>
+        <li><a href="/login">login</a></li>
+        <% } %>
+
+    </ul>
+</nav>

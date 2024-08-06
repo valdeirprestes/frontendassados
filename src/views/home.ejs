@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("includes/assets"); %>
+    <link href="/public/assets/css/home.css" rel="stylesheet"/>
+    <title>Home</title>
+</head>
+<body>
+    <div class="main">
+        <%- include("includes/menubar"); %>
+        <div class="contents">
+            <div class="home">
+                <% if(user){ %>
+                <h1><%= user.email %></h1>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+<%- include("includes/footer"); %>
+</body>
+</html>

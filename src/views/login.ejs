@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/assets/css/login.css" rel="stylesheet"/>
+    <%- include("includes/assets"); %>
+    <title>Login</title>
+</head>
+
+<body>
+<div class="main">
+    <div class="contents">
+        <div class="leftslide">
+
+        </div>
+        <div class="rightslide">
+        <div class="divlogin">
+            <h3>Bem vindo ao Assados online</h3>
+            <form class="class-form-login" method="post" action="/login/dologin">
+                <% if(locals.errorlogin){ %>
+                    <h5><%= errorlogin %></h5>
+                <% } %>
+                <div class="form-group">
+                    <span class="erros" name="email"></span>
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" name="email"/>
+                </div>
+                <div class="form-group">
+                    <span class="erros" name="senha"></span>
+                    <label>Senha</label>
+                    <input type="password" class="form-control" name="senha"/>
+                </div>
+                <span class="erros" name="backenderros"></span>
+                <button class="botao">Enviar</button>
+                <span><a href="/login/criar">Criar conta</a></span>
+                <span><a href="/">Pagina inicial</a></span>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+<%- include("includes/footer"); %>
+</body>
+</html>

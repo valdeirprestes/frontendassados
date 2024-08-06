@@ -1,0 +1,45 @@
+.leftslide {
+    box-sizing: border-box;
+    width: 70%;
+    height: 100%;
+    align-content: center;
+    background-image: url('/public/imagens/backgroundlogin.jpg');
+    background-size: cover;
+}
+
+.rightslide {
+    box-sizing: border-box;
+    width: 30%;
+    height: 100%;
+    align-items: center;
+    align-content: center;
+    background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));
+}
+
+.divlogin {
+    box-sizing: border-box;
+    align-content: center;
+    align-items: center;
+    background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));
+    border-radius: 3px;
+	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+    width: 95%;
+    margin:0 auto;
+    span{
+        display: block;
+        margin-top:10px;
+        a {
+		text-decoration: none;
+        font-weight: bold;
+		color: blue; 
+		& :visited, :link , :hover, :active{
+			text-decoration: none;
+			color: blue;    
+		}
+	}
+    }
+}
+
+
+

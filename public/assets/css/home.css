@@ -1,0 +1,8 @@
+ .home{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    background-image: url('/public/imagens/backgroundhome.jpg');
+    background-size:cover;
+}

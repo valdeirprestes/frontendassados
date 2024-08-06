@@ -1,0 +1,33 @@
+:root{
+    --cor-planofundo :#FFFFFF; /* Plano de fundo.*/
+
+    --cor-secoes:#D9D9D9; /* Todos agrupamento em div*/
+    --cor-secoes-texto:black; /* cor de seções */
+
+    --cor-pesquisa:#D9D9D9; /* Entrada de texto - tag input. */
+    --cor-pesquisa-texto: black;  /*cor de fonte em pesquisa*/
+    
+    --cor-texto :black; /* Cor de texto padrão*/
+
+    --cor-botao:#F54747; /*Cor normal do botão*/    
+    --cor-botao-texto:#FFFFFF;  /*Cor de texto*/
+    
+    --cor-botao-confirmacao:green; /*Cor normal do botão*/    
+    --cor-botao-confirmacao-texto:#FFFFFF;  /*Cor de texto*/
+
+    --cor-botao-foco:blue; /*Cor do botão em foco*/
+    --cor-botao-foco-texto:#FFFFFF;  /*Cor de texto de botão e foco*/
+
+    --cor-botao-voltar-texto:#D05C5C; /*Botões de voltar a página*/
+    --cor-botao-voltar-texto:#FFFFFF;  /*Cor de texto*/
+
+    --cor-negacao:#F54747; /*Negação ??????*/
+    
+    
+    --cor-menubar:rgb(41, 39, 39);
+    --cor-menubar-text: white;
+    --cor-menulist:rgb(41, 39, 39); 
+    --cor-menuhover: #D9D9D9;
+    --cor-menuhover-text: black;
+    --cor-footer: rgb(41, 39, 39);
+}
