@@ -26,7 +26,7 @@
                         <% pedidossementrega.forEach(pedido => { %>
                             <div class="item">
                                 <p> Pedido <%=pedido.id%></p>
-                                <p> Cliente<%= pedido.cliente.nome %></p>
+                                <p> Cliente <%= pedido.cliente.nome %></p>
                                 <p>Itens pedidos:</p>
                                 <% pedido.itens.forEach(item =>{ %>
                                     <p> <%= item.quantidade %> <%= item.produto.nome %></p>
@@ -44,7 +44,7 @@
                         <% pedidoscomentrega.forEach(pedido => { %>
                             <div class="item">
                                 <p> Pedido <%=pedido.id%></p>
-                                <p> Cliente<%= pedido.cliente.nome %></p>
+                                <p> Cliente <%= pedido.cliente.nome %></p>
                                 <p>Itens pedidos:</p>
                                 <% pedido.itens.forEach(item =>{ %>
                                     <p> <%= item.quantidade %> <%= item.produto.nome %></p>

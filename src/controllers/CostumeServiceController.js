@@ -18,7 +18,7 @@ class CostumerServiControllers{
             if(listorder)
                 myfiltre = {...myfiltre, "pedidoscomentrega":listorder.data};
             console.log('myfiltre', myfiltre);
-            res.render("costumerservice", myfiltre);
+            return res.render("costumerservice", myfiltre);
         }  
         catch(e)
         {
@@ -28,14 +28,12 @@ class CostumerServiControllers{
             if(response.data.errors ){
                 if(response.data.errors.includes(ErrorsList.EXPIRETOKEN) || 
                     response.data.errors.includes(ErrorsList.NOLOGIN))
-                    res.render('login',{errorlogin:'Efetue seu login'});
-                if(response.data.errors.includes(ErrorsList.ROUTENOTFOUND))
-                    res.status(400).render('404',{"title":'Errors interno',"msg":response.data.errors[0]});
+                    //return res.render('login',{errorlogin:'Efetue seu login'});
+                    return res.redirect('login');
             }
-            res.status(400).render('404',{"title":'Errors interno',"msg":'Errors interno'});
+            return res.redirect('404');
         }
     }
-
 }
 
 export default new CostumerServiControllers();

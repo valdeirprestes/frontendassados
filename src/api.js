@@ -6,7 +6,7 @@ import costumerserviceroutes from "./routes/CostumerServiceRoutes";
 import controller404notfound from "../src/controllers/404Controller";
 import path from "path";
 import session from "express-session";
-import cookiemiddlewares from "./middlewares/cookiemiddlewares";
+import cookiemiddlewares from "./middlewares/cookiemiddleware";
 
 class Api{
     constructor(){

@@ -1,4 +1,3 @@
-import lodash from "lodash";
 
 export default (req, res, next )=>{
     res.locals.user = req.session.user;
@@ -15,4 +14,5 @@ export default (req, res, next )=>{
         res.locals.permissaoadm= null;
     }
     next();
+
 }

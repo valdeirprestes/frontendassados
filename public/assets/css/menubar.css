@@ -49,12 +49,12 @@
   transition: 200ms;
 }
 .menubar ul li :hover {
+  display: block;
   background-color: var(--cor-menuhover);
   color : var(--cor-menuhover-text);
-  transition: 200ms;
+  transition: 100ms;
   a {
     display: block;
-    color : var(--cor-menuhover-text);
   }
 }
 
