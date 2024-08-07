@@ -5,4 +5,8 @@
     align-content: center;
     background-image: url('/public/imagens/backgroundhome.jpg');
     background-size:cover;
+    img{
+        width: 300px;
+    }
 }
+

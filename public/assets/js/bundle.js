@@ -144,8 +144,8 @@ var ValidLogin = /*#__PURE__*/function () {
         if (_this.validadata() == false) {
           return;
         }
-        var axios = axios__WEBPACK_IMPORTED_MODULE_1__["default"].create(_config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__["default"].configbroswer());
-        axios.post('/token', {
+        var request = axios__WEBPACK_IMPORTED_MODULE_1__["default"].create(_config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__["default"].configbroswer());
+        request.post('/token', {
           "email": "".concat(_this.email.value),
           "senha": "".concat(_this.senha.value)
         }).then(function () {

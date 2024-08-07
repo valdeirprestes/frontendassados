@@ -8,17 +8,21 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="main">
-        <%- include("includes/menubar"); %>
-        <div class="contents">
-            <div class="home">
-                <% if(user){ %>
-                <h1><%= user.email %></h1>
-                <% } %>
-            </div>
+    <%- include("includes/menubar"); %>     
+    <div class="homecontents">
+        <div class="home">
+            <% if (locals.listproducts ) { %>
+                <% listproducts.forEach(product =>{%>
+                    <div class="item">
+                        <h1> <%= product.nome %></h1>
+                        <h3> <%= product.preco %> </h3>
+                        <img src="<%= product.url%>">
+                    </div>
+                <% }) %>
+            <% } %>
         </div>
     </div>
-
+    
 <%- include("includes/footer"); %>
 </body>
 </html>

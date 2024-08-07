@@ -1,6 +1,6 @@
 import validator from "validator";
 import axiosconfig from "../../../../config/axiosConfig";
-import Axios from "axios";
+import axios from "axios";
 //import axios from "axios";
 export default class ValidLogin{
     constructor(className){
@@ -42,8 +42,8 @@ export default class ValidLogin{
             if(this.validadata() == false) {
                 return;
             }
-            const axios = Axios.create(axiosconfig.configbroswer());
-            axios.post('/token',{   
+            const request = axios.create(axiosconfig.configbroswer());
+            request.post('/token',{   
                 "email":`${this.email.value}`, 
                 "senha":`${this.senha.value}`
             })
