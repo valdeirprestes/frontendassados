@@ -6,7 +6,7 @@ dotenv.config();
 
 api.app.listen(process.env.PORT,
     ()=>{
-        console.log(`Run server in  ${urlConfig.url}`);
+        console.log(`Run server in  http://${urlConfig.url}`);
         console.log(`PRESS Crtl+c for stop application.`);
     }
 );

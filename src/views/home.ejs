@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%- include("includes/assets"); %>
-    <link href="/public/assets/css/home.css" rel="stylesheet"/>
-    <title>Home</title>
-</head>
-<body>
-    <%- include("includes/menubar"); %>     
-    <div class="homecontents">
-        <div class="home">
-            <% if (locals.listproducts ) { %>
-                <% listproducts.forEach(product =>{%>
-                    <div class="item">
-                        <h1> <%= product.nome %></h1>
-                        <h3> <%= product.preco %> </h3>
-                        <img src="<%= product.url%>">
-                    </div>
-                <% }) %>
-            <% } %>
-        </div>
-    </div>
-    
-<%- include("includes/footer"); %>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%- include("includes/assets"); %>
+		<link href="/public/assets/css/home.css" rel="stylesheet"/>
+		<title>Home</title>
+	</head>
+	<body>
+		<%- include("includes/menubar"); %>     
+		<div class="homecontents">
+			<div class="home">
+				<% if (locals.listproducts ) { %>
+				<% if (listproducts.length > 0){ %>
+				<% listproducts.forEach(product =>{%>
+				<div class="item">
+					<h1> <%= product.nome %></h1>
+					<h3> <%= product.preco %> </h3>
+					<img src="<%= product.url%>">
+				</div>
+				<% }) %>
+				<% }else{ %>
+				<h1> Nenhum produto registrado!</h1>
+				<% } %>
+				<% } %>
+			</div>
+		</div>
+
+		<%- include("includes/footer"); %>
+	</body>
 </html>

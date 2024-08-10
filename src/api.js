@@ -3,7 +3,7 @@ import session from "express-session";
 import loginroutes from "./routes/LoginRoutes";
 import homeroutes from "./routes/HomeRoutes";
 import costumerserviceroutes from "./routes/CostumerServiceRoutes";
-import controller404notfound from "../src/controllers/404Controller";
+import controllernotfound404 from "./controllers/NotFound404Controller";
 import path from "path";
 import session from "express-session";
 import cookiemiddlewares from "./middlewares/cookiemiddleware";
@@ -34,7 +34,7 @@ class Api{
         this.app.use("/", homeroutes);
         this.app.use("/login", loginroutes);
         this.app.use("/atendimento", costumerserviceroutes)
-        this.app.use("*",controller404notfound.page); // Default is 404 page not found!
+        this.app.use("*",controllernotfound404.page); // Default is 404 page not found!
     }
     middleware(){
 

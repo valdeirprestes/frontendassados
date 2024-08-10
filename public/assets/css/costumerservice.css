@@ -1,14 +1,14 @@
 .leftslide{
     box-sizing: border-box;
     width: 20%;
-    height: 100%;
+    min-height: 100%;
     background: linear-gradient(to left, var(--cor-secoes),var(--cor-planofundo));
 }
 
 .centerposition{
     box-sizing: border-box;
     width: 60%;
-    height: 100%;
+    min-height: 100%;
     background: var(--cor-planofundo);
     display: flex;
     flex-direction: row;
@@ -17,7 +17,7 @@
 .rightslide{
     box-sizing: border-box;
     width: 20%;
-    height: 100%;
+    min-height: 100%;
     background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));
 }
 

@@ -1,7 +1,7 @@
 .leftslide {
     box-sizing: border-box;
     width: 70%;
-    height: 100%;
+    min-height: 100%;
     align-content: center;
     background-image: url('/public/imagens/backgroundlogin.jpg');
     background-size: cover;
@@ -10,7 +10,7 @@
 .rightslide {
     box-sizing: border-box;
     width: 30%;
-    height: 100%;
+    min-height: 100%;
     align-items: center;
     align-content: center;
     background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));

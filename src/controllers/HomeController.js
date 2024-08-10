@@ -9,7 +9,7 @@ class HomeController{
         }
         catch(e){
             console.log(e);
-            return res.redirect('404'); //Tem que criar um pagina de erro inesperados
+            return res.redirect('notfound404'); //Tem que criar um pagina de erro inesperados
         }
         
     }
