@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var APP_PROTOCOL_DOMAIN_PORT = "http://192.168.100.2:3006";
+var APP_PROTOCOL_DOMAIN_PORT = "http://localhost:3006";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (APP_PROTOCOL_DOMAIN_PORT);
 
 /***/ }),
@@ -170,6 +170,125 @@ var ValidLogin = /*#__PURE__*/function () {
       }
       if (this.senha.value.length < 1) {
         this.senha_erro.innerText = "Preencha a senha.";
+        this.errorsvalid += 1;
+      }
+      if (this.errorsvalid > 0) return false;
+      return true;
+    }
+  }]);
+}();
+
+
+/***/ }),
+
+/***/ "./src/views/assets/js/modules/ValidUsuario.js":
+/*!*****************************************************!*\
+  !*** ./src/views/assets/js/modules/ValidUsuario.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ValidUsuario)
+/* harmony export */ });
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../config/axiosConfig */ "./src/config/axiosConfig.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
+//import axios from "axios";
+var ValidUsuario = /*#__PURE__*/function () {
+  function ValidUsuario(className) {
+    _classCallCheck(this, ValidUsuario);
+    this.classForm = className;
+    this.form = document.querySelector(className);
+    this.errorsvalid = 0;
+  }
+  return _createClass(ValidUsuario, [{
+    key: "init",
+    value: function init() {
+      if (!this.form) {
+        return;
+      }
+      this.getAtributes();
+      this.events();
+    }
+  }, {
+    key: "getAtributes",
+    value: function getAtributes() {
+      this.nome = this.form.querySelector('input[name="nome"]');
+      this.email = this.form.querySelector('input[name="email"]');
+      this.senha = this.form.querySelector('input[name="senha"]');
+      this.perfil = this.form.querySelector('input[name="perfil"]');
+      this.nome_erro = this.form.querySelector('span[name="nome"]');
+      this.email_erro = this.form.querySelector('span[name="email"]');
+      this.senha_erro = this.form.querySelector('span[name="senha"]');
+      this.perfil_erro = this.form.querySelector('span[name="perfil"]');
+      this.erros_erro = this.form.querySelector('div[name="erros"]');
+    }
+  }, {
+    key: "cleanFields",
+    value: function cleanFields() {
+      this.nome_erro.innerText = "";
+      this.email_erro.innerText = "";
+      this.senha_erro.innerText = "";
+      this.perfil_erro.innerText = "";
+      this.erros_erro.innerText = "";
+    }
+  }, {
+    key: "events",
+    value: function events() {
+      var _this = this;
+      this.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (_this.validadata() == false) {
+          return;
+        }
+        var request = axios__WEBPACK_IMPORTED_MODULE_1__["default"].create(_config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__["default"].configbroswer());
+        request.post('http://localhost:3006/usuario/', {
+          "nome": "".concat(_this.nome.value),
+          "email": "".concat(_this.email.value),
+          "senha": "".concat(_this.senha.value),
+          "perfil": "".concat(_this.perfil.value)
+        }).then(function () {
+          //location.href = "/login"
+          _this.form.submit();
+        })["catch"](function (error) {
+          console.log(error);
+          var errors = error.response.data.errors;
+          errors.forEach(function (element) {
+            _this.erros_erro.innerHTML += element + "<br>";
+          });
+        });
+        e.preventDefault();
+      });
+    }
+  }, {
+    key: "validadata",
+    value: function validadata() {
+      this.cleanFields();
+      if (this.nome.value.length < 1) {
+        this.nome_erro.innerText = "Preencha o nome.";
+        this.errorsvalid += 1;
+      }
+      if (this.email.value.length < 1 || !validator__WEBPACK_IMPORTED_MODULE_2___default().isEmail(this.email.value)) {
+        this.errorsvalid += 1;
+        this.email_erro.innerText = "Email inválido.";
+      }
+      if (this.senha.value.length < 1) {
+        this.senha_erro.innerText = "Preencha a senha.";
+        this.errorsvalid += 1;
+      }
+      if (this.perfil.value.length < 1) {
+        this.perfil_erro.innerText = "Preencha o perfil.";
         this.errorsvalid += 1;
       }
       if (this.errorsvalid > 0) return false;
@@ -12326,6 +12445,7 @@ var __webpack_exports__ = {};
   \*************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_ValidLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/ValidLogin */ "./src/views/assets/js/modules/ValidLogin.js");
+/* harmony import */ var _modules_ValidUsuario__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ValidUsuario */ "./src/views/assets/js/modules/ValidUsuario.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -12333,10 +12453,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
+
 window.addEventListener('load', function (e) {
   var listValid = [];
   //adicione cada validador de formulário
   listValid.push([_modules_ValidLogin__WEBPACK_IMPORTED_MODULE_0__["default"], ".class-form-login"]);
+  listValid.push([_modules_ValidUsuario__WEBPACK_IMPORTED_MODULE_1__["default"], ".class-form-usuario"]);
   listValid.forEach(function (Validclasstr) {
     var _Validclasstr = _slicedToArray(Validclasstr, 2),
       Valid = _Validclasstr[0],
