@@ -36,3 +36,8 @@
     box-sizing: border-box;
     width: 50%;
 }
+
+.itemtamanho {
+    width:300px;
+    height:300px;
+}

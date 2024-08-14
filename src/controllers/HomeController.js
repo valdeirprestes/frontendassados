@@ -4,7 +4,7 @@ class HomeController{
     async index (req, res){
         try{
             const request = axios.create(axiosConfig.configcontroller(req, res));
-            const listproducts = await request.get("/produto", {data:{"nome":"Frango","estado":"NORMAL"}});
+            const listproducts = await request.get("/produto", {data:{"estado":"NORMAL"}});
             res.render('home', {"listproducts":listproducts.data});
         }
         catch(e){

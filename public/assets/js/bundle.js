@@ -219,6 +219,7 @@ var ValidUsuario = /*#__PURE__*/function () {
         return;
       }
       this.getAtributes();
+      this.cleanFieldsErrors();
       this.events();
     }
   }, {
@@ -235,8 +236,8 @@ var ValidUsuario = /*#__PURE__*/function () {
       this.erros_erro = this.form.querySelector('div[name="erros"]');
     }
   }, {
-    key: "cleanFields",
-    value: function cleanFields() {
+    key: "cleanFieldsErrors",
+    value: function cleanFieldsErrors() {
       this.nome_erro.innerText = "";
       this.email_erro.innerText = "";
       this.senha_erro.innerText = "";
@@ -9888,7 +9889,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   VERSION: () => (/* binding */ VERSION)
 /* harmony export */ });
-const VERSION = "1.7.3";
+const VERSION = "1.7.4";
 
 /***/ }),
 

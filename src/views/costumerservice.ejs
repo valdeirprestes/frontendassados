@@ -24,7 +24,7 @@
                     <h1>Retirar no local</h1>
                     <% if(locals.pedidossementrega){ %>
                         <% pedidossementrega.forEach(pedido => { %>
-                            <div class="item">
+                            <div class="item itemtamanho">
                                 <p> Pedido <%=pedido.id%></p>
                                 <p> Cliente <%= pedido.cliente.nome %></p>
                                 <p>Itens pedidos:</p>
@@ -42,7 +42,7 @@
                     <h1>Para entrega</h1>
                     <% if(locals.pedidoscomentrega){ %>
                         <% pedidoscomentrega.forEach(pedido => { %>
-                            <div class="item">
+                            <div class="item itemtamanho">
                                 <p> Pedido <%=pedido.id%></p>
                                 <p> Cliente <%= pedido.cliente.nome %></p>
                                 <p>Itens pedidos:</p>

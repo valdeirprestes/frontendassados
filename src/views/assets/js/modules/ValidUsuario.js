@@ -18,7 +18,8 @@ export default class ValidUsuario{
             return;
         }
         this.getAtributes();
-        this.events()
+	this.cleanFieldsErrors();
+        this.events();
     }
 
     getAtributes(){
@@ -32,7 +33,8 @@ export default class ValidUsuario{
         this.perfil_erro = this.form.querySelector('span[name="perfil"]');
         this.erros_erro = this.form.querySelector('div[name="erros"]');
     }
-    cleanFields(){
+    
+    cleanFieldsErrors(){
         this.nome_erro.innerText="";
         this.email_erro.innerText="";
         this.senha_erro.innerText="";
