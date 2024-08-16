@@ -1,19 +1,30 @@
+import axios from "axios";
+import axiosConfig from "../config/axiosConfig";
+import { get } from "lodash";
 
-export default (req, res, next )=>{
+
+
+export default async (req, res, next )=>{
     res.locals.user = req.session.user;
 
     if(res.locals.user)
-    {    
-        if(req.session.user.perfil == "ATENDENTE" || req.session.user.perfil == "ADM")
+    {   
+        const request = axios.create(axiosConfig.configcontroller());
+        const user = await request.get(`/usuario/${res.locals.user.id}`); 
+        if(user){
+            console.log('user',user);
+            const {data} = user;
+            if(data.perfil == "ATENDENTE" || data.perfil == "ADM")
             res.locals.permissaoatendente = 1;
         else
             res.locals.permissaoatendente = null;
 
         
-        if(req.session.user.perfil == "ADM")
+        if(data.perfil == "ADM")
             res.locals.permissaoadm= 1;
         else
             res.locals.permissaoadm= null;
+        }
     }
     else
     {

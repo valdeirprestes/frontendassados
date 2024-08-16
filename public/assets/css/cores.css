@@ -8,6 +8,7 @@
     --cor-pesquisa-texto: black;  /*cor de fonte em pesquisa*/
     
     --cor-texto :black; /* Cor de texto padrão*/
+    --cor-texto-error :red; /* Cor de texto padrão*/
 
     --cor-botao:#F54747; /*Cor normal do botão*/    
     --cor-botao-texto:#FFFFFF;  /*Cor de texto*/

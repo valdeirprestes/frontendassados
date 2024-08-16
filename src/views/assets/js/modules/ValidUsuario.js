@@ -26,12 +26,12 @@ export default class ValidUsuario{
         this.nome = this.form.querySelector('input[name="nome"]');
         this.email = this.form.querySelector('input[name="email"]');
         this.senha = this.form.querySelector('input[name="senha"]');
-        this.perfil = this.form.querySelector('input[name="perfil"]');
+        this.perfil = this.form.querySelector('select[name="perfil"]');
         this.nome_erro = this.form.querySelector('span[name="nome"]');
         this.email_erro = this.form.querySelector('span[name="email"]');
         this.senha_erro = this.form.querySelector('span[name="senha"]');
         this.perfil_erro = this.form.querySelector('span[name="perfil"]');
-        this.erros_erro = this.form.querySelector('div[name="erros"]');
+        this.erros_erro = this.form.querySelector('span[name="erros"]');
     }
     
     cleanFieldsErrors(){
@@ -40,18 +40,21 @@ export default class ValidUsuario{
         this.senha_erro.innerText="";
         this.perfil_erro.innerText="";
         this.erros_erro.innerText="";
+        this.errorsvalid = [];
     }
 
     events()
     {
         this.form.addEventListener('submit',
         (e)=>{
-            e.preventDefault();            
+            e.preventDefault();
+            this.cleanFieldsErrors();       
             if(this.validadata() == false) {
                 return;
             }
             const request = axios.create(axiosconfig.configbroswer());
-            request.post('http://localhost:3006/usuario/',{
+            //request.post('http://localhost:3006/usuario/',{
+            request.post('usuario',{
                 "nome":`${this.nome.value}`,  
                 "email":`${this.email.value}`, 
                 "senha":`${this.senha.value}`,
@@ -75,7 +78,7 @@ export default class ValidUsuario{
 
     validadata()
     {
-        this.cleanFields();
+
         if(this.nome.value.length < 1 )
         {
             this.nome_erro.innerText = "Preencha o nome."

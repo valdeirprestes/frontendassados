@@ -32,12 +32,15 @@ export default class ValidLogin{
         this.email_erro.innerText="";
         this.senha_erro.innerText="";
         this.backenderros.innerText="";
+        this.errorsvalid= [];
     }
 
     events()
     {
         this.form.addEventListener('submit',
         (e)=>{
+            console.log("Testando login");
+            this.cleanFields();
             e.preventDefault();            
             if(this.validadata() == false) {
                 return;
@@ -51,6 +54,7 @@ export default class ValidLogin{
                 this.form.submit();
             })
             .catch(error=>{
+                console.log("Error catch");
                 this.backenderros = this.form.querySelector('span[name="backenderros"]');
                 const data = error.response.data;
                 data.errors.map(
@@ -66,7 +70,6 @@ export default class ValidLogin{
 
     validadata()
     {
-        this.cleanFields();
         if(this.email.value.length < 1 || !validator.isEmail(this.email.value))
         {
             this.errorsvalid += 1;

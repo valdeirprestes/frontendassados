@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import api from "./api";
 import urlConfig from "./config/urlConfig";
 
+
 dotenv.config();
 
 api.app.listen(process.env.PORT,

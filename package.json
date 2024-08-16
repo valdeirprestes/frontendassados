@@ -5,13 +5,16 @@
   "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm-run-all --parallel devjs devserver",
+    "predev": "npm run makeurlback",
+    "dev": "npm-run-all --parallel  devjs devserver",
     "devserver": "nodemon src/server.js --ignore public --ignore src/views/assets/",
     "devjs": "webpack -w",
-    "build": "npm-run-all devjsbuild devserverbuild",
+    "prebuild": "npm run makeurlback",
+    "build": "npm-run-all  devjsbuild devserverbuild",
     "devjsbuild": "webpack",
     "devserverbuild": "sucrase src/ -d ./dist --transforms imports",
-    "start": "node dist/server"
+    "start": "node dist/server",
+    "makeurlback":"node src/makeurlbackend"
   },
   "keywords": [],
   "author": "",

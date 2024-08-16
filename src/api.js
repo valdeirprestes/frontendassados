@@ -9,6 +9,7 @@ import path from "path";
 import session from "express-session";
 import cookiemiddlewares from "./middlewares/cookiemiddleware";
 
+
 class Api{
     constructor(){
         this.app = express();
@@ -27,7 +28,8 @@ class Api{
         this.app.use(sessionOptions);
         this.app.use(express.urlencoded({extended:true}));
         this.app.use("/public",express.static(path.resolve(__dirname, "..", "public")));
-        this.app.set('views', path.resolve(__dirname,'views'));
+        //this.app.set('views', path.resolve(__dirname,'views'));
+        this.app.set('views', path.resolve(__dirname,"..","src",'views'));
         this.app.set('view engine', 'ejs');
         this.app.use(cookiemiddlewares);
     }

@@ -43,23 +43,40 @@ html, body{
         margin: 0 auto;
     }
     input{
-        margin-bottom: 10px;
-	background-color: var(--cor-planofundo);
-	color: var(--cor-texto);
-	&:focus {
-	    background-color: var(--cor-botao-foco);
-	    color:var(--cor-botao-foco-texto);
-	}
+        margin-bottom: 3px;
+        background-color: var(--cor-planofundo);
+        color: var(--cor-texto);
+        &:focus {
+            background-color: var(--cor-botao-foco);
+            color:var(--cor-botao-foco-texto);
+        }
+    }
+    select{
+        &:hover, &:focus, &:active, &:active {
+            background-color: var(--cor-botao-foco);
+            color:var(--cor-botao-foco-texto);
+        }
+    }
+    option:hover,
+    option:focus,
+    option:active,
+    option:checked{
+        background-color: var(--cor-botao-foco);
+        color:var(--cor-botao-foco-texto);
     }
 }
 
 .form-group{
     box-sizing: border-box;
-    label, input {
-     box-sizing: border-box;
-     width: 100%;
-     padding: 7px;
-     border-radius: 3px;
+    label, input,select,span {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 7px;
+        border-radius: 3px;
+    }
+    span { 
+        display: block;
+        color:var(--cor-texto-error);
     }
 }
 
@@ -72,36 +89,38 @@ html, body{
     border-radius: 7px;
     padding: 10px;
 
-    border-color: var(--cor-planofundo);
+    border-color: var(--cor-botao);
     background-color:  var(--cor-botao);
+    color: var(--cor-botao-texto);
 
-    text-decoration: none;
-    color: var(--cor-botao-texto);	
+    text-decoration: none;	
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 
 
-    transition: 500ms;
+    transition: 300ms;
    	&:hover{
+        border-color:var(--cor-botao-foco);
         background-color: var(--cor-botao-foco);
 		color: var(--cor-botao-foco-texto);
 	}
 }
 
 .item{
-    background-color: var(--cor-secoes);
+    background-color: var(--cor-planofundo);
     color: var(--cor-secoes-texto);
-    border: 1px none;
+    border: 1px solid;
+    border-color:  var(--cor-secoes);
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
+    border-radius: 3px;
     margin:  40px;
     padding: 50px;   
     box-sizing: border-box;
     transition: 100ms;
     overflow:auto;
     &:hover{
-        border: 2px solid;
+        border: 1px solid;
         border-color: var(--cor-botao-foco);
         background: linear-gradient( var(--cor-planofundo), var(--cor-secoes),  var(--cor-planofundo));
         box-sizing: border-box;

@@ -2,13 +2,15 @@
 //dotenv.config();
 import axios from "axios";
 import urlBackEnd from "../urlBackEnd";
+import lodash from "lodash";
 
 class ConfigAxios{
     configcontroller(req, res){
         let axiosconf = { 'baseURL': `${process.env.APP_PROTOCOL_DOMAIN_PORT}`};
-        if(res.locals.user){
+        let usersession =  lodash.get(res,"locals.user",null);
+        if(usersession){
             axiosconf = { headers: {
-                'Authorization': `Bearer ${res.locals.user.token}`
+                'Authorization': `Bearer ${usersession.token}`
               }, ...axiosconf};
         }
         return axiosconf;
