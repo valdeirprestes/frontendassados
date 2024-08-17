@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var APP_PROTOCOL_DOMAIN_PORT = "http://192.168.100.2:3006";
+var APP_PROTOCOL_DOMAIN_PORT = "http://localhost:3006";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (APP_PROTOCOL_DOMAIN_PORT);
 
 /***/ }),
@@ -27239,7 +27239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   VERSION: () => (/* binding */ VERSION)
 /* harmony export */ });
-const VERSION = "1.7.3";
+const VERSION = "1.7.4";
 
 /***/ }),
 

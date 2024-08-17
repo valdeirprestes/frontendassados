@@ -20,7 +20,7 @@ class HomeController{
         return res.redirect("/login");
     }
     victor3(req, res) {
-        return res.render('victor', {"nomecompleto":"Victor Hugo Franciscon"}); 
+        return res.render('victor', {"nomecompleto":"Victor Hugo Franciscon","idade":"25"}); 
     }
     async testeProduto(req, res) {
         try {
