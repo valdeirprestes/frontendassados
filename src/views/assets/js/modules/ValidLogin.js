@@ -50,11 +50,14 @@ export default class ValidLogin{
                 "email":`${this.email.value}`, 
                 "senha":`${this.senha.value}`
             })
-            .then(()=>{
+            .then((res)=>{
+                //console.log(res.data.token);
+                let data = {'token': `${res.data.token}`};
+                sessionStorage.setItem('user', JSON.stringify(data));
                 this.form.submit();
             })
             .catch(error=>{
-                console.log("Error catch");
+                //console.log("Error catch");
                 this.backenderros = this.form.querySelector('span[name="backenderros"]');
                 const data = error.response.data;
                 data.errors.map(

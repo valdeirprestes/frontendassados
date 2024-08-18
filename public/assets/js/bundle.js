@@ -52,9 +52,17 @@ var ConfigAxios = /*#__PURE__*/function () {
   }, {
     key: "configbroswer",
     value: function configbroswer() {
+      var user = JSON.parse(sessionStorage.getItem('user'));
       var axiosconf = {
         baseURL: "".concat(this.getURLBack())
       };
+      if (user) {
+        axiosconf = _objectSpread({
+          headers: {
+            'Authorization': "Bearer ".concat(user.token)
+          }
+        }, axiosconf);
+      }
       return axiosconf;
     }
   }, {
@@ -81,6 +89,100 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var APP_PROTOCOL_DOMAIN_PORT = "http://192.168.100.2:3006";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (APP_PROTOCOL_DOMAIN_PORT);
+
+/***/ }),
+
+/***/ "./src/views/assets/js/modules/ValidDesativarUsuario.js":
+/*!**************************************************************!*\
+  !*** ./src/views/assets/js/modules/ValidDesativarUsuario.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ValidDesativarUsuario)
+/* harmony export */ });
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../config/axiosConfig */ "./src/config/axiosConfig.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
+var ValidDesativarUsuario = /*#__PURE__*/function () {
+  function ValidDesativarUsuario(className) {
+    _classCallCheck(this, ValidDesativarUsuario);
+    this.classForm = className;
+    this.form = document.querySelector(className);
+    this.errorsvalid = 0;
+  }
+  return _createClass(ValidDesativarUsuario, [{
+    key: "init",
+    value: function init() {
+      if (!this.form) {
+        return;
+      }
+      this.getAtributes();
+      this.cleanFieldsErrors();
+      this.events();
+    }
+  }, {
+    key: "getAtributes",
+    value: function getAtributes() {
+      this.id = this.form.querySelector('input[name="id"]');
+    }
+  }, {
+    key: "cleanFieldsErrors",
+    value: function cleanFieldsErrors() {}
+  }, {
+    key: "events",
+    value: function events() {
+      var _this = this;
+      this.form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var request = axios__WEBPACK_IMPORTED_MODULE_1__["default"].create(_config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__["default"].configbroswer());
+        request.put("/usuario/".concat(_this.id.value), {
+          "estado": "CANCELADO"
+        }).then(function () {
+          _this.form.submit();
+        })["catch"](function (error) {
+          location.href = "/notfound404";
+        });
+        e.preventDefault();
+      });
+    }
+  }, {
+    key: "validadata",
+    value: function validadata() {
+      if (this.nome.value.length < 1) {
+        this.nome_erro.innerText = "Preencha o nome.";
+        this.errorsvalid += 1;
+      }
+      if (this.email.value.length < 1 || !validator__WEBPACK_IMPORTED_MODULE_2___default().isEmail(this.email.value)) {
+        this.errorsvalid += 1;
+        this.email_erro.innerText = "Email inválido.";
+      }
+      if (this.senha.value.length < 1) {
+        this.senha_erro.innerText = "Preencha a senha.";
+        this.errorsvalid += 1;
+      }
+      if (this.perfil.value.length < 1) {
+        this.perfil_erro.innerText = "Preencha o perfil.";
+        this.errorsvalid += 1;
+      }
+      if (this.errorsvalid > 0) return false;
+      return true;
+    }
+  }]);
+}();
+
 
 /***/ }),
 
@@ -157,10 +259,15 @@ var ValidLogin = /*#__PURE__*/function () {
         request.post('/token', {
           "email": "".concat(_this.email.value),
           "senha": "".concat(_this.senha.value)
-        }).then(function () {
+        }).then(function (res) {
+          //console.log(res.data.token);
+          var data = {
+            'token': "".concat(res.data.token)
+          };
+          sessionStorage.setItem('user', JSON.stringify(data));
           _this.form.submit();
         })["catch"](function (error) {
-          console.log("Error catch");
+          //console.log("Error catch");
           _this.backenderros = _this.form.querySelector('span[name="backenderros"]');
           var data = error.response.data;
           data.errors.map(function (err) {
@@ -29854,6 +29961,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_ValidLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/ValidLogin */ "./src/views/assets/js/modules/ValidLogin.js");
 /* harmony import */ var _modules_ValidUsuario__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ValidUsuario */ "./src/views/assets/js/modules/ValidUsuario.js");
+/* harmony import */ var _modules_ValidDesativarUsuario__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/ValidDesativarUsuario */ "./src/views/assets/js/modules/ValidDesativarUsuario.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -29862,11 +29970,13 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
+
 window.addEventListener('load', function (e) {
   var listValid = [];
   //adicione cada validador de formulário
   listValid.push([_modules_ValidLogin__WEBPACK_IMPORTED_MODULE_0__["default"], ".class-form-login"]);
   listValid.push([_modules_ValidUsuario__WEBPACK_IMPORTED_MODULE_1__["default"], ".class-form-usuario"]);
+  listValid.push([_modules_ValidDesativarUsuario__WEBPACK_IMPORTED_MODULE_2__["default"], ".class-form-deativarusuario"]);
   listValid.forEach(function (Validclasstr) {
     var _Validclasstr = _slicedToArray(Validclasstr, 2),
       Valid = _Validclasstr[0],

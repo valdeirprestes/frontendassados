@@ -1,7 +1,7 @@
 import validator from "validator";
 import axiosconfig from "../../../../config/axiosConfig";
 import axios from "axios";
-//import axios from "axios";
+
 export default class ValidDesativarUsuario{
     constructor(className){
         this.classForm =  className;
@@ -39,11 +39,10 @@ export default class ValidDesativarUsuario{
                 "estado":"CANCELADO"
             })
             .then(()=>{
-                //location.href = "/login"
-                //this.form.submit();
+                this.form.submit();
             })
             .catch(error=>{
-                //location.href = "/notfound404"
+                location.href = "/notfound404"
             });
             e.preventDefault();
         });

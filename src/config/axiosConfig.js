@@ -4,6 +4,8 @@ import axios from "axios";
 import urlBackEnd from "../urlBackEnd";
 import lodash from "lodash";
 
+
+
 class ConfigAxios{
     configcontroller(req, res){
         let axiosconf = { 'baseURL': `${process.env.APP_PROTOCOL_DOMAIN_PORT}`};
@@ -16,7 +18,13 @@ class ConfigAxios{
         return axiosconf;
     }
     configbroswer(){
-        const axiosconf = {baseURL: `${this.getURLBack()}` };
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        let axiosconf = {baseURL: `${this.getURLBack()}` };
+        if(user){
+            axiosconf = { headers: {
+                'Authorization': `Bearer ${user.token}`
+              }, ...axiosconf};
+        }
         return axiosconf;
     }
     getURLBack(){
