@@ -1,5 +1,5 @@
 import validator from "validator";
-import axiosconfig from "../../../../config/axiosConfig";
+//import axiosconfig from "../../../../config/axiosConfig";
 import axios from "axios";
 //import axios from "axios";
 export default class ValidLogin{
@@ -45,15 +45,25 @@ export default class ValidLogin{
             if(this.validadata() == false) {
                 return;
             }
+            /*
             const request = axios.create(axiosconfig.configbroswer());
             request.post('/token',{   
                 "email":`${this.email.value}`, 
                 "senha":`${this.senha.value}`
+            })*/
+            axios.post('/api', {
+                data:{
+                    rota:`/token`,
+                    parametros:{   
+                        "email":`${this.email.value}`, 
+                        "senha":`${this.senha.value}`
+                    }
+                }
             })
             .then((res)=>{
                 //console.log(res.data.token);
-                let data = {'token': `${res.data.token}`};
-                sessionStorage.setItem('user', JSON.stringify(data));
+                //let data = {'token': `${res.data.token}`};
+                //sessionStorage.setItem('user', JSON.stringify(data));
                 this.form.submit();
             })
             .catch(error=>{

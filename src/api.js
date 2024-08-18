@@ -5,6 +5,7 @@ import homeroute from "./routes/HomeRoute";
 import costumerserviceroute from "./routes/CostumerServiceRoute";
 import usuarioroute from "./routes/UsuarioRoute"
 import controllernotfound404 from "./controllers/NotFound404Controller";
+import apiroute from "./routes/ApiRoute";
 import path from "path";
 import session from "express-session";
 import cookiemiddlewares from "./middlewares/cookiemiddleware";
@@ -27,6 +28,7 @@ class Api{
         const sessionOptions = session(sessionConfig);
         this.app.use(sessionOptions);
         this.app.use(express.urlencoded({extended:true}));
+        this.app.use(express.json());
         this.app.use("/public",express.static(path.resolve(__dirname, "..", "public")));
         //this.app.set('views', path.resolve(__dirname,'views'));
         this.app.set('views', path.resolve(__dirname,"..","src",'views'));
@@ -38,6 +40,7 @@ class Api{
         this.app.use("/login", loginroute);
         this.app.use("/atendimento", costumerserviceroute);
         this.app.use("/usuario", usuarioroute);
+        this.app.use("/api", apiroute);
         this.app.use("*",controllernotfound404.page); // Default is 404 page not found!
     }
     middleware(){

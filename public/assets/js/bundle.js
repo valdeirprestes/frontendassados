@@ -147,13 +147,21 @@ var ValidDesativarUsuario = /*#__PURE__*/function () {
       var _this = this;
       this.form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var request = axios__WEBPACK_IMPORTED_MODULE_1__["default"].create(_config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__["default"].configbroswer());
-        request.put("/usuario/".concat(_this.id.value), {
-          "estado": "CANCELADO"
+        /*const request = axios.create(axiosconfig.configbroswer());
+        request.put(`/usuario/${this.id.value}`,{   
+            "estado":"CANCELADO"
+        })*/
+        axios__WEBPACK_IMPORTED_MODULE_1__["default"].put('/api', {
+          data: {
+            rota: "/usuario/".concat(_this.id.value),
+            parametros: {
+              "estado": "CANCELADO"
+            }
+          }
         }).then(function () {
           _this.form.submit();
         })["catch"](function (error) {
-          location.href = "/notfound404";
+          // location.href = "/notfound404"
         });
         e.preventDefault();
       });
@@ -197,10 +205,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ValidLogin)
 /* harmony export */ });
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../config/axiosConfig */ "./src/config/axiosConfig.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! validator */ "./node_modules/validator/index.js");
+/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
@@ -208,7 +215,7 @@ function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), 
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
-
+//import axiosconfig from "../../../../config/axiosConfig";
 
 //import axios from "axios";
 var ValidLogin = /*#__PURE__*/function () {
@@ -255,16 +262,24 @@ var ValidLogin = /*#__PURE__*/function () {
         if (_this.validadata() == false) {
           return;
         }
-        var request = axios__WEBPACK_IMPORTED_MODULE_1__["default"].create(_config_axiosConfig__WEBPACK_IMPORTED_MODULE_0__["default"].configbroswer());
-        request.post('/token', {
-          "email": "".concat(_this.email.value),
-          "senha": "".concat(_this.senha.value)
+        /*
+        const request = axios.create(axiosconfig.configbroswer());
+        request.post('/token',{   
+            "email":`${this.email.value}`, 
+            "senha":`${this.senha.value}`
+        })*/
+        axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('/api', {
+          data: {
+            rota: "/token",
+            parametros: {
+              "email": "".concat(_this.email.value),
+              "senha": "".concat(_this.senha.value)
+            }
+          }
         }).then(function (res) {
           //console.log(res.data.token);
-          var data = {
-            'token': "".concat(res.data.token)
-          };
-          sessionStorage.setItem('user', JSON.stringify(data));
+          //let data = {'token': `${res.data.token}`};
+          //sessionStorage.setItem('user', JSON.stringify(data));
           _this.form.submit();
         })["catch"](function (error) {
           //console.log("Error catch");
@@ -280,7 +295,7 @@ var ValidLogin = /*#__PURE__*/function () {
   }, {
     key: "validadata",
     value: function validadata() {
-      if (this.email.value.length < 1 || !validator__WEBPACK_IMPORTED_MODULE_2___default().isEmail(this.email.value)) {
+      if (this.email.value.length < 1 || !validator__WEBPACK_IMPORTED_MODULE_1___default().isEmail(this.email.value)) {
         this.errorsvalid += 1;
         this.email_erro.innerText = "Email inválido.";
       }

@@ -34,15 +34,26 @@ export default class ValidDesativarUsuario{
         this.form.addEventListener('submit',
         (e)=>{
             e.preventDefault(); 
-            const request = axios.create(axiosconfig.configbroswer());
+            /*const request = axios.create(axiosconfig.configbroswer());
             request.put(`/usuario/${this.id.value}`,{   
                 "estado":"CANCELADO"
-            })
+            })*/
+            axios.put('/api', 
+                {data:            
+                    {
+                        rota:`/usuario/${this.id.value}`,
+                        parametros:
+                        {
+                            "estado":"CANCELADO"
+                        }
+                    }
+                }
+            )
             .then(()=>{
                 this.form.submit();
             })
             .catch(error=>{
-                location.href = "/notfound404"
+               // location.href = "/notfound404"
             });
             e.preventDefault();
         });
