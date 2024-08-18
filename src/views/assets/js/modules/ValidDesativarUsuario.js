@@ -53,7 +53,7 @@ export default class ValidDesativarUsuario{
                 this.form.submit();
             })
             .catch(error=>{
-               // location.href = "/notfound404"
+                location.href = "/notfound404"
             });
             e.preventDefault();
         });
