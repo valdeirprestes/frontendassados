@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Usuários</title>
+    <%- include("includes/assets"); %>
+    <link href="/public/assets/css/home.css" rel="stylesheet"/>
+</head>
+<body>
+    <%- include("includes/menubar"); %>    
+    <% if(locals.listausuario){ %>
+        <table>
+        <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>estado</th>
+            <th>ações</th>
+        </tr>    
+        <% listausuario.forEach(usuario => { %>
+        <tr>
+            <td><%= usuario.id %></td>
+            <td><%= usuario.nome %></td>
+            <td><%= usuario.estado %></td>
+            <td><a href="/usuario/<%= usuario.id %>/desativar">Desativar</a> <a href="/usuario/<%= usuario.id %>/editar">Editar</a></td>
+        </tr>
+        <% }) %>  
+        </table>
+    <% } %>
+    <%- include("includes/footer"); %>
+</body>
+</html>
