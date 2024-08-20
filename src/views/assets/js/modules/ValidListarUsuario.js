@@ -32,7 +32,7 @@ export default class ValidEditarUsuario{
     {
         this.form.addEventListener('submit',
         (e)=>{
-            e.preventDefatult();
+            //e.preventDefatult();
         });
     }
 

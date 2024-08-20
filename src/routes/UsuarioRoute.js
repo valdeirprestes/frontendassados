@@ -7,5 +7,5 @@ route.post("/efetuarlogin", usuariocontroller.efetuarlogin);
 route.get("/listar", validadmmiddleware, usuariocontroller.listar);
 route.get("/:id/desativar", validadmmiddleware, usuariocontroller.desativar);
 route.get("/:id/editar", validadmmiddleware, usuariocontroller.editar);
-route.get('/pesquisar', validadmmiddleware, usuariocontroller.pesquisar);
+route.post('/pesquisar', validadmmiddleware, usuariocontroller.pesquisar);
 export default route;

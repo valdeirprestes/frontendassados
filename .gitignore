@@ -130,5 +130,4 @@ dist
 .pnp.*
 dist
 src/urlBackEnd.js
-public/assets/js/
 

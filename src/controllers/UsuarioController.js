@@ -20,12 +20,9 @@ class UsuarioController {
     }
     async pesquisar(req, res) {
         try {
-            const filter = req.body.nome;
-            console.log("filter\n\n", filter);
-            console.log("req.body\n\n", req.body);
+            const filter = {"data":{"nome":req.body.nome}};
             const axios = Axios.create(axiosconfig.configcontroller(req, res));
-            const response = await axios.get('/usuario', {"nome":filter});
-            //console.log("data", response.data);
+            const response = await axios.get('/usuario', filter);
             return res.render("listarusuarios", {"listausuario":response.data});
         } catch (e) {
             console.log(e);
@@ -34,13 +31,8 @@ class UsuarioController {
     }
     async desativar(req, res) {
         try {
-            console.log("id", req.params.id);
             const axios = Axios.create(axiosconfig.configcontroller(req, res));
             const response = await axios.get(`/usuario/${req.params.id}`);
-            console.log("data", response.data);
-            //const response2 = await axios.put(`/usuario/${req.params.id}`,{   
-                //"estado":"CANCELADO"
-            //});
             return res.render("desativarusuario", {"usuario":response.data});
         } catch (e) {
             console.log(e);
@@ -49,10 +41,10 @@ class UsuarioController {
     }
     async editar(req, res) {
         try {
-            console.log("id", req.params.id);
+            //console.log("id", req.params.id);
             const axios = Axios.create(axiosconfig.configcontroller(req, res));
             const response = await axios.get(`/usuario/${req.params.id}`);
-            console.log("data", response.data);
+            //console.log("data", response.data);
             let {updated_at, ...resto} = response.data;
             let tmp = new Date(updated_at);
             updated_at = tmp.toLocaleString('pt-BR', { timezone: 'UTC-3'});

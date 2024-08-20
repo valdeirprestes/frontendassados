@@ -12,7 +12,6 @@ export default async (req, res, next )=>{
         const request = axios.create(axiosConfig.configcontroller());
         const user = await request.get(`/usuario/${res.locals.user.id}`); 
         if(user){
-            console.log('user',user);
             const {data} = user;
             if(data.perfil == "ATENDENTE" || data.perfil == "ADM")
             res.locals.permissaoatendente = 1;
