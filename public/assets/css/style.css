@@ -64,6 +64,9 @@ html, body{
         background-color: var(--cor-botao-foco);
         color:var(--cor-botao-foco-texto);
     }
+    div:nth-child(10){
+        margin-bottom: 20px;
+    }
 }
 
 .form-group{
@@ -75,7 +78,7 @@ html, body{
         border-radius: 3px;
     }
     span { 
-        display: block;
+    /*    display: block; */
         color:var(--cor-texto-error);
     }
 }
@@ -127,4 +130,20 @@ html, body{
         box-shadow: none;        
     }
 
+}
+
+.tabelas {
+    tr:nth-child(even){
+        background-color: blueviolet;
+    }
+    
+    tr:nth-child(odd){
+        background-color: rgb(187, 187, 187);
+    }
+}
+
+.paginacao {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
 }

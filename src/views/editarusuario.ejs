@@ -7,7 +7,7 @@
     <link href="/public/assets/css/editarusuario.css" rel="stylesheet"/>
     <!-- Se quiser fazer um CSS personalizado desta pagina-->
     <!-- <link href="/public/assets/css/meucsspersonalizado.css" rel="stylesheet"/> -->
-    <title>titulo</title>  <!--Não se esqueça de alterar o nome do titulo-->
+    <title>Editar cadastro</title>  <!--Não se esqueça de alterar o nome do titulo-->
 </head>
 <body>
     <div class="main">
@@ -21,45 +21,54 @@
                       <span class="erros" name="erros"></span>
                     </div>
                 <div class="form-group">
-                      <span class="erros" name="nome"></span>
+                      
                       <label for="nome">Nome:</label>
+                      <span class="erros" name="nome"></span>
                       <input type="text" name="nome" class="form-control" value="<%= usuario.nome %>">
                 </div>
                 <div class="form-group">
-                      <span class="erros" name="email"></span>
+                      
                       <label for="email">Email:</label>
+                      <span class="erros" name="email"></span>
                       <input type="text" name="email" class="form-control" value="<%= usuario.email %>">
                 </div>
                 <div class="form-group">
-                    <span class="erros" name="telefone"></span>
+                    
                     <label for="telefone">Telefone:</label>
+                    <span class="erros" name="telefone"></span>
                     <input type="text" name="telefone" class="form-control" value="<%= usuario.telefone %>">
                 </div>
                 <div class="form-group">
-                    <span class="erros" name="cep"></span>
+                    
                     <label for="cep">Cep:</label>
+                    <span class="erros" name="cep"></span>
                     <input type="text" name="cep" class="form-control" value="<%= usuario.cep %>">
                 </div>
                 <div class="form-group">
-                    <span class="erros" name="endereco"></span>
+                    
                     <label for="endereco">Endereço:</label>
+                    <span class="erros" name="endereco"></span>
                     <input type="text" name="endereco" class="form-control" value="<%= usuario.logradouro %>">
                 </div>
                 <div class="form-group">
-                    <span class="erros" name="numero"></span>
+                    
                     <label for="numero">Número:</label>
+                    <span class="erros" name="numero"></span>
                     <input type="text" name="numero" class="form-control" value="<%= usuario.numero %>">
                 </div>
                 <div class="form-group">
-                    <span class="erros" name="cidade"></span>
+                    
                     <label for="cidade">Município:</label>
+                    <span class="erros" name="cidade"></span>
                     <input type="text" name="cidade" class="form-control" value="<%= usuario.municipio %>">
                 </div>
                 <div class="form-group">
-                    <span class="erros" name="uf"></span>
+                    
                     <label for="uf">UF:</label>
+                    <span class="erros" name="uf"></span>
                     <input type="text" name="uf" class="form-control" value="<%= usuario.uf %>">
                 </div>
+                    
                     <button class="botao">Atualizar</button>
                 </form>
                 
