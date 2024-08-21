@@ -1,5 +1,5 @@
 import validator from "validator";
-import axiosconfig from "../../../../config/axiosConfig";
+import axiosconfig from "../../../../../config/axiosConfig";
 import axios from "axios";
 
 export default class ValidDesativarUsuario{

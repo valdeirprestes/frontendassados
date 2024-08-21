@@ -1,7 +1,7 @@
-import ValidLogin from "./modules/ValidLogin";
-import ValidUsuario from "./modules/ValidUsuario";
-import ValidDesativarUsuario from "./modules/ValidDesativarUsuario";
-import ValidEditarUsuario from "./modules/ValidEditarUsuario";
+import ValidLogin from "./modules/validform/ValidLogin";
+import ValidUsuario from "./modules/validform/ValidUsuario";
+import ValidDesativarUsuario from "./modules/validform/ValidDesativarUsuario";
+import ValidEditarUsuario from "./modules/validform/ValidEditarUsuario";
 
 window.addEventListener('load', (e)=>{
     const listValid = [];
@@ -15,4 +15,7 @@ window.addEventListener('load', (e)=>{
         let valid = new Valid(classtr);
         valid.init();
     });
+
+    const listInteract = [];
+    listInteract.push(["interact-criar-pedido"]);
 });
