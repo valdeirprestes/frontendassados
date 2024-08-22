@@ -10,12 +10,15 @@
 }
 
 
-.clientediv{
+.cliente_criarpedido{
     box-sizing: border-box;
     display: block;
     width: 35%;
     height: 70%;
     margin: 30px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }
 .produtodiv{
     box-sizing: border-box;

@@ -3,10 +3,20 @@ import ValidUsuario from "./modules/validform/ValidUsuario";
 import ValidDesativarUsuario from "./modules/validform/ValidDesativarUsuario";
 import ValidEditarUsuario from "./modules/validform/ValidEditarUsuario";
 
-import InterecaoEventoDiv from "./InterecaoEventoDivInput";
+import InterecaoEventoDivInput from "./InterecaoEventoDivInput";
 import divcriarpedido from "./modules/eventodiv/divcriarpedido";
 
 window.addEventListener('load', (e)=>{
+
+    const listEventodiv = [];
+    listEventodiv.push(divcriarpedido);
+    listEventodiv.forEach((mydiv)=>{
+        const controlevento = new InterecaoEventoDivInput(mydiv);
+        controlevento.init();
+    });
+
+
+
     const listValidForm = [];
     //adicione cada validador de formulário
     listValidForm.push([ValidLogin, ".class-form-login"]);
@@ -19,11 +29,6 @@ window.addEventListener('load', (e)=>{
         valid.init();
     });
 
-    const listEventodiv = [];
-    listEventodiv.push(divcriarpedido);
-    listEventodiv.forEach((mydiv)=>{
-        const controlevento = new InterecaoEventoDivInput(mydiv);
-        controlevento.init();
-    });
+    
     
 });

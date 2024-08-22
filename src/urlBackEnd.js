@@ -1,2 +1,2 @@
-const APP_PROTOCOL_DOMAIN_PORT="http://localhost:3006";
+const APP_PROTOCOL_DOMAIN_PORT="http://192.168.100.2:3006";
 export default APP_PROTOCOL_DOMAIN_PORT;

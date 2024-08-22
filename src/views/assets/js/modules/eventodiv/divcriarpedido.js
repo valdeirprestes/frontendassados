@@ -1,11 +1,15 @@
 const config = {
-    className:"",
+    className:"cliente_criarpedido",
+    classinfomacao:"",
     axios:{
-        rota:"/api/usuario",
-        metodo:"get",
+        rota_contagem:"/usuario/quantidade",
+        metodo_contagem:"post",
+        rota_dados:"/usuario/todos",
+        metodo_dados:"post",
         filtragemestatica:[
             {"campo":"estado", "valor":"NORMAL"},
-            {"campo":"qtdpagina", "valor":5}
+            {"campo":"qtdpagina", "valor":5},
+            {"campo":"pagina", "valor":1}
         ],
         
         filtragemdinamica:[
@@ -14,7 +18,10 @@ const config = {
         ]
     },
     classNameConfigTabela:"",
-    classNamePaginado:""
-    
+    classNamePaginado:"",
+    labelbuscar:"Buscar cliente",
+    tabelacabecalho:['id', 'nome', 'contato'],
+    tabeladados:['id', 'nome', 'telefone'],
+    primeiracolunaoculta:false
 } 
 export default config;
