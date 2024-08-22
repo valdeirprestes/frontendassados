@@ -7,6 +7,7 @@ import usuarioroute from "./routes/UsuarioRoute"
 import controllernotfound404 from "./controllers/NotFound404Controller";
 import apiroute from "./routes/ApiRoute";
 import orderroute from "./routes/OrderRoute";
+import estoqueroute from "./routes/EstoqueRoute"
 import path from "path";
 import session from "express-session";
 import cookiemiddlewares from "./middlewares/cookiemiddleware";
@@ -42,6 +43,7 @@ class Api{
         this.app.use("/atendimento", costumerserviceroute);
         this.app.use("/usuario", usuarioroute);
         this.app.use("/pedido", orderroute);
+        this.app.use("/estoque", estoqueroute);
         this.app.use("/api", apiroute);
         this.app.use("*",controllernotfound404.page); // Default is 404 page not found!
     }

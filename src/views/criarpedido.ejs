@@ -12,15 +12,38 @@
     <div class="main">
         <%- include("includes/menubar"); %>
         <div class="div_unica">
-            <div class="divflexvertical">
+            <form class="divflexvertical">
                 <div class="div_form clientediv">
-
+                    <label>Nome:</label> <br>
+                    <input name="nome">
+                    <br>
+                    <label>Telefone:</label> <br>
+                    <input name="telefone">
+                    <br>
+                    <label>Endereço:</label> <br>
+                    <input name="endereco">
+                    <br>
+                    <label>Bairro:</label> <br>
+                    <input name="bairro">
+                    <br>
+                    <label>Número:</label> <br>
+                    <input name="numero">
+                    <br>
+                    <label>Complemento:</label> <br>
+                    <input name="complemento">
                 </div>
                 <div class="div_form produtodiv">
-
+                    <button>+</button>
+                    <input name="carneassada">
+                    <button>-</button>
+                    <label>Carne Assada</label>
                 </div>
-            </div>
+                <div class="formcontentsright">
+                    <button class="botao">Editar</button>
+                </div>
+            </form>
         </div>
+    </div>
     </div>
     <%- include("includes/footer"); %>
 </body>

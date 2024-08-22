@@ -7,7 +7,7 @@
 
 .divflexvertical{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -15,7 +15,6 @@
     justify-content: center;
     margin: 0 auto;
 }
-
 
 .clientediv{
     box-sizing: border-box;
@@ -31,4 +30,12 @@
     height: 70%;
     margin: 30px;
 
+}
+
+.inputquantidade {
+    width: 15px;
+}
+
+.inputpreco {
+    width: 50px;
 }
