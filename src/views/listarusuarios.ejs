@@ -11,21 +11,42 @@
 <body>
     <%- include("includes/menubar"); %>
     <% if(locals.listausuario){ %>
-    <div>
-        <div class="">
-            <form class="div_form listarusuario" method="post" action="/usuario/pesquisar">
-                <div class="form-group">
+    <div class="main">
+        <!--
+        <div>
+            <form class=" listarusuario" method="post" action="/usuario/pesquisar">
+                <div class="form-group" style="display: flex;">
+                    <h1>Lista de Clientes</h1>
                     <input name="nome">
                     <button class="botao">Pesquisar</button>
                 </div>
             </form>
+            
         </div>
+        -->
+        <div>
+        
+            
+            
         <table class="tabelas">
-            <tr>
-                <th>id</th>
-                <th>nome</th>
-                <th>estado</th>
-                <th>ações</th>
+            <!--<div>-->
+                <form class=" listarusuario" method="post" action="/usuario/pesquisar">
+                    <tr>
+                        <th><h1>Lista de Clientes</h1></th>
+                        <th></th>
+                        <th><input name="nome"></th>
+                        <th><button class="botao">Pesquisar</button></th>
+                    </tr>
+                </form>
+            <!--</div>-->
+                
+            
+
+            <tr style="background-color: rgb(189, 189, 189);">
+                <th>ID</th>
+                <th>NOME</th>
+                <th>ESTADO</th>
+                <th>AÇÕES</th>
             </tr>    
             <% listausuario.forEach(usuario => { %>
             <tr>
@@ -36,6 +57,7 @@
             </tr>
             <% }) %>  
         </table>
+        </div>
 
         <ul class="paginacao">
             <li><a href="#">1</a></li>

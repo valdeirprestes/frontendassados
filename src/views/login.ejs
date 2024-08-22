@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/public/assets/css/login.css" rel="stylesheet"/>
+    <link href="/public/assets/css/style.css" rel="stylesheet"/>
     <%- include("includes/assets"); %>
-    <title>Login</title>
+    <title>Entrar</title>
 </head>
 
 <body>
@@ -16,7 +17,7 @@
         </div>
         <div class="rightslide">
         <div class="divlogin">
-            <h3>Bem vindo ao Assados online</h3>
+            <h2>Bem vindo ao Assados online</h2>
             <form class="class-form-login" method="post" action="/login/dologin">
                 <% if(locals.errorlogin){ %>
                     <h5><%= errorlogin %></h5>
@@ -33,7 +34,7 @@
                 </div>
                 <span class="erros" name="backenderros"></span>
 
-                <button class="botao">Enviar</button>
+                <button class="botao">Entrar</button>
                 
                 <span><a href="/">Pagina inicial</a></span>
 

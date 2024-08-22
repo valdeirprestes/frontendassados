@@ -12,29 +12,36 @@
     <div class="main">
       <%- include("includes/menubar"); %>
       <div class="div_unica">
-	    <div class="div_form cadastrarusuario">
+	    <div class="cadastrarusuario div_form">
+        <h1>Cadastrar Cliente</h1> 
+        <hr> 
           <form method="post" action="/usuario/efetuarlogin" class="class-form-usuario" autofill="off">
             <div class="form-group">
               <span class="erros" name="erros"></span>
           </div>
+        
 	    <div class="form-group">
-              <span class="erros" name="nome"></span>
+              
               <label for="nome">Nome:</label>
+              <span class="erros" name="nome"></span>
               <input type="text" name="nome" class="form-control">
 	    </div>
             <div class="form-group">
-              <span class="erros" name="email"></span>
+              
               <label for="email">Email:</label>
+              <span class="erros" name="email"></span>
               <input type="text" name="email" class="form-control">
 	    </div>
             <div class="form-group">
-              <span class="erros" name="senha"></span>
+              
               <label for="email">Senha:</label>
+              <span class="erros" name="senha"></span>
               <input type="password" name="senha" class="form-control">
 	    </div>
             <div class="form-group">
-              <span class="erros" name="perfil"></span>
+              
               <label for="perfil">Perfil:</label>
+              <span class="erros" name="perfil"></span>
               <select name="perfil">
                 <option   value="ATENDENTE">ATENDENTE</option>
                 <option   value="ADM">ADM</option>

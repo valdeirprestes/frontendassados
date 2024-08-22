@@ -1,4 +1,4 @@
-i#1ª Instalação do frontend do AssadosOnline a partir do git <br>
+#1ª Instalação do frontend do AssadosOnline a partir do git <br>
 git clone https://github.com/valdeirprestes/frontendassados.git<br>
 <br>
 <br>

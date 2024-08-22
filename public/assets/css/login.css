@@ -13,14 +13,17 @@
     min-height: 100%;
     align-items: center;
     align-content: center;
-    background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));
+    /*background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));*/
+    background-color: #EFEDEE;
+    /*#FE642E*/
 }
 
 .divlogin {
     box-sizing: border-box;
     align-content: center;
     align-items: center;
-    background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));
+    /*background: linear-gradient(to right, var(--cor-secoes),var(--cor-planofundo));*/
+    background-color: #f5f5f5;
     border-radius: 3px;
 	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 10px;
