@@ -1,0 +1,27 @@
+.formflex{
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.div{
+    width: fit-content;
+    margin: auto;
+}
+
+.formcontentsleft {
+    margin: 5px;
+    margin-right: 10px;
+}
+
+.formcontentscenter {
+    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.formcontentsright {
+    width: fit-content;
+    margin: 5px;
+    margin-left: 10px;
+}

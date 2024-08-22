@@ -14,8 +14,8 @@
             <div class="leftslide">
                 <div class="botoes">
                     <a href="/pedido/criar" class="botao" name="novopedido">Novo pedido</a>
-                    <a href="#"  class="botao" name="pedidosentregues">Pedidos entregues</a>
-                    <a href="#"  class="botao" name="pedidoscancelados">Pedidos Cancelados</a>
+                    <a href="/pedido/concluidos"  class="botao" name="pedidosentregues">Pedidos entregues</a>
+                    <a href="/pedido/cancelados"  class="botao" name="pedidoscancelados">Pedidos Cancelados</a>
                     <a href="#"  class="botao" name="estoque">Gerenciar Estoque</a>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <h1>Retirar no local</h1>
                     <% if(locals.pedidossementrega){ %>
                         <% pedidossementrega.forEach(pedido => { %>
-                            <div class="item itemtamanho">
+                            <div class="item itemtamanho" onclick="location.href='/pedido/detalhes'">
                                 <p> Pedido <%=pedido.id%></p>
                                 <p> Cliente <%= pedido.cliente.nome %></p>
                                 <p>Itens pedidos:</p>

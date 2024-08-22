@@ -1,0 +1,15 @@
+.tabela, td {
+    border: black solid 1px;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.titulo {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.div {
+    width: fit-content;
+    margin: 0 auto;
+}
