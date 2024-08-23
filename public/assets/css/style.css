@@ -171,3 +171,52 @@ html, body{
     display: flex;
     flex-direction: row;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Modulo busca interativa*/
+.divtabela {
+    margin: auto;
+    background-color: #f5f5f5;
+    border-collapse: collapse;
+    
+    margin: auto;
+    margin-top: 1%;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 5px;
+   
+}
+.divpaginador{
+    ul, li{
+        display: flex;
+        flex-direction: row;
+        margin:0 4px 0 4px;
+    }
+}
+
+.telaselecao{
+    display: block;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 2;
+    width: 800px;
+    height: 500px;
+    
+    background: linear-gradient( var(--cor-menubar), var(--cor-secoes),  var(--cor-menubar));
+    
+}
+.divbusca{
+    display: flex;
+    flex-direction: row;
+}

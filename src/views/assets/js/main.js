@@ -3,22 +3,33 @@ import ValidUsuario from "./modules/validform/ValidUsuario";
 import ValidDesativarUsuario from "./modules/validform/ValidDesativarUsuario";
 import ValidEditarUsuario from "./modules/validform/ValidEditarUsuario";
 
-import InterecaoEventoDivInput from "./InterecaoEventoDivInput";
-import divcriarpedido from "./modules/eventodiv/divcriarpedido";
+
+
+import divcriarpedido from "./modules/eventos/criarperdido/divcriarpedido";
+import funcdivcriarpedido from "./modules/eventos/criarperdido/funcdivcriarpedido";
+
+
+import { AtivarBuscaInterativa } from "./buscaInterativa";
 
 window.addEventListener('load', (e)=>{
 
-    const listEventodiv = [];
-    listEventodiv.push(divcriarpedido);
-    listEventodiv.forEach((mydiv)=>{
-        const controlevento = new InterecaoEventoDivInput(mydiv);
-        controlevento.init();
+    const listSearch = [];
+    listSearch.push([funcdivcriarpedido, divcriarpedido]);
+    let botao;
+    listSearch.forEach((element)=>{
+        const [funcao ,objconfig ] = element;
+        let botao = document.querySelector(`.${objconfig.classBotao}`);
+        if(botao)
+        {
+            botao.onclick = ()=> AtivarBuscaInterativa(objconfig);
+        }
+        else 
+            console.log(`Classe ${objconfig.classBotao} não foi localizada`);
     });
 
 
 
     const listValidForm = [];
-    //adicione cada validador de formulário
     listValidForm.push([ValidLogin, ".class-form-login"]);
     listValidForm.push([ValidUsuario, ".class-form-usuario"]);
     listValidForm.push([ValidDesativarUsuario, ".class-form-deativarusuario"]);

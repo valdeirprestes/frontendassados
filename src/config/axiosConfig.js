@@ -17,20 +17,6 @@ class ConfigAxios{
         }
         return axiosconf;
     }
-    configbroswer(){
-        const user = JSON.parse(sessionStorage.getItem('user'));
-        let axiosconf = {baseURL: `${this.getURLBack()}` };
-        if(user){
-            axiosconf = { headers: {
-                'Authorization': `Bearer ${user.token}`
-              }, ...axiosconf};
-        }
-        return axiosconf;
-    }
-    getURLBack(){
-        return urlBackEnd;
-    }
-    
 }
 
 export default new ConfigAxios();
