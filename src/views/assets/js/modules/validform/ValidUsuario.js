@@ -52,20 +52,25 @@ export default class ValidUsuario{
             if(this.validadata() == false) {
                 return;
             }
-            const request = axios.create(axiosconfig.configbroswer());
-            //request.post('http://localhost:3006/usuario/',{
-            request.post('usuario',{
-                "nome":`${this.nome.value}`,  
-                "email":`${this.email.value}`, 
-                "senha":`${this.senha.value}`,
-                "perfil":`${this.perfil.value}` 
-            })
+            
+            
+            axios.post('/api',
+            {
+                data:{
+                "rota":'usuario',
+                 parametros:{
+                    "nome":`${this.nome.value}`,  
+                    "email":`${this.email.value}`, 
+                    "senha":`${this.senha.value}`,
+                    "perfil":`${this.perfil.value}` 
+                }
+            }})
             .then(()=>{
                 //location.href = "/login"
                 this.form.submit();
             })
             .catch(error=>{
-                console.log(error);
+                console.log(error.response.data);
                 let {errors} = error.response.data;
                 errors.forEach(element => {
                     this.erros_erro.innerHTML += element + "<br>"; 

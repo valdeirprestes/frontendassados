@@ -17,7 +17,7 @@ class CostumerServiControllers{
             });
             if(listorder)
                 myfiltre = {...myfiltre, "pedidoscomentrega":listorder.data};
-            console.log('myfiltre', myfiltre);
+            
             return res.render("costumerservice", myfiltre);
         }  
         catch(e)

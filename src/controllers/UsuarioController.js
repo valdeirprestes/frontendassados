@@ -10,7 +10,7 @@ class UsuarioController {
     async listar(req, res) {
         try {
             const axios = Axios.create(axiosconfig.configcontroller(req, res));
-            const response = await axios.get('/usuario');
+            const response = await axios.post('/usuario/todos');
             //console.log("data", response.data);
             return res.render("listarusuarios", {"listausuario":response.data});
         } catch (e) {
