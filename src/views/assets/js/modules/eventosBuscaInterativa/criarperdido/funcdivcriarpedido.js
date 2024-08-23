@@ -1,3 +1,5 @@
+import { manterEntidade } from "../../../manterEntidade";
+import configCriarPedido from "../../eventosManterentidade/criarpedido/configCriarPedido";
 export default async function(myconfig){
     const labeldiv = 'selecionado'; 
     
@@ -18,7 +20,12 @@ export default async function(myconfig){
     
     mainDiv.appendChild(newdiv);
     
-    newdiv.innerHTML="<h1>" + inputoption.value + "</h1>";
+    let config = configCriarPedido;
+    config.axios.rota_Ler=`/usuario/${inputoption.value}`;
+    config.axios.metodo_Ler="get"
+    new manterEntidade(config);
+    
+    //newdiv.innerHTML="<h1>" + inputoption.value + "</h1>";
 
 
 }

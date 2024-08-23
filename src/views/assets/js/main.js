@@ -5,8 +5,8 @@ import ValidEditarUsuario from "./modules/validform/ValidEditarUsuario";
 
 
 
-import divcriarpedido from "./modules/eventos/criarperdido/divcriarpedido";
-import funcdivcriarpedido from "./modules/eventos/criarperdido/funcdivcriarpedido";
+import divcriarpedido from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedido";
+import funcdivcriarpedido from "./modules/eventosBuscaInterativa/criarperdido/funcdivcriarpedido";
 
 
 import { AtivarBuscaInterativa } from "./buscaInterativa";
