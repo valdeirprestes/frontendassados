@@ -12,9 +12,31 @@
     <div class="main">
         <%- include("includes/menubar"); %>
         <div class="div_unica">
+<<<<<<< HEAD
             <div class="divflexvertical">
                 <div class="div_form cliente_criarpedido">
 
+=======
+            <form class="divflexvertical">
+                <div class="div_form clientediv">
+                    <label>Nome:</label> <br>
+                    <input name="nome">
+                    <br>
+                    <label>Telefone:</label> <br>
+                    <input name="telefone">
+                    <br>
+                    <label>Endereço:</label> <br>
+                    <input name="endereco">
+                    <br>
+                    <label>Bairro:</label> <br>
+                    <input name="bairro">
+                    <br>
+                    <label>Número:</label> <br>
+                    <input name="numero">
+                    <br>
+                    <label>Complemento:</label> <br>
+                    <input name="complemento">
+>>>>>>> refs/remotes/repositorio/main
                 </div>
                 <div class="div_form produtodiv">
                     <button>+</button>
@@ -22,7 +44,9 @@
                     <button>-</button>
                     <label>Carne Assada</label>
                 </div>
-               
+                <div class="formcontentsright">
+                    <button class="botao">Editar</button>
+                </div>
             </form>
         </div>
     </div>
