@@ -5,8 +5,9 @@ import ValidEditarUsuario from "./modules/validform/ValidEditarUsuario";
 
 
 
-import divcriarpedido from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedido";
-import funcdivcriarpedido from "./modules/eventosBuscaInterativa/criarperdido/funcdivcriarpedido";
+import configCriarPedido from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedido";
+import configCriarPedidoProduto from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedidoProduto";
+
 
 
 import { AtivarBuscaInterativa } from "./buscaInterativa";
@@ -14,10 +15,10 @@ import { AtivarBuscaInterativa } from "./buscaInterativa";
 window.addEventListener('load', (e)=>{
 
     const listSearch = [];
-    listSearch.push([funcdivcriarpedido, divcriarpedido]);
+    listSearch.push(configCriarPedido);
+    listSearch.push(configCriarPedidoProduto);
     let botao;
-    listSearch.forEach((element)=>{
-        const [funcao ,objconfig ] = element;
+    listSearch.forEach((objconfig)=>{
         let botao = document.querySelector(`.${objconfig.classBotao}`);
         if(botao)
         {

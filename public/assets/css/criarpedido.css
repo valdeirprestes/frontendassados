@@ -1,3 +1,9 @@
+.main_criarpedido{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
 .divflexvertical{
     display: flex;
     flex-direction: row;
@@ -14,17 +20,22 @@
     box-sizing: border-box;
     display: block;
     width: 35%;
-    height: 70%;
-    margin: 30px;
+    height: 80%;
+    margin: 10px;
     align-items: center;
     align-content: center;
     justify-content: center;
 }
-.produtodiv{
+.produto_criarpedido{
     box-sizing: border-box;
     display: block;
     width: 35%;
-    height: 70%;
-    margin: 30px;
+    height: 80%;
+    margin: 10px;
 
+}
+.acoes_criarpedido{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
 }

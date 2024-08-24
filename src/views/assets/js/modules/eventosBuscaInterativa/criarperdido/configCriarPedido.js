@@ -1,8 +1,8 @@
-import funcdivcriarpedido from "./funcdivcriarpedido";
+import funcdivcriarpedido from "./funcCriarPedido";
 const config = {
     className:"cliente_criarpedido", //classe que tem o botao de busca
-    classInputSelecionado:"usuarioselecionado", // classe do input tipo hidden
-    classBotao:"AtivarBuscarInterativa", // classe do botão para buscar 
+    classInputSelecionado:"usuarioselecionado_criarpedido", // classe do input tipo hidden
+    classBotao:"buscarusuario_criarpedido", // classe do botão para buscar 
     classDivInsert:"divflexvertical", // uma div que possa centralizar a div de busca
     axios:{
         rota_contagem:"/usuario/quantidade",
@@ -23,8 +23,9 @@ const config = {
     classNamePaginado:"",
     labelbuscar:"Buscar cliente",
     labelbuscarcancel:"Cancelar",
-    tabelacabecalho:['id', 'nome', 'contato'],
-    tabeladados:['id', 'nome', 'telefone'],
+    tabelacabecalho:['id', 'nome','email', 'telefone', 'celular'],
+    tabeladados:['id', 'nome','email', 'telefone','celular'],
+    tabelaprocura:['nome','email', 'telefone','celular'],
     primeiracolunaoculta:false,
     funcaopost:funcdivcriarpedido
 } 

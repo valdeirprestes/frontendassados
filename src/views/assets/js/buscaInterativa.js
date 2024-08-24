@@ -207,8 +207,8 @@ class buscaInterativa {
                 parametros = {...parametros, 
                     [this.config.axios.filtragemestatica[i].campo]:this.config.axios.filtragemestatica[i].valor}
             }
-            for(let i=0; i < this.config.tabeladados.length; i++){
-                parametros = {...parametros, [this.config.tabeladados[i]]:this.inputbusca.value}
+            for(let i=0; i < this.config.tabelaprocura.length; i++){
+                parametros = {...parametros, [this.config.tabelaprocura[i]]:this.inputbusca.value}
             }
             parametros = {...parametros, "pagina":this.paginaselecionada};
             
@@ -249,8 +249,8 @@ class buscaInterativa {
                 parametros = {...parametros, 
                     [this.config.axios.filtragemestatica[i].campo]:this.config.axios.filtragemestatica[i].valor}
             }
-            for(let i=0; i < this.config.tabeladados.length; i++){
-                parametros = {...parametros, [this.config.tabeladados[i]]:this.inputbusca.value}
+            for(let i=0; i < this.config.tabelaprocura.length; i++){
+                parametros = {...parametros, [this.config.tabelaprocura[i]]:this.inputbusca.value}
             }
             parametros = {...parametros, "pagina":this.paginaselecionada};
             let metodo = this.config.axios.metodo_contagem;
