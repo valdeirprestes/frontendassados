@@ -39,3 +39,89 @@
     display: flex;
     flex-direction: row;
 }
+
+.divlistaproduto_criarpedido{
+    width: 100%;
+    height: 70%;
+}
+
+.idlistproduto_criarpedido{
+    display: none;
+}
+
+.botaomenos{
+    display: block;
+    box-sizing: border-box; 
+    margin: 5px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 10px;
+
+    border-color: var(--cor-botao);
+    background-color:  var(--cor-botao);
+    color: var(--cor-botao-texto);
+
+    text-decoration: none;	
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+
+    transition: 300ms;
+   	&:hover{
+        border-color:var(--cor-botao-foco);
+        background-color: var(--cor-botao-foco);
+		color: var(--cor-botao-foco-texto);
+	}
+}
+
+.botaomais{
+    display: block;
+    box-sizing: border-box; 
+    margin: 5px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 10px;
+
+    border-color: var(--cor-botao);
+    background-color:  var(--cor-botao);
+    color: var(--cor-botao-texto);
+
+    text-decoration: none;	
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+
+    transition: 300ms;
+   	&:hover{
+        border-color:var(--cor-botao-foco);
+        background-color: var(--cor-botao-foco);
+		color: var(--cor-botao-foco-texto);
+	}
+}
+
+.inputqtd{
+    background: var(--cor-secao);
+}
+
+.registroproduto{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+}
+.elementoinvisivel{
+    display: none;
+}
+
+.img_criarpedido{
+    border-radius: 50%;
+    width: 30%;
+}
+
+.inputtam{
+    width: 70%;
+}

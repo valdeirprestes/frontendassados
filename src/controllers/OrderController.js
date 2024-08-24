@@ -1,6 +1,6 @@
 class OrderController{
     createorder( req, res){
-        return res.render('criarpedido');
+        return res.render('gestaodepedido');
     }
     detalhes(req, res) {
         return res.render('detalhespedido');

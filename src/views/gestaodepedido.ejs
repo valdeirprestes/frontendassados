@@ -15,18 +15,19 @@
             <div class="painel_produtos"></div>
             <div class="divflexvertical">
                 <div class="div_form cliente_criarpedido">
-                    <input type="hidden" class ="usuarioselecionado_criarpedido" >
+                    <span class ="elementoinvisivel usuarioselecionado_criarpedido" >-1</span>
                     <a href="#" class="botao buscarusuario_criarpedido">Buscar cliente</a>
 
                 </div>
                 <div class="div_form produto_criarpedido">
-                    <input type="hidden" class ="ultimoproduto_criarpedido" defaultValue="-1">
-                    <input type="hidden" class ="produtoselecionado_criarpedido" defaultValue="-1">
+                    <span class ="elementoinvisivel id_pedido" >-1</span>
+                    <span class ="elementoinvisivel ultimoproduto_criarpedido">-1</span>
+                    <span class ="elementoinvisivel produtoselecionado_criarpedido">-1</span>
                     <a href="#" class="botao buscarproduto_criarpedido">Buscar produto</a>
                     <div class="divlistaproduto_criarpedido"></div>
                     <div class="acoes_criarpedido">
                         <a href="#" class="botao cancelar_criarpedido">Cancelar</a>
-                        <a href="#" class="botao cancelar_criarpedido">Finalizar</a>
+                        <a href="#" class="botao cancelar_criarpedido">Criar Pedido</a>
                     </div>
                 </div>
             </div>

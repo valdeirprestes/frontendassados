@@ -1,21 +1,13 @@
-function somaproduto(){
-
-}
-function subtraiproduto(){
-
-}
-function alterapreco(){
-
-}
-
-
+import axios from "axios";
 
 async function getProduct(id){
     const rota = `/produto/${id}`;
     const parametros = {};
-    const response = await axios.post('api',{params: {
-        data: { "rota":rota, "parametros": parametros}
-    }});
+    const response = await axios.get('/api',{
+        params: {
+            data: { "rota":rota, "parametros": parametros}
+        }})
+    ;
     return response;
 }
 
@@ -49,73 +41,132 @@ async function funcCriarPedidoProduto(config){
     
     if(produtoselecionado_criarpedido.value != ultimoproduto_criarpedido.value)
     {
-        ultimoproduto_criarpedido.value = produtoselecionado_criarpedido.value;
-        console.log("Alterou produto");
-        if(verificaProdutonaLista(produtoselecionado_criarpedido.value) == true) return;
-        if(!tableproduto_criarpedido){
-            tableproduto_criarpedido = document.createElement("table");
-            tableproduto_criarpedido.classList.add("tablelistaproduto_criarpedido");
-            divlistaproduto_criarpedido.appendChild(tableproduto_criarpedido);
-        }
+        let id = produtoselecionado_criarpedido.value;
+        ultimoproduto_criarpedido.value = id;
         
-        const response = await getProduct();
+        if(verificaProdutonaLista(id) == true) return;
+        
+        const response = await getProduct(id);
         if(!response){
-            console.log(`Error, produto id ${produtoselecionado_criarpedido.value}não encontrado` );
+            console.log(`Error, produto id ${id}não encontrado` );
             return;
         }
-
-        let tagtr, tagtd,taglink, tagimg, taglabel, taginput;
-        tagtr = document.createElement("tr");
-        tableproduto_criarpedido.appendChild(tagtr);
         
-        tagtd = document.createElement('td');
+        let  tagtr, tagtd, tagspan, taglink, tagimg, taglabel, taginput;
+        let tagtable = document.querySelector(".tabelaproduto_criapedido");
+        if(!tagtable){
+            tagtable = document.createElement("table");
+            tagtable.classList.add("tabelaproduto_criapedido");
+            divlistaproduto_criarpedido.appendChild(tagtable);
+            let lista = ["Qtd.", "img", "Produto", "Preço", "Subtotal"];
+            let tagth;
+            tagtr = document.createElement("tr");
+            tagtable.appendChild(tagtr);
+            for(let i=0 ; i < lista.length; i++)
+            {
+                tagth = document.createElement("th");
+                tagth.innerText = lista[i];
+                tagtr.appendChild(tagth);
+            }
+        }
+
+        tagtr = document.createElement("tr");
+        tagtable.appendChild(tagtr);
+
+        let taginput1, taginput2, taginput3;
+
+        tagtd = document.createElement("td");
+        tagtd.classList.add(`produto${id}`);
+        tagtd.classList.add(`registroproduto`);
         tagtd.classList.add("idlistproduto_criarpedido");
-        tagtd.innerText = produtoselecionado_criarpedido.value;
+        tagtd.classList.add('elementoinvisivel');
+        tagtd.innerText = id;
         tagtr.appendChild(tagtd);
+        
+        
 
-        tagtd = document.createElement('td');
-        tagtd.classList.add("");
+        tagtd = document.createElement("td");
+        taginput1 = document.createElement("input");
+        taginput1.value = 1;
+        taginput1.classList.add("inputqtd");
+        taginput1.classList.add("inputtam");
+        taginput1.classList.add(`input_qtd${id}`);
+
+        tagtd.appendChild(taginput1);
+        tagtr.appendChild(tagtd);
+        
+        /*
         taglink = document.createElement("a");
         taglink.href = "#";
-        tagtr.appendChild(tagtd);
-        tagtr.appendChild(tagtd);
+        taglink.innerText = "+"
+        taglink.classList.add("botaomais");
+        taglink.classList.add("item5per");
+        newdiv.appendChild(taglink);
+        */
 
-        tagtd = document.createElement('td');
-        tagtd.classList.add("");
-        taginput = document.createElement("input");
-        taginput.value = response.data.preco;
-        tagtr.appendChild(tagtd);
-
-        tagtd = document.createElement('td');
-        tagtd.classList.add("");
-        taglink = document.createElement("a");
-        taglink.href = "#";
-        tagtr.appendChild(taglink);
-
-        tagtd = document.createElement('td');
-        tagtd.classList.add("");
+        tagtd = document.createElement("td");
         tagimg = document.createElement("img");
         tagimg.src= response.data.url;
+        tagimg.classList.add("img_criarpedido");
+        tagtd.appendChild(tagimg);
         tagtr.appendChild(tagtd);
         
-        tagtd = document.createElement('td');
-        tagtd.classList.add("");
-        taginput = document.createElement("input");
-        taginput.value = response.data.preco;
+
+        tagtd = document.createElement("td");
+        tagtd.innerText = response.data.nome;
         tagtr.appendChild(tagtd);
 
-        tagtd = document.createElement('td');
-        tagtd.classList.add("");
-        tagtd.innerText = produtoselecionado_criarpedido.value;
+
+        tagtd = document.createElement("td");
+        taginput2 = document.createElement("input");
+        taginput2.classList.add("inputtam");
+        taginput2.classList.add(`input_preco${id}`);
+        taginput2.value = response.data.preco;
+        tagtd.appendChild(taginput2);
         tagtr.appendChild(tagtd);
 
-        tagtd = document.createElement('td');
-        tagtd.classList.add("");
-        tagtd.innerText = produtoselecionado_criarpedido.value;
+        tagtd = document.createElement("td");
+        taginput3 = document.createElement("input");
+        taginput3.classList.add("inputtam");
+        taginput3.classList.add(`input_subtotal${id}`);
+        taginput3.readOnly = true;
+        taginput3.value = response.data.preco;
+        tagtd.appendChild(taginput3);
         tagtr.appendChild(tagtd);
+
+        taginput1.onkeyup = ()=> atualizarPreco(
+            `input_qtd${id}`,
+            `input_preco${id}`,
+            `input_subtotal${id}`);
+        taginput2.onkeyup = ()=> atualizarPreco(
+            `input_qtd${id}`,
+            `input_preco${id}`,
+            `input_subtotal${id}`);
 
     }
     
+   function atualizarPreco(classqtd, classpreco, classsubtotal){
+        let qtd = document.querySelector(`.${classqtd}`);
+        let preco = document.querySelector(`.${classpreco}`);
+        let subtotal = document.querySelector(`.${classsubtotal}`);
+        if(!qtd){
+            console.log(` Não consegui acessar ${classqtd}`);
+            return;
+        }
+        if(!preco){
+            console.log(` Não consegui acessar ${preco}`);
+            return;
+        }
+        if(!subtotal){
+            console.log(` Não consegui acessar ${subtotal}`);
+            return;
+        }
+        let valor = qtd.value;
+        qtd.value = valor.replace(",",".");
+        valor = preco.value;
+        preco.value = valor.replace(",",".");
+        subtotal.value =  (parseFloat(qtd.value) * parseFloat(preco.value)).toFixed(2);
+    }
     
 }
 
