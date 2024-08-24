@@ -2,6 +2,8 @@ import ValidLogin from "./modules/validform/ValidLogin";
 import ValidUsuario from "./modules/validform/ValidUsuario";
 import ValidDesativarUsuario from "./modules/validform/ValidDesativarUsuario";
 import ValidEditarUsuario from "./modules/validform/ValidEditarUsuario";
+import ValidEditarProduto from "./modules/validform/ValidEditarProduto";
+import ValidProduto from "./modules/validform/ValidProduto";
 
 
 
@@ -35,6 +37,8 @@ window.addEventListener('load', (e)=>{
     listValidForm.push([ValidUsuario, ".class-form-usuario"]);
     listValidForm.push([ValidDesativarUsuario, ".class-form-deativarusuario"]);
     listValidForm.push([ValidEditarUsuario, ".class-form-editarusuario"]);
+    listValidForm.push([ValidProduto, ".class-form-produto"]);
+    listValidForm.push([ValidEditarProduto, ".class-form-editarproduto"]);
     listValidForm.forEach( (Validclasstr) =>{
         const [Valid, classtr] = Validclasstr
         const valid = new Valid(classtr);
