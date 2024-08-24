@@ -1,72 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Usuários</title>
     <%- include("includes/assets"); %>
-    <link href="/public/assets/css/home.css" rel="styleshee t"/>
-    <link href="/public/assets/css/listarusuario.css" rel="stylesheet"/>
+        <link href="/public/assets/css/home.css" rel="styleshee t" />
+        <link href="/public/assets/css/listarusuario.css" rel="stylesheet" />
 </head>
+
 <body>
     <%- include("includes/menubar"); %>
-    <% if(locals.listausuario){ %>
-    <div class="main">
-        <!--
-        <div>
-            <form class=" listarusuario" method="post" action="/usuario/pesquisar">
-                <div class="form-group" style="display: flex;">
-                    <h1>Lista de Clientes</h1>
-                    <input name="nome">
-                    <button class="botao">Pesquisar</button>
-                </div>
-            </form>
-            
-        </div>
-        -->
-        <div>
-        
-            
-            
-        <table class="tabelas">
-            <!--<div>-->
-                <form class=" listarusuario" method="post" action="/usuario/pesquisar">
-                    <tr>
-                        <th><h1>Lista de Clientes</h1></th>
-                        <th></th>
-                        <th><input name="nome"></th>
-                        <th><button class="botao">Pesquisar</button></th>
-                    </tr>
-                </form>
-            <!--</div>-->
+        <% if(locals.listausuario){ %>
+            <div class="main, alinhamento_tabela_lista_usuarios" >
                 
-            
+                <!--Janela-->
+                <div class="janela" >
 
-            <tr style="background-color: rgb(189, 189, 189);">
-                <th>ID</th>
-                <th>NOME</th>
-                <th>ESTADO</th>
-                <th>AÇÕES</th>
-            </tr>    
-            <% listausuario.forEach(usuario => { %>
-            <tr>
-                <td><%= usuario.id %></td>
-                <td><%= usuario.nome %></td>
-                <td><%= usuario.estado %></td>
-                <td><a href="/usuario/<%= usuario.id %>/desativar">Desativar</a> <a href="/usuario/<%= usuario.id %>/editar">Editar</a></td>
-            </tr>
-            <% }) %>  
-        </table>
-        </div>
 
-        <ul class="paginacao">
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-        </ul>
+                    <!--Cabeçalho-->
+                    <div class="janela_cabecalho">
+                        <form class=" listarusuario, janela_cabecalho" method="post" action="/usuario/pesquisar">
+                            <h1 style="width: 50%; padding-left: 5%;">Lista de Clientes</h1>
+                            <input name="nome" style="width: 25%;">
+                            <button class="botao" style="width: 10%;">Pesquisar</button>
+                        </form>
+                    </div>
 
-    </div>    
-    <% } %>
-    <%- include("includes/footer"); %>
+
+
+
+                    <!--Tabelha-->
+                    <div>
+                    <table class="tabelas">
+                                
+                        <tr style="background-color: rgb(211, 211, 211);">
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>ESTADO</th>
+                            <th>AÇÕES</th>
+                        </tr>
+                        <% listausuario.forEach(usuario=> { %>
+                            <tr>
+                                <td>
+                                    <%= usuario.id %>
+                                </td>
+                                <td>
+                                    <%= usuario.nome %>
+                                </td>
+                                <td>
+                                    <%= usuario.estado %>
+                                </td>
+                                <td><a href="/usuario/<%= usuario.id %>/desativar"><button>Desativar</button></a>
+                                    <a href="/usuario/<%= usuario.id %>/editar"><button>Editar</button></a></td>
+                                     
+                                    
+                            </tr>
+                            <% }) %>
+                            
+                    </table>
+                    </div>
+
+                    <!--Paginação-->
+                    <div>
+                        <ul class="paginacao">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+
+
+
+            </div>
+            <% } %>
+                <%- include("includes/footer"); %>
 </body>
+
 </html>

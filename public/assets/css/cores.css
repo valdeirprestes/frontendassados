@@ -1,5 +1,8 @@
 :root{
-    --cor-planofundo :#FFFFFF; /* Plano de fundo.*/
+    --cor-planofundo :#EFEDEE; /* Plano de fundo.*/
+
+    --cor-famularios: #F5F5F5; /* Cor das janelinhas des formulários*/
+    --cor-tabelas:#FFFFFF;/*cor das tabelas*/
 
     --cor-secoes:#D9D9D9; /* Todos agrupamento em div*/
     --cor-secoes-texto:black; /* cor de seções */
