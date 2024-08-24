@@ -4,5 +4,7 @@ import validadmmiddleware from "../middlewares/validadmmiddleware";
 const route = new Router();
 route.get("/criar", validadmmiddleware, produtocontroller.criar);
 route.post("/efetuarcadastro", validadmmiddleware, produtocontroller.efetuarcadastro);
+route.get("/listar/:pagina", validadmmiddleware, produtocontroller.listar);
 route.get("/:id/editar", validadmmiddleware, produtocontroller.editar);
+route.get("/:id/desativar", validadmmiddleware, produtocontroller.desativar);
 export default route;

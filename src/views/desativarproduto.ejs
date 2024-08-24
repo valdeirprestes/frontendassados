@@ -6,17 +6,17 @@
     <%- include("includes/assets"); %>
     <!-- Se quiser fazer um CSS personalizado desta pagina-->
     <!-- <link href="/public/assets/css/meucsspersonalizado.css" rel="stylesheet"/> -->
-    <title>Desativar Usuario</title>  <!--Não se esqueça de alterar o nome do titulo-->
+    <title>Desativar Produto</title>  <!--Não se esqueça de alterar o nome do titulo-->
 </head>
 <body>
     <div class="main">
         <%- include("includes/menubar"); %>
         <div class="contents">
-            <% if(locals.usuario) { %>
-            <form class="class-form-deativarusuario" method="get" action="/usuario/listar">
-                <input type="hidden" value="<%= usuario.id %>" name="id">
-                <p>Você deseja desativar o usuario <%= usuario.nome %></p>
-                <button class="botao">Sim</button> <a href="/usuario/listar" class="botao">Não</a>
+            <% if(locals.produto) { %>
+            <form class="class-form-desativarproduto" method="get" action="/produto/listar/1">
+                <input type="hidden" value="<%= produto.id %>" name="id">
+                <p>Você deseja desativar o produto <%= produto.nome %></p>
+                <button class="botao">Sim</button> <a href="/produto/listar/1" class="botao">Não</a>
             </form>
             <% } %>
         </div>

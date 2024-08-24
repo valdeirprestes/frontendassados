@@ -64,13 +64,25 @@
 
                     <!--Paginação-->
                     <div>
-                        <% if(locals.qtdepaginas){ %>
-                            <ul class="paginacao">
-                                <% for (let i = 1; i <= qtdepaginas; i++) { %>
-                                    <li><a href="/usuario/listar/<%= i %>"><%= i %></a></li>
-                                <% } %>
-                            </ul>
-                        <% } %>
+                        <form id="form" method="post" action="/usuario/pesquisar/1">
+                            <% if(locals.nome){ %>
+                            <input name="nome" type="hidden" value="<%= nome %>">
+                            <% } %>
+                            <% if(locals.qtdepaginas){ %>
+                                <ul class="paginacao">
+                                    <% for (let i = 1; i <= qtdepaginas; i++) { %>
+                                        <li><button onclick="mudaAction('<%= i %>')"><%= i %></button></li>
+                                    <% } %>
+                                </ul>
+                            <% } %>
+                        </form>
+                        <script>
+                            function mudaAction(id) {
+                                const form = document.getElementById("form");
+                                form.action = `/usuario/pesquisar/${id}`;
+                                console.log(form);
+                            }
+                        </script>
                     </div>
                     
                 </div>

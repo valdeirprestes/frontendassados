@@ -10,9 +10,16 @@ class UsuarioController {
     async listar(req, res) {
         try {
             const axios = Axios.create(axiosconfig.configcontroller(req, res));
-            const response = await axios.post('/usuario/todos');
-            //console.log("data", response.data);
-            return res.render("listarusuarios", {"listausuario":response.data});
+            const response = await axios.post('/usuario/todos', {
+                "qtdpagina":10,
+                "pagina":req.params.pagina
+            });
+            const response2 = await axios.post('/usuario/quantidade');
+            const quantidade = response2.data.quantidade
+            let qtdepaginas = quantidade/10;
+            qtdepaginas = Math.ceil(qtdepaginas);
+            
+            return res.render("listarusuarios", {"listausuario":response.data, "qtdepaginas":qtdepaginas});
         } catch (e) {
             console.log(e);
             return res.redirect('notfound404');
@@ -20,10 +27,15 @@ class UsuarioController {
     }
     async pesquisar(req, res) {
         try {
-            const filter = {"data":{"nome":req.body.nome}};
+            const filter = {"nome":req.body.nome, "qtdpagina":10, "pagina":req.params.pagina};
             const axios = Axios.create(axiosconfig.configcontroller(req, res));
-            const response = await axios.get('/usuario', filter);
-            return res.render("listarusuarios", {"listausuario":response.data});
+            const response = await axios.post('/usuario/todos', filter);
+
+            const response2 = await axios.post('/usuario/quantidade', {"nome":req.body.nome});
+            const quantidade = response2.data.quantidade
+            let qtdepaginas = quantidade/10;
+            qtdepaginas = Math.ceil(qtdepaginas);
+            return res.render("pesquisarusuarios", {"listausuario":response.data, "qtdepaginas":qtdepaginas, "nome":req.body.nome});
         } catch (e) {
             console.log(e);
             return res.redirect('notfound404');
