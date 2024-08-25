@@ -1,0 +1,22 @@
+
+.listarusuario {
+    
+    /*
+    width : 1000px;
+    height: 1000px;
+    */
+}
+.alinhamento_tabela_lista_usuarios{
+    td:first-child{
+        text-align: center;
+    }
+    td:not(:first-child){
+        text-align: left;
+    }
+    th:first-child{
+        text-align: center;
+    }
+    th:not(:first-child){
+        text-align: left;
+    }
+}

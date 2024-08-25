@@ -7,4 +7,5 @@ route.post("/efetuarcadastro", validadmmiddleware, produtocontroller.efetuarcada
 route.get("/listar/:pagina", validadmmiddleware, produtocontroller.listar);
 route.get("/:id/editar", validadmmiddleware, produtocontroller.editar);
 route.get("/:id/desativar", validadmmiddleware, produtocontroller.desativar);
+route.post('/pesquisar/:pagina', validadmmiddleware, produtocontroller.pesquisar);
 export default route;

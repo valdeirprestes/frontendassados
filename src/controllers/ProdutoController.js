@@ -64,5 +64,21 @@ class ProdutoController {
             return res.redirect('notfound404');
         }
     }
+    async pesquisar(req, res) {
+        try {
+            const filter = {"nome":req.body.nome, "qtdpagina":10, "pagina":req.params.pagina};
+            const axios = Axios.create(axiosconfig.configcontroller(req, res));
+            const response = await axios.post('/produto/todos', filter);
+
+            const response2 = await axios.post('/produto/quantidade', {"nome":req.body.nome});
+            const quantidade = response2.data.quantidade
+            let qtdepaginas = quantidade/10;
+            qtdepaginas = Math.ceil(qtdepaginas);
+            return res.render("pesquisarprodutos", {"listaprodutos":response.data, "qtdepaginas":qtdepaginas, "nome":req.body.nome});
+        } catch (e) {
+            console.log(e);
+            return res.redirect('notfound404');
+        }
+    }
 }
 export default new ProdutoController();

@@ -7,4 +7,5 @@ route.post("/efetuarcadastro", validadmmiddleware, categoriaroute.efetuarcadastr
 route.get("/listar/:pagina", validadmmiddleware, categoriaroute.listar);
 route.get("/:id/editar", validadmmiddleware, categoriaroute.editar);
 route.get("/:id/desativar", validadmmiddleware, categoriaroute.desativar);
+route.post('/pesquisar/:pagina', validadmmiddleware, categoriaroute.pesquisar);
 export default route;

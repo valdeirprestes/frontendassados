@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Produtos</title>
+    <title>Lista de Categorias</title>
     <%- include("includes/assets"); %>
         <link href="/public/assets/css/home.css" rel="styleshee t" />
-        <link href="/public/assets/css/listarprodutos.css" rel="stylesheet" />
+        <link href="/public/assets/css/listarcategorias.css" rel="stylesheet" />
 </head>
 
 <body>
     <%- include("includes/menubar"); %>
-        <% if(locals.listaprodutos){ %>
+        <% if(locals.listacategorias){ %>
             <div class="main, alinhamento_tabela_lista_usuarios" >
                 
                 <!--Janela-->
@@ -21,8 +21,8 @@
 
                     <!--Cabeçalho-->
                     <div class="janela_cabecalho">
-                        <form class=" listarusuario, janela_cabecalho" method="post" action="/produto/pesquisar/1">
-                            <h1 style="width: 50%; padding-left: 5%;">Lista de Produtos</h1>
+                        <form class=" listarusuario, janela_cabecalho" method="post" action="/categoria/pesquisar/1">
+                            <h1 style="width: 50%; padding-left: 5%;">Lista de Categorias</h1>
                             <input name="nome" style="width: 25%;">
                             <button class="botao" style="width: 10%;">Pesquisar</button>
                         </form>
@@ -38,34 +38,22 @@
                         <tr style="background-color: rgb(211, 211, 211);">
                             <th>ID</th>
                             <th>NOME</th>
-                            <th>PREÇO</th>
-                            <th>ITEM DE FECHAMENTO</th>
-                            <th>CATEGORIA</th>
                             <th>ESTADO</th>
                             <th>AÇÕES</th>
                         </tr>
-                        <% listaprodutos.forEach(produto=> { %>
+                        <% listacategorias.forEach(categoria=> { %>
                             <tr>
                                 <td>
-                                    <%= produto.id %>
+                                    <%= categoria.id %>
                                 </td>
                                 <td>
-                                    <%= produto.nome %>
+                                    <%= categoria.nome %>
                                 </td>
                                 <td>
-                                    <%= produto.preco %>
+                                    <%= categoria.estado %>
                                 </td>
-                                <td>
-                                    <%= produto.item_fechamento %>
-                                </td>
-                                <td>
-                                    <%= produto.categoria.nome %>
-                                </td>
-                                <td>
-                                    <%= produto.estado %>
-                                </td>
-                                <td><a href="/produto/<%= produto.id %>/desativar"><button>Desativar</button></a>
-                                    <a href="/produto/<%= produto.id %>/editar"><button>Editar</button></a></td>
+                                <td><a href="/categoria/<%= categoria.id %>/desativar"><button>Desativar</button></a>
+                                    <a href="/categoria/<%= categoria.id %>/editar"><button>Editar</button></a></td>
                                      
                                     
                             </tr>
@@ -76,13 +64,25 @@
 
                     <!--Paginação-->
                     <div>
-                        <% if(locals.qtdepaginas){ %>
-                        <ul class="paginacao">
-                            <% for (let i = 1; i <= qtdepaginas; i++) { %>
-                                <li><a href="/produto/listar/<%= i %>"><%= i %></a></li>
+                        <form id="form" method="post" action="/categoria/pesquisar/1">
+                            <% if(locals.nome){ %>
+                            <input name="nome" type="hidden" value="<%= nome %>">
                             <% } %>
-                        </ul>
-                        <% } %>
+                            <% if(locals.qtdepaginas){ %>
+                                <ul class="paginacao">
+                                    <% for (let i = 1; i <= qtdepaginas; i++) { %>
+                                        <li><button onclick="mudaAction('<%= i %>')"><%= i %></button></li>
+                                    <% } %>
+                                </ul>
+                            <% } %>
+                        </form>
+                        <script>
+                            function mudaAction(id) {
+                                const form = document.getElementById("form");
+                                form.action = `/categoria/pesquisar/${id}`;
+                                console.log(form);
+                            }
+                        </script>
                     </div>
                     
                 </div>
