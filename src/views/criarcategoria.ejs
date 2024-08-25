@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("includes/assets"); %>
+    <!-- Se quiser fazer um CSS personalizado desta pagina-->
+    <link href="/public/assets/css/criarproduto.css" rel="stylesheet"/>
+    <title>Criar Categoria</title>  <!--Não se esqueça de alterar o nome do titulo-->
+  </head>
+  <body>
+    <div class="main">
+      <%- include("includes/menubar"); %>
+      <div class="div_unica">
+	    <div class="cadastrarusuario div_form">
+        <h1>Criar Categoria</h1> 
+        <hr> 
+        <form method="post" action="/categoria/efetuarcadastro" class="class-form-categoria" autofill="off">
+            <div class="form-group">
+                <span class="erros" name="erros"></span>
+            </div>
+        
+	        <div class="form-group">
+                <label for="nome">Nome:</label>
+                <span class="erros" name="nome"></span>
+                <input type="text" name="nome" class="form-control">
+	        </div>
+            <button class="botao">Cadastrar</button>
+          </form>
+	</div>
+      </div>
+    </div>
+    <%- include("includes/footer"); %>
+  </body>
+</html>

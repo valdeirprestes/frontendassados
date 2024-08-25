@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Categorias</title>
+    <%- include("includes/assets"); %>
+        <link href="/public/assets/css/home.css" rel="styleshee t" />
+        <link href="/public/assets/css/listarusuario.css" rel="stylesheet" />
+</head>
+
+<body>
+    <%- include("includes/menubar"); %>
+        <% if(locals.listarcategorias){ %>
+            <div class="main, alinhamento_tabela_lista_usuarios" >
+                
+                <!--Janela-->
+                <div class="janela" >
+
+
+                    <!--Cabeçalho-->
+                    <div class="janela_cabecalho">
+                        <form class=" listarusuario, janela_cabecalho" method="post" action="/usuario/pesquisar/1">
+                            <h1 style="width: 50%; padding-left: 5%;">Lista de Categorias</h1>
+                            <input name="nome" style="width: 25%;">
+                            <button class="botao" style="width: 10%;">Pesquisar</button>
+                        </form>
+                    </div>
+
+
+
+
+                    <!--Tabelha-->
+                    <div>
+                    <table class="tabelas">
+                                
+                        <tr style="background-color: rgb(211, 211, 211);">
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>ESTADO</th>
+                            <th>AÇÕES</th>
+                        </tr>
+                        <% listarcategorias.forEach(categoria=> { %>
+                            <tr>
+                                <td>
+                                    <%= categoria.id %>
+                                </td>
+                                <td>
+                                    <%= categoria.nome %>
+                                </td>
+                                <td>
+                                    <%= categoria.estado %>
+                                </td>
+                                <td><a href="/categoria/<%= categoria.id %>/desativar"><button>Desativar</button></a>
+                                    <a href="/categoria/<%= categoria.id %>/editar"><button>Editar</button></a></td>
+                                     
+                                    
+                            </tr>
+                            <% }) %>
+                            
+                    </table>
+                    </div>
+
+                    <!--Paginação-->
+                    <div>
+                        <% if(locals.qtdepaginas){ %>
+                            <ul class="paginacao">
+                                <% for (let i = 1; i <= qtdepaginas; i++) { %>
+                                    <li><a href="/categoria/listar/<%= i %>"><%= i %></a></li>
+                                <% } %>
+                            </ul>
+                        <% } %>
+                    </div>
+                    
+                </div>
+
+
+
+            </div>
+            <% } %>
+                <%- include("includes/footer"); %>
+</body>
+
+</html>

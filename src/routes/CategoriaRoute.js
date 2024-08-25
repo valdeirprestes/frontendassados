@@ -1,0 +1,10 @@
+import { Router } from "express";
+import categoriaroute from "../controllers/CategoriaController";
+import validadmmiddleware from "../middlewares/validadmmiddleware";
+const route = new Router();
+route.get("/criar", validadmmiddleware, categoriaroute.criar);
+route.post("/efetuarcadastro", validadmmiddleware, categoriaroute.efetuarcadastro);
+route.get("/listar/:pagina", validadmmiddleware, categoriaroute.listar);
+route.get("/:id/editar", validadmmiddleware, categoriaroute.editar);
+route.get("/:id/desativar", validadmmiddleware, categoriaroute.desativar);
+export default route;

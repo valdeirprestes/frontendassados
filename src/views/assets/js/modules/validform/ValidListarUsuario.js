@@ -2,7 +2,7 @@ import validator from "validator";
 import axiosconfig from "../../../../../config/axiosConfig";
 import axios from "axios";
 //import axios from "axios";
-export default class ValidEditarUsuario{
+export default class ValidListarUsuario{
     constructor(className){
         this.classForm =  className;
         this.form = document.querySelector(className);
