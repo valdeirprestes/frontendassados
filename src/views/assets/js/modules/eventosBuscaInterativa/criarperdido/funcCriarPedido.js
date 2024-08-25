@@ -12,13 +12,20 @@ export default async function(myconfig){
     let olddiv = document.querySelector(`.${labeldiv}`);
     if(olddiv)
         olddiv.remove();
-    newdiv= document.createElement("div");
+    /*newdiv= document.createElement("div");
     newdiv.classList.add(labeldiv);
     let mainDiv = document.querySelector(`.${myconfig.className}`);
 
     if(!mainDiv) return;
     
-    mainDiv.appendChild(newdiv);
+    mainDiv.appendChild(newdiv);*/
+
+    let clientecadastrado_campo = document.querySelector(`.clientecadastrado_campo`);
+    if(!inputoption){
+        console.log(`Classe ${clientecadastrado_campo} não foi localizada`)
+        return;
+    }
+    clientecadastrado_campo.innerText = "SIM"
     
     let config = configCriarPedido;
     config.axios.rota_Ler=`/usuario/${inputoption.value}`;

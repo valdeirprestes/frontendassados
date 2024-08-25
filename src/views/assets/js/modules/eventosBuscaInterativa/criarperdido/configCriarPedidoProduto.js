@@ -1,4 +1,4 @@
-import funcCriarPedidoProduto from "../funcCriarPedidoProduto";
+import funcCriarPedidoProduto from "./funcCriarPedidoProduto"
 const config = {
     className:"produto_criarpedido", //classe que tem o botao de busca
     classInputSelecionado:"produtoselecionado_criarpedido", // classe do input tipo hidden
@@ -23,10 +23,12 @@ const config = {
     classNamePaginado:"",
     labelbuscar:"Buscar produto",
     labelbuscarcancel:"Cancelar",
+    labelbuscarconfirmar:"Confirmar",
     tabelacabecalho:['Id', 'Nome','Categoria'],
     tabeladados:['id', 'nome','category'],
     tabelaprocura:['nome'],
     primeiracolunaoculta:false,
+    SelecaoMultipla:true,
     funcaopost:funcCriarPedidoProduto
 } 
 export default config;

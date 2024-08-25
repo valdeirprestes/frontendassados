@@ -9,13 +9,14 @@ import ValidProduto from "./modules/validform/ValidProduto";
 
 import configCriarPedido from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedido";
 import configCriarPedidoProduto from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedidoProduto";
-
+import { gestaopedido_registrarnovopedido } from "./modules/pagefunctions/gestaopedido_registrarpedido";
+import gestaopedido_limparcamposcliente from "./modules/pagefunctions/gestaopedido_limparcamposcliente";
 
 
 import { AtivarBuscaInterativa } from "./buscaInterativa";
 
 window.addEventListener('load', (e)=>{
-
+    /*  Cria dialogo de busca de seleção de objetos*/
     const listSearch = [];
     listSearch.push(configCriarPedido);
     listSearch.push(configCriarPedidoProduto);
@@ -31,7 +32,7 @@ window.addEventListener('load', (e)=>{
     });
 
 
-
+    /*  Cria validação de formulários de busca de seleção de objetos*/
     const listValidForm = [];
     listValidForm.push([ValidLogin, ".class-form-login"]);
     listValidForm.push([ValidUsuario, ".class-form-usuario"]);
@@ -45,6 +46,29 @@ window.addEventListener('load', (e)=>{
         valid.init();
     });
 
+    /*  liga funções ao elementos html com classe*/
+
+    let listpagefunctions = [];
+    listpagefunctions.push(["criar_criarpedido", "onclick", gestaopedido_registrarnovopedido]);
+    listpagefunctions.push(["novo_criarpedido", "onclick", gestaopedido_limparcamposcliente]);
     
-    
+    listpagefunctions.forEach(Obj =>{
+        const [ nameclass, stringevent, func ] = Obj;
+        if(stringevent == "onclick"){
+            let taghtml = document.querySelector(`.${nameclass}`);
+            if(!taghtml)
+                console.log(`Erro ao tentar acessar a class ${nameclass}`);
+            else
+                taghtml.onclick = ()=> func();
+            
+        }
+        else if(stringevent == "onkeyup"){
+            let taghtml = document.querySelector(`.${nameclass}`);
+            if(!taghtml)
+                console.log(`Erro ao tentar acessar a class ${nameclass}`);
+            else
+                taghtml.onkeyup = ()=> func();
+            
+        }
+    });
 });

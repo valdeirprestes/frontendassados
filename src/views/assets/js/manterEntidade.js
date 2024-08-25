@@ -10,11 +10,12 @@ class manterEntidade {
     }
     criarDiv(){
         this.divInsert = document.querySelector(`.${this.config.classInsertName}`);
-        if(this.divInsert)
-            this.divInsert.remove();
-        this.divInsert = document.createElement("div");
-        this.divInsert.classList.add(this.config.classInsertName);
-        this.maindiv.appendChild(this.divInsert);
+        if(!this.divInsert)
+        {    
+            this.divInsert = document.createElement("div");
+            this.divInsert.classList.add(this.config.classInsertName);
+            this.maindiv.appendChild(this.divInsert);
+        }
     }
     async criaGrupoLer(){
         if(this.divInsert)
@@ -27,20 +28,25 @@ class manterEntidade {
                         console.log(" Atributos campos, apelidos e tipo pode tamanhos diferentes");
                         return;
                 }
-                let tagGroup, tagspan, taglabel, taginput;
+                let tagGroup, tagspan, taglabel, taginput, testinput;
                 for(let i=0 ; i< this.config.campos.length; i++ ){
+                    testinput = document.querySelector(`.${this.config.input_className[i]}`);
+                    if(testinput){
+                        testinput.value = entidade[ this.config.campos[i] ];
+                        continue;
+                    }
                     tagGroup = document.createElement("div");
                     tagGroup.classList.add(this.classtagroup);
                     this.divInsert.appendChild(tagGroup);
 
                     taglabel = document.createElement('label');
                     taglabel.innerText = this.config.apelidos[i];
-                    this.divInsert.appendChild(taglabel);
+                    tagGroup.appendChild(taglabel);
 
                     taginput = document.createElement('input');
                     taginput.value = entidade[ this.config.campos[i] ];
                     taginput.readOnly = true;
-                    this.divInsert.appendChild(taginput);
+                    tagGroup.appendChild(taginput);
                 }
             }
         }

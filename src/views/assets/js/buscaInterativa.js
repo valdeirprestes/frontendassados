@@ -12,9 +12,11 @@ class buscaInterativa {
         this.divpaginador = null;
         this.numeroderegistros = null;
         this.paginaselecionada = 1;
+        this.selecoesMultipla = [];
         //console.log(this.config.className);
         this.mainDiv = document.querySelector(`.${this.config.className}`);
         this.divInsert = document.querySelector(`.${this.config.classDivInsert}`);
+        
     }
 
 
@@ -32,7 +34,7 @@ class buscaInterativa {
             this.inputescolha.classList.add(this.config.classInputSelecionado);
             this.mainDiv.appendChild(this.inputescolha);
         }
-        //this.telaselecao = document.getElementsByClassName("")
+        this.inputbusca.focus();
     }
 
 
@@ -57,6 +59,16 @@ class buscaInterativa {
         tagA.classList.add('botao');
         tagA.onclick = ()=> this.cancelarProcesso();
         this.divbusca.appendChild(tagA);
+
+        if(this.config.SelecaoMultipla == true)
+        {
+            tagA = document.createElement("a");
+            tagA.innerText=this.config.labelbuscarconfirmar|| "Confirmar";
+            tagA.href = "#";
+            tagA.classList.add('botao');
+            tagA.onclick = ()=> this.confirmaProcessoLista();
+            this.divbusca.appendChild(tagA);
+        }
 
     }
 
@@ -139,6 +151,7 @@ class buscaInterativa {
                     usuario = response.data[i];
                     let td;
                     let opcao;
+                    let classlnkbutton;
                     for(let j = 0 ; j < this.config.tabeladados.length; j++){
                         td = document.createElement("td");
                         key = this.config.tabeladados[j];
@@ -149,10 +162,27 @@ class buscaInterativa {
                     }
                     td = document.createElement("td");
                     tagA = document.createElement("a");
-                    tagA.innerText="Confirmar";
                     tagA.href = "#";
-                    tagA.classList.add('botao');
-                    tagA.onclick = ()=> this.confimarEscolha(opcao);
+                    classlnkbutton = `classlnkbutton${i}`;
+                    tagA.classList.add(classlnkbutton);
+                    if(this.config.SelecaoMultipla == false){
+                        tagA.innerText="Confirmar";
+                        tagA.classList.add('botao');
+                        tagA.onclick = ()=> this.confimarEscolha(opcao);
+                    }else{
+                        if( this.selecoesMultipla.includes( opcao))
+                        {
+                            tagA.innerText="OK";
+                            tagA.classList.add('botaoremover');
+                            tagA.onclick = () => this.removerLista(classlnkbutton, opcao);
+                        }
+                        else
+                        {
+                            tagA.innerText="Selecionar";
+                            tagA.classList.add('botaoselecionar');
+                            tagA.onclick = ()=> this.addLista( classlnkbutton, opcao );
+                        }
+                    }
                     td.appendChild(tagA);
                     tr.appendChild(td);
                     this.table.appendChild(tr);
@@ -291,6 +321,14 @@ class buscaInterativa {
     }
     confimarEscolha(opcao){
         this.inputescolha.value = opcao;
+        this.inputescolha.innerText = opcao;
+        this.telaselecao.remove();
+        if(this.config.funcaopost)
+        this.config.funcaopost(this.config);
+    }
+
+    confirmaProcessoLista(){
+        this.inputescolha.value = this.selecoesMultipla.toString();
         this.telaselecao.remove();
         if(this.config.funcaopost)
         this.config.funcaopost(this.config);
@@ -298,6 +336,32 @@ class buscaInterativa {
 
     cancelarProcesso(){
         this.telaselecao.remove();
+    }
+
+    addLista(classbutton1, opcao){
+        this.selecoesMultipla.push(opcao);
+        let taglink = document.querySelector(`.${classbutton1}`);
+        if(!taglink){
+            console.log(`Error, não conseguiu acessar link classbutton1 ( ${classbutton1} )`)
+            return;
+        }
+        taglink.classList.remove('botaoselecionar');
+        taglink.innerText = "OK";
+        taglink.classList.add('botaoremover');
+        taglink.onclick = ()=> this.removerLista( classbutton1, opcao );
+    }
+
+    removerLista(classbutton2, opcao){
+        this.selecoesMultipla =  this.selecoesMultipla.filter( (x) => x != opcao);
+        let taglink = document.querySelector(`.${classbutton2}`);
+        if(!taglink){
+            console.log(`Error, não conseguiu acessar link classbutton2 ( ${classbutton2} )`)
+            return;
+        }
+        taglink.classList.remove('botaoremover');
+        taglink.innerText = "Selecionar";
+        taglink.classList.add('botaoselecionar');
+        taglink.onclick = ()=> this.addLista( classbutton2, opcao );
     }
 
 }

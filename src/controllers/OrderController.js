@@ -1,6 +1,7 @@
 class OrderController{
     createorder( req, res){
-        return res.render('gestaodepedido');
+
+        return res.render('gestaodepedido', {"iduser":res.locals.user.id});
     }
     detalhes(req, res) {
         return res.render('detalhespedido');

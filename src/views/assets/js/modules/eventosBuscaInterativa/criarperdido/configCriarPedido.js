@@ -27,6 +27,7 @@ const config = {
     tabeladados:['id', 'nome','email', 'telefone','celular'],
     tabelaprocura:['nome','email', 'telefone','celular'],
     primeiracolunaoculta:false,
+    SelecaoMultipla:false,
     funcaopost:funcdivcriarpedido
 } 
 export default config;

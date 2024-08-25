@@ -1,7 +1,7 @@
 const configCriarPedido = {
-    className:"cliente_criarpedido",
+    className:"clientedados_criarpedido",
     classInsertName:"divusuario",
-    classtaggroup: "form-group",
+    classtaggroup: "label-input-group",
     classtaginput: "",
     gravar:false,
     axios:{
@@ -12,7 +12,15 @@ const configCriarPedido = {
     },
     campos:["nome", "email", "telefone", "celular","logradouro","numero","municipio"],
     apelidos:["Nome", "Email", "Telefone", "Celular","Rua","numero","Cidade"],
-    tipo:["STRING","STRING","STRING","STRING","STRING","STRING","STRING"]
+    tipo:["STRING","STRING","STRING","STRING","STRING","STRING","STRING"],
+    input_className:[
+        "dadosusuario_nome",
+        "dadosusuario_email", 
+        "dadosusuario_telefone", 
+        "dadosusuario_celular",
+        "dadosusuario_logradouro",
+        "dadosusuario_numero",
+        "dadosusuario_municipio"]
 }
 
 export default configCriarPedido;

@@ -4,7 +4,7 @@
     box-sizing: border-box;
     margin: 0;
 }
-.divflexvertical{
+.divflexvertical{/* Para inserir objetos no lado diretio(linha). Por padrão div coloca objeto uma abaixo do outro(coluna)*/
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
@@ -21,24 +21,19 @@
     display: block;
     width: 35%;
     height: 80%;
-    margin: 10px;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    margin: 0 auto;
+    border: 1px solid;
 }
 .produto_criarpedido{
     box-sizing: border-box;
     display: block;
-    width: 35%;
+    width: 55%;
     height: 80%;
-    margin: 10px;
+    margin: 0 auto;
+    border: 1px solid;
+    
+}
 
-}
-.acoes_criarpedido{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-}
 
 .divlistaproduto_criarpedido{
     width: 100%;
@@ -76,18 +71,59 @@
 	}
 }
 
-.botaomais{
+
+
+.inputqtd{/* table produtos - tabela preenchida via JS -  validar com Leonardo */
+    background: var(--cor-secao);
+}
+
+.registroproduto{ /* table produtos - tabela preenchida via JS -  validar com Leonardo */
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    
+}
+.elementoinvisivel{ /* Para guarda valores para o js capturar*/
+    display: none;
+}
+
+.img_criarpedido{/* table produtos - tabela preenchida via JS -  validar com Leonardo */
+    border-radius: 50%;
+    width: 30%;
+}
+
+.inputtam{ /* table produtos - tabela preenchida via JS -  validar com Leonardo */
+    width: 70%;
+}
+
+.labelsimples{
+    display: block;
+    align-items: center;
+    align-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.clientedados_criarpedido{
+    width: 100%;
+    height: 70%;
+    box-sizing: border-box;
+
+}
+
+
+.botaoselecionar{ /* Como não tinha eu fiz, mas pode fazer no style e remover daqui depois*/
     display: block;
     box-sizing: border-box; 
     margin: 5px;
     width: 100%;
     border: 1px solid;
-    border-radius: 50%;
+    border-radius: 7px;
     padding: 10px;
 
-    border-color: var(--cor-botao);
-    background-color:  var(--cor-botao);
-    color: var(--cor-botao-texto);
+    border-color: green;
+    background-color:  yellow;
+    color: green;
 
     text-decoration: none;	
     text-align: center;
@@ -97,31 +133,152 @@
 
     transition: 300ms;
    	&:hover{
-        border-color:var(--cor-botao-foco);
-        background-color: var(--cor-botao-foco);
-		color: var(--cor-botao-foco-texto);
+        border-color:green;
+        background-color: green;
+		color: white;
 	}
 }
 
-.inputqtd{
-    background: var(--cor-secao);
+.botaoremover{
+    display: block;
+    box-sizing: border-box; 
+    margin: 5px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 10px;
+
+    border-color:green;
+    background-color: green;
+	color: white;
+
+    text-decoration: none;	
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+
+    transition: 300ms;
+   	&:hover{
+        border-color: green;
+        background-color:  yellow;
+        color: green;
+	}
 }
 
-.registroproduto{
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    
-}
-.elementoinvisivel{
-    display: none;
-}
-
-.img_criarpedido{
+.destaqueobjeto{
+    display: block;
+    position: absolute;
+    margin: 0;
+    margin-top: 30px;
+    margin-right: 50px;
     border-radius: 50%;
-    width: 30%;
+    width: 80px;
+    height: 80px;
+    color: black;
+    background-color:yellow;
+    
+    border: 1px solid;
+    border-color: red;
+    z-index: 3;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 3em;
 }
 
-.inputtam{
-    width: 70%;
+.dialog{
+    display: block;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 5;
+    width: 80%;
+    height: 40%;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 0.1em;
+    text-align: center;
+    justify-content: center;
+    transition: 3000ms;
+    h1{
+        width: 100%;
+        height: 90%;
+        margin:0 auto;
+        text-align: center;
+        align-content: center;
+    }
+    button{
+        display: block;
+        box-sizing: border-box; 
+        margin: 0 auto;
+        
+        border: 1px solid;
+        border-radius: 0.2em;
+        width: 95%;
+        height: 10%;
+        text-decoration: none;	
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 0.8em;
+        transition: 300ms;
+    }
+}
+
+
+.sucesso-dialog{
+    border-color:green;
+    background-color: rgb(81, 153, 81);
+    color: white;
+    button{
+        border-color:white;
+        background-color: rgb(81, 153, 81);
+        color: white;
+        ;
+        &:hover{
+            border-color: green;
+            background-color:  white;
+            color: green;
+        }
+    }    
+}
+
+
+.exclamacao-dialog{
+    border-color: yellow;
+    background-color: rgb(236, 236, 150);
+    color: black;
+    button{
+        border-color:black;
+        background-color: rgb(236, 236, 150);
+        color:black
+        ;
+        &:hover{
+            border-color:  yellow;
+            background-color: black;
+            color: yellow;
+        }
+    }    
+}
+
+.erro-dialog{
+    border-color:red;
+    background-color: rgb(158, 65, 65);
+    color: white;
+    button{
+        border-color:white;
+        background-color: rgb(158, 65, 65);
+        color: white;
+        ;
+        &:hover{
+            border-color:red;
+            background-color:  white;
+            color: red;
+        }
+    }    
 }
