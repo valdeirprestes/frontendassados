@@ -7,7 +7,6 @@ const class_mododeentrega= "mododeentrega_campo";
 const class_idcliente = "usuarioselecionado_criarpedido";
 const listClassprod ="idlistproduto_criarpedido";
 const class_idusuario= "iduser";
-const class_pedido_campo  = 'pedido_campo';
 
 
 
@@ -133,39 +132,14 @@ function getproduct(id){
     };
 }
 
-async function gravardadospedido(obj, modo){
-    try {
-        let rota;
-        const parametros= obj;
-        let response;
-        console.log("modo", modo)
-        if(modo == 1){
-            rota= "/pedido/criar2";
-            response = await axios.post('/api', {data:{ "rota":rota, "parametros":parametros}});
-            return response;
-        }
-        else if(modo == 2){
-            rota= "/pedido/atualizar";
-            response = await axios.put('/api', {data:{ "rota":rota, "parametros":parametros}});
-            return response;
-        }
-        else
-            return null;
-        
-        
-        
-    } catch (e) {
-        const {errors} = e.response.data;
-        if(errors){
-            errors.forEach((erro)=>{
-                console.log("Erro:", erro);
-                criatelaDialogo("divflexvertical",erro,0);
-            })
-        }
-    }
+async function gravardadospedido(obj){
+    const rota= "/pedido/criar2";
+    const parametros= obj;
+    let response = await axios.post('/api', {data:{ "rota":rota, "parametros":parametros}});
+    return response;
 }
 
-async function gestaopedido_registrarnovopedido(objparametros){
+async function gestaopedido_registrarnovopedido(){
     if(!validarcampos()){
         console.log("Erro na validação de dados do usuário");
         criatelaDialogo("divflexvertical",
@@ -178,18 +152,14 @@ async function gestaopedido_registrarnovopedido(objparametros){
     let tagmododeentrega = document.querySelector(`.${class_mododeentrega}`);
     let tagstatus_pagamento = document.querySelector(`.${classe_status_pagamento}`);
     let tagdatamovimento = document.querySelector(`.${classe_movimento}`);
-    let tagpedido = document.querySelector(`.${class_pedido_campo}`);
 
     let mododeentrega = tagmododeentrega.value
     let status_pagamento = tagstatus_pagamento.value
 
     let objneworder={};
     if(tagidcliente.innerText > 0){
-        objneworder = {"idcliente":tagidcliente.innerText};
+        objneworder = {"idcliente":tagidcliente.value};
     }
-    let pedidoval = parseInt(tagpedido.innerText) || 0;
-    if(pedidoval)
-        objneworder = {...objneworder, "id":pedidoval};
     objneworder = {
         ...objneworder,
         "idusuario": tagidusuario.innerText,
@@ -200,7 +170,6 @@ async function gestaopedido_registrarnovopedido(objparametros){
         "datamovimento":tagdatamovimento.value
     }
     let listid = getlistidproduto();
-    console.log("listid", listid);
     let objproduct = {};
     let listprod=[];
     listid.forEach(tmpid =>{
@@ -211,31 +180,14 @@ async function gestaopedido_registrarnovopedido(objparametros){
     objproduct = {"itens": listprod};
     objneworder = {...objneworder, ...objproduct};
     
-    let clienteval = tagidcliente.innerText || 0;
-    if(clienteval < 1){
+    if(tagidcliente.innerText < 0){
         let objcliente = { "cliente": gerarobjcliente()};
         objneworder = { ...objneworder, ...objcliente};
     }
     console.log(objneworder);
-    let response;
-    console.log("tagpedido", tagpedido);
-    let pedido;
-    if(parseInt(tagpedido.innerText) > 0) {
-        response = await gravardadospedido(objneworder, 2 ); // Atualizar novo
-        if(!response){
-            criatelaDialogo("divflexvertical",` Erro interno no sistma ao grava o pedido.`,-1);
-            return;
-        }
-        pedido = response.data;
-        criatelaDialogo("divflexvertical",` Atualizou o pedido ${tagpedido.id}!`,1);
-    }
-    else{
-        
-        response = await gravardadospedido(objneworder, 1 ); //criar um novo
-        pedido = response.data;
-        console.log(response.data);
-        criatelaDialogo("divflexvertical",` O pedido ${pedido.id} foi gerado!`,1);
-    }
-    document.location = `/pedido/${pedido.id}`;
-}   
+    let response = await gravardadospedido(objneworder);
+    console.log(response.data);
+    const pedido = response.data;
+    criatelaDialogo("divflexvertical",` O pedido ${pedido.id} foi gerado!`,1);
+}
 export { gestaopedido_registrarnovopedido }

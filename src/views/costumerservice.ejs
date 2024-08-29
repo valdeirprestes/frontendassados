@@ -24,15 +24,17 @@
                     <h1>Retirar no local</h1>
                     <% if(locals.pedidossementrega){ %>
                         <% pedidossementrega.forEach(pedido => { %>
-                            <div class="item itemtamanho" onclick="location.href='/pedido/detalhes'">
-                                <p> Pedido <%=pedido.id%></p>
-                                <p> Cliente <%= pedido.cliente.nome %></p>
-                                <p>Itens pedidos:</p>
-                                <% pedido.itens.forEach(item =>{ %>
-                                    <p> <%= item.quantidade %> <%= item.produto.nome %></p>
+                            <a href="/pedido/<%= pedido.id %>">
+                                <div class="item itemtamanho" >
+                                    <p> Pedido <%=pedido.id%></p>
+                                    <p> Cliente <%= pedido.cliente.nome %></p>
+                                    <p>Itens pedidos:</p>
+                                    <% pedido.itens.forEach(item =>{ %>
+                                        <p> <%= item.quantidade %> <%= item.produto.nome %></p>
 
-                                <% }); %>
-                            </div>
+                                    <% }); %>
+                                </div>
+                            </a>
                        <% }); %>
                     <% }else {%>
                         <div class="item"> Sem pedidos sem entrega</div>
@@ -42,15 +44,17 @@
                     <h1>Para entrega</h1>
                     <% if(locals.pedidoscomentrega){ %>
                         <% pedidoscomentrega.forEach(pedido => { %>
-                            <div class="item itemtamanho">
-                                <p> Pedido <%=pedido.id%></p>
-                                <p> Cliente <%= pedido.cliente.nome %></p>
-                                <p>Itens pedidos:</p>
-                                <% pedido.itens.forEach(item =>{ %>
-                                    <p> <%= item.quantidade %> <%= item.produto.nome %></p>
+                            <a href="/pedido/<%= pedido.id %>">
+                                <div class="item itemtamanho">
+                                    <p> Pedido <%=pedido.id%></p>
+                                    <p> Cliente <%= pedido.cliente.nome %></p>
+                                    <p>Itens pedidos:</p>
+                                    <% pedido.itens.forEach(item =>{ %>
+                                        <p> <%= item.quantidade %> <%= item.produto.nome %></p>
 
-                                <% }); %>
-                            </div>
+                                    <% }); %>
+                                </div>
+                            </a>
                        <% }); %>
                     <% }else {%>
                         <div class="item"> Sem pedidos sem entrega</div>

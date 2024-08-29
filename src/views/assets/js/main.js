@@ -16,9 +16,11 @@ import configCriarPedido from "./modules/eventosBuscaInterativa/criarperdido/con
 import configCriarPedidoProduto from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedidoProduto";
 import { gestaopedido_registrarnovopedido } from "./modules/pagefunctions/gestaopedido_registrarpedido";
 import gestaopedido_limparcamposcliente from "./modules/pagefunctions/gestaopedido_limparcamposcliente";
+import gestaopedido_cancelar from "./modules/pagefunctions/gestaopedido_cancelar";
 
 
 import { AtivarBuscaInterativa } from "./buscaInterativa";
+import GestaoPedido_carregarpedido from "./modules/pagefunctions/gestaopedido_carregarpedido";
 
 window.addEventListener('load', (e)=>{
     /*  Cria dialogo de busca de seleção de objetos*/
@@ -37,47 +39,53 @@ window.addEventListener('load', (e)=>{
     });
 
 
-    /*  Cria validação de formulários de busca de seleção de objetos*/
-    const listValidForm = [];
-    listValidForm.push([ValidLogin, ".class-form-login"]);
-    listValidForm.push([ValidUsuario, ".class-form-usuario"]);
-    listValidForm.push([ValidDesativarUsuario, ".class-form-deativarusuario"]);
-    listValidForm.push([ValidEditarUsuario, ".class-form-editarusuario"]);
-    listValidForm.push([ValidProduto, ".class-form-produto"]);
-    listValidForm.push([ValidEditarProduto, ".class-form-editarproduto"]);
-    listValidForm.push([ValidDesativarProduto, ".class-form-desativarproduto"]);
-    listValidForm.push([ValidCategoria, ".class-form-categoria"]);
-    listValidForm.push([ValidEditarCategoria, ".class-form-editarcategoria"]);
-    listValidForm.push([ValidDesativarCategoria, ".class-form-desativarcategoria"]);
-    listValidForm.forEach( (Validclasstr) =>{
-        const [Valid, classtr] = Validclasstr
-        const valid = new Valid(classtr);
-        valid.init();
+    /*  Inicializa uma função por uma classe*/
+    const listaJSClassePorHTMLClasse = [];
+    listaJSClassePorHTMLClasse.push([ValidLogin, ".class-form-login"]);
+    listaJSClassePorHTMLClasse.push([ValidUsuario, ".class-form-usuario"]);
+    listaJSClassePorHTMLClasse.push([ValidDesativarUsuario, ".class-form-deativarusuario"]);
+    listaJSClassePorHTMLClasse.push([ValidEditarUsuario, ".class-form-editarusuario"]);
+    listaJSClassePorHTMLClasse.push([ValidProduto, ".class-form-produto"]);
+    listaJSClassePorHTMLClasse.push([ValidEditarProduto, ".class-form-editarproduto"]);
+    listaJSClassePorHTMLClasse.push([ValidDesativarProduto, ".class-form-desativarproduto"]);
+    listaJSClassePorHTMLClasse.push([ValidCategoria, ".class-form-categoria"]);
+    listaJSClassePorHTMLClasse.push([ValidEditarCategoria, ".class-form-editarcategoria"]);
+    listaJSClassePorHTMLClasse.push([ValidDesativarCategoria, ".class-form-desativarcategoria"]);
+    listaJSClassePorHTMLClasse.push([GestaoPedido_carregarpedido, ".produtoselecionadoparcial_criarpedido"]);
+    listaJSClassePorHTMLClasse.forEach( (Lista) =>{
+        const [Classe, stringNameClasse] = Lista
+        const instancia = new Classe(stringNameClasse);
+        instancia.init();
     });
 
     /*  liga funções ao elementos html com classe*/
 
     let listpagefunctions = [];
-    listpagefunctions.push(["criar_criarpedido", "onclick", gestaopedido_registrarnovopedido]);
-    listpagefunctions.push(["novo_criarpedido", "onclick", gestaopedido_limparcamposcliente]);
+    listpagefunctions.push(["criar_criarpedido", "onclick", gestaopedido_registrarnovopedido, {}]);
+    listpagefunctions.push(["salvarpedido_criarpedido", "onclick", gestaopedido_registrarnovopedido, {}]);
+    listpagefunctions.push(["novo_criarpedido", "onclick", gestaopedido_limparcamposcliente, {}]);
+    listpagefunctions.push(["cancelarpedido_criarpedido", "onclick", gestaopedido_cancelar, {}]);
+    
     
     listpagefunctions.forEach(Obj =>{
-        const [ nameclass, stringevent, func ] = Obj;
+        const [ nameclass, stringevent, func, params ] = Obj;
         if(stringevent == "onclick"){
             let taghtml = document.querySelector(`.${nameclass}`);
-            if(!taghtml)
-                console.log(`Erro ao tentar acessar a class ${nameclass}`);
+            if(!taghtml);
+                //console.log(`Erro ao tentar acessar a class ${nameclass}`);
             else
-                taghtml.onclick = ()=> func();
+                taghtml.onclick = ()=> func(params);
             
         }
         else if(stringevent == "onkeyup"){
             let taghtml = document.querySelector(`.${nameclass}`);
-            if(!taghtml)
-                console.log(`Erro ao tentar acessar a class ${nameclass}`);
+            if(!taghtml);
+                //console.log(`Erro ao tentar acessar a class ${nameclass}`);
             else
-                taghtml.onkeyup = ()=> func();
+                taghtml.onkeyup = ()=> func(params);
             
         }
     });
+
+
 });

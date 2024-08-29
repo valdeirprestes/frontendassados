@@ -1,4 +1,5 @@
 import axios from "axios";
+import criatelaDialogo from "./modules/utils/criatelaDialogo";
 
 class buscaInterativa {
  constructor(config){
@@ -26,7 +27,7 @@ class buscaInterativa {
             return;
         this.criatelas();
         this.criabusca();
-        this.eventos();
+
         this.inputescolha = document.querySelector(`.${this.config.classInputSelecionado}`);
         if(!this.inputescolha){
             this.inputescolha = document.createElement("input");
@@ -34,18 +35,19 @@ class buscaInterativa {
             this.inputescolha.classList.add(this.config.classInputSelecionado);
             this.mainDiv.appendChild(this.inputescolha);
         }
+        this.criadivtabela();
         this.inputbusca.focus();
     }
 
 
     criabusca(){
-        //console.log("Criando busca")
+        
         this.divbusca = document.createElement("div");
         this.divbusca.classList.add('divbusca');
         this.telaselecao.appendChild(this.divbusca);
         this.labelbusca = document.createElement("label");
         this.labelbusca.classList.add("labelbusca");
-        //console.log(this.labelbusca);
+        
         this.labelbusca.innerText = this.config.labelbuscar || "Buscar";
         this.inputbusca = document.createElement("input");
         this.inputbusca.classList.add("inputbusca");
@@ -80,48 +82,13 @@ class buscaInterativa {
         //this.mainDiv.appendChild(this.telaapresentacao);
         this.divInsert.appendChild(this.telaselecao);
     }
-    criadivtabela(){
-        if(this.divtable)
-            this.divtable.remove();
-        if(this.divpaginador)
-            this.divpaginador.remove();
-       
-
-        this.divtable = document.createElement("div");
-        this.divtable.classList.add('divtabela');
-        this.telaselecao.appendChild(this.divtable);
-
-        this.divpaginador = document.createElement("div");
-        this.divpaginador.classList.add('divpaginador');
-        this.telaselecao.appendChild(this.divpaginador);
-        this.geratagTable();
-        this.gerarTagUL();
-
-    }
-
-
-    eventos(){
-        //console.log(this.inputbusca);
-        /*
-        if(this.inputbusca)
-            this.inputbusca.addEventListener('keyup',e => this.criardivtableporparametros());
-        */
-        
-    }
-
-    async criardivtableporparametros ( ){ 
-        this.numeroderegistros = 0;
-        this.paginaselecionada = 1; 
-        this.criadivtabela();
-        
-
-    }
     
-    async geratagTable(){
-        this.numeroderegistros = await this.responseCount();
-
+    criadivtabela(){
         
-        if(this.config.tabelacabecalho.length > 0 && this.inputbusca.value.length > 0){
+        if(!this.divtable){
+            this.divtable = document.createElement("div");
+            this.divtable.classList.add('divtabela');
+            this.telaselecao.appendChild(this.divtable);
             this.table = document.createElement("table");
             this.table.classList.add('tabela');
             this.divtable.appendChild(this.table);
@@ -138,7 +105,38 @@ class buscaInterativa {
                 tr.appendChild(th);
                 this.table.appendChild(tr);
             }
+        }
+            
+        if(this.divpaginador)
+            this.divpaginador.remove();
+        
+        this.divpaginador = document.createElement("div");
+        this.divpaginador.classList.add('divpaginador');
+        this.telaselecao.appendChild(this.divpaginador);
+        this.geratagTable();
+        this.gerarTagUL();
 
+    }
+
+
+
+
+    async criardivtableporparametros ( ){ 
+        this.numeroderegistros = 0;
+        this.paginaselecionada = 1; 
+        this.criadivtabela();
+        
+
+    }
+
+    
+    async geratagTable(){
+        this.numeroderegistros = await this.responseCount();
+        let trselect = document.getElementsByClassName('trselect');
+        
+        if(trselect.length>0){
+            for(let i=0; i < trselect.length; i++ )
+                trselect[i].remove();
         }
         if(this.numeroderegistros > 0 ){
             const response = await this.responseDados(); 
@@ -148,6 +146,7 @@ class buscaInterativa {
                 let key;
                 for(let i = 0 ; i < response.data.length; i++){
                     let tr = document.createElement("tr");
+                    tr.classList.add("trselect");
                     usuario = response.data[i];
                     let td;
                     let opcao;
@@ -266,6 +265,12 @@ class buscaInterativa {
             if(this.inputbusca.value.length < 1) return 0;
             return quantidade;
         } catch (e) {
+            const {errors } = e.response.data;
+            if(errors){
+                errors.forEach(error => {
+                    criatelaDialogo("divflexvertical", error, -1);
+                });                
+            }
             console.error("Erro em responeCount");
             console.log(e);
             return 0;

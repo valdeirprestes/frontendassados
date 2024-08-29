@@ -7,13 +7,17 @@ class CostumerServiControllers{
         {
             const request = axios.create(axiosConfig.configcontroller(req, res));
             let listorder = await request.post("/pedido/todospedidosdetalhados",{
-                "mododeentrega":"SEMENTREGA"
+                "mododeentrega":"SEMENTREGA",
+                "estado":"NORMAL",
+                "itens":{"estado":"NORMAL"}
             });
             let myfiltre;
             if(listorder)
                 myfiltre = {"pedidossementrega":listorder.data};
             listorder = await request.post("/pedido/todospedidosdetalhados",{
-                "mododeentrega":"COMENTREGA"
+                "mododeentrega":"COMENTREGA",
+                "estado":"NORMAL",
+                "itens":{"estado":"NORMAL"}
             });
             if(listorder)
                 myfiltre = {...myfiltre, "pedidoscomentrega":listorder.data};
@@ -29,7 +33,7 @@ class CostumerServiControllers{
                 if(response.data.errors.includes(ErrorsList.EXPIRETOKEN) || 
                     response.data.errors.includes(ErrorsList.NOLOGIN))
                     //return res.render('login',{errorlogin:'Efetue seu login'});
-                    return res.redirect('login');
+                    return res.redirect('/login');
             }
             return res.redirect('404');
         }

@@ -31,7 +31,7 @@ function removeElementclass(classname){
     element.remove();
 }
     
-function atualizarPreco(classqtd, classpreco, classsubtotal){
+function atualizarPreco(classqtd, classpreco, classsubtotal, unidade_parcial){
     let qtd = document.querySelector(`.${classqtd}`);
     let preco = document.querySelector(`.${classpreco}`);
     let subtotal = document.querySelector(`.${classsubtotal}`);
@@ -48,7 +48,9 @@ function atualizarPreco(classqtd, classpreco, classsubtotal){
         return;
     }
     let valor = qtd.value;
-    qtd.value = valor.replace(",",".");
+    qtd.value = unidade_parcial? valor.replace(",","."): parseInt(valor);
+    
+    
     valor = preco.value;
     preco.value = valor.replace(",",".");
     subtotal.value =  (parseFloat(qtd.value) * parseFloat(preco.value)).toFixed(2);
@@ -56,7 +58,7 @@ function atualizarPreco(classqtd, classpreco, classsubtotal){
 
 async function addIdTable(id){
         let divlistaproduto_criarpedido = document.querySelector(".divlistaproduto_criarpedido");
-        let ultimoproduto_criarpedido = document.querySelector(".ultimoproduto_criarpedido");
+        
         let produtoselecionado_criarpedido = document.querySelector(".produtoselecionado_criarpedido");
         
         if(!divlistaproduto_criarpedido ){
@@ -67,10 +69,7 @@ async function addIdTable(id){
             console.log("A classe produtoselecionado_criarpedido não foi encontrada")
             return;
         }
-        if(!ultimoproduto_criarpedido ){
-            console.log("A classe ultimoproduto_criarpedido não foi encontrada")
-            return;
-        }
+
         
         if(verificaProdutonaLista(id) == true) return;
         
@@ -160,21 +159,22 @@ async function addIdTable(id){
         taginput3.value = response.data.preco;
         tagtd.appendChild(taginput3);
         tagtr.appendChild(tagtd);
-
+        let unidade_parcial = (response.data.unidade_parcial == "SIM")? true: false;
         taginput1.onkeyup = ()=> atualizarPreco(
             `input_qtd${id}`,
             `input_preco${id}`,
-            `input_subtotal${id}`);
+            `input_subtotal${id}`,
+             unidade_parcial);
         taginput2.onkeyup = ()=> atualizarPreco(
             `input_qtd${id}`,
             `input_preco${id}`,
-            `input_subtotal${id}`);
+            `input_subtotal${id}`,
+             unidade_parcial);
         taglinkremove.onclick = ()=> removeElementclass(`tr${id}`);
 }
 
 async function funcCriarPedidoProduto(config){
     let divlistaproduto_criarpedido = document.querySelector(".divlistaproduto_criarpedido");
-    let ultimoproduto_criarpedido = document.querySelector(".ultimoproduto_criarpedido");
     let produtoselecionado_criarpedido = document.querySelector(".produtoselecionado_criarpedido");
     //let tableproduto_criarpedido = document.querySelector(".tablelistaproduto_criarpedido");
     if(!divlistaproduto_criarpedido ){
@@ -185,21 +185,14 @@ async function funcCriarPedidoProduto(config){
         console.log("A classe produtoselecionado_criarpedido não foi encontrada")
         return;
     }
-    if(!ultimoproduto_criarpedido ){
-        console.log("A classe ultimoproduto_criarpedido não foi encontrada")
-        return;
-    }
-    
-    if(produtoselecionado_criarpedido.value != ultimoproduto_criarpedido.value)
+
+    let string = produtoselecionado_criarpedido.value;
+    let lista = string.split(",");
+    for(let i = 0 ; i< lista.length; i++)
     {
-        let string = produtoselecionado_criarpedido.value;
-        ultimoproduto_criarpedido.value = string; 
-        let lista = string.split(",");
-        for(let i = 0 ; i< lista.length; i++)
-        {
-            addIdTable(lista[i]);
-        }  
-    }
+        addIdTable(lista[i]);
+    }  
+    
 
    
     

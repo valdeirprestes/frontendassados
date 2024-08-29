@@ -27,6 +27,7 @@ export default class ValidProduto{
         this.preco = this.form.querySelector('input[name="preco"]');
         this.categoria = this.form.querySelector('select[name="categoria"]');
         this.fechamento = this.form.querySelector('select[name="fechamento"]');
+        this.unidade_parcial = this.form.querySelector('select[name="unidade_parcial"');
         this.nome_erro = this.form.querySelector('span[name="nome"]');
         this.preco_erro = this.form.querySelector('span[name="preco"]');
         this.categoria_erro = this.form.querySelector('span[name="categoria"]');
@@ -61,7 +62,8 @@ export default class ValidProduto{
                     "nome":`${this.nome.value}`,  
                     "preco":`${precoCorrigido}`,
                     "item_fechamento":`${this.fechamento.value}`,  
-                    "idcategoria":`${this.categoria.value}`
+                    "idcategoria":`${this.categoria.value}`,
+                    "unidade_parcial":`${this.unidade_parcial.value}`
                 }
             }})
             .then(()=>{

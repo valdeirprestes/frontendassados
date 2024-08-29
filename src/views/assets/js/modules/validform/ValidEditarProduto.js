@@ -25,6 +25,7 @@ export default class ValidEditarProduto{
         this.id = this.form.querySelector('input[name="id"]');
         this.nome = this.form.querySelector('input[name="nome"]');
         this.preco = this.form.querySelector('input[name="preco"]');
+        this.unidade_parcial = this.form.querySelector('select[name="unidade_parcial"]');
         this.categoria = this.form.querySelector('select[name="categoria"]');
         this.fechamento = this.form.querySelector('select[name="fechamento"]');
         this.nome_erro = this.form.querySelector('span[name="nome"]');
@@ -63,6 +64,7 @@ export default class ValidEditarProduto{
                             "preco":`${precocorrigido}`, 
                             "idcategoria":`${this.categoria.value}`,
                             "item_fechamento":`${this.fechamento.value}`,
+                            "unidade_parcial": `${this.unidade_parcial.value}`
                         }
                     }
                 }

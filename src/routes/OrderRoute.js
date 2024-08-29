@@ -1,11 +1,14 @@
 import { Router } from "express";
-import validadmidlleware from "../middlewares/validadmmiddleware";
+
+import validservicemiddleware from "../middlewares/validservicemiddleware";
 import ordercontroller from "../controllers/OrderController";
 
 const route = new Router();
-route.get('/criar', validadmidlleware, ordercontroller.createorder);
-route.get('/detalhes', validadmidlleware, ordercontroller.detalhes);
-route.get('/concluidos', validadmidlleware, ordercontroller.concluidos);
-route.get('/cancelados',validadmidlleware, ordercontroller.cancelados);
-route.get('/editar', validadmidlleware, ordercontroller.editar);
+route.get('/criar', validservicemiddleware, ordercontroller.createorder);
+route.get('/:id', validservicemiddleware, ordercontroller.pedido);
+
+route.get('/detalhes', validservicemiddleware, ordercontroller.detalhes);
+route.get('/concluidos', validservicemiddleware, ordercontroller.concluidos);
+route.get('/cancelados',validservicemiddleware, ordercontroller.cancelados);
+route.get('/editar/', validservicemiddleware, ordercontroller.editar);
 export default route;

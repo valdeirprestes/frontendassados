@@ -49,6 +49,17 @@
                         <option   value="NAO" selected>Não</option>
                     <% } %>
                     </select>
+                    <div class="form-group">
+                        <label for="unidade_parcial">Item parcial:</label>
+                        <select name="unidade_parcial" class="unidade_parcial">
+                        <% if(produto.unidade_parcial == "SIM") { %>
+                            <option   value="SIM" selected>Sim</option>
+                            <option   value="NAO">Não</option>
+                        <% } else { %>
+                            <option   value="SIM">Sim</option>
+                            <option   value="NAO" selected>Não</option>
+                        <% } %>
+                        </select>
                 </div>
                 <div class="form-group">
                     <label for="categoria">Categoria:</label>

@@ -6,7 +6,11 @@
     <%- include("includes/assets"); %>
     <!-- Se quiser fazer um CSS personalizado desta pagina-->
     <link href="/public/assets/css/criarpedido.css" rel="stylesheet"/> 
-    <title>Criar pedido</title>  <!--Não se esqueça de alterar o nome do titulo-->
+    <% if(locals.pedido) { %>
+        <title>Pedido - cliente <%= pedido.cliente.nome %></title>  <!--Não se esqueça de alterar o nome do titulo-->
+    <% } else { %>
+        <title>Criar pedido</title>  <!--Não se esqueça de alterar o nome do titulo-->
+    <% } %>    
 </head>
 <body>
     <div class="tagvariaveis  elementoinvisivel"> 
@@ -16,10 +20,16 @@
             "elementoinvisivel" para ficar invisivel
          -->
         <span class="elementoinvisivel iduser"><%= iduser %></span>
-        <span class =" usuarioselecionado_criarpedido " >-1</span>
-        <span class ="elementoinvisivel id_pedido" >-1</span>
-        <span class ="elementoinvisivel ultimoproduto_criarpedido">-1</span>
-        <span class ="elementoinvisivel produtoselecionado_criarpedido">-1</span>
+        <% if(locals.pedido){ %>
+            <span class =" usuarioselecionado_criarpedido" ><%= pedido.idcliente %></span>
+            <span class ="elementoinvisivel id_pedido" > <%= pedido.id  %>  </span>
+            <span class ="elementoinvisivel produtoselecionado_criarpedido"><%= stringprodutosid %> </span>
+            <span class ="elementoinvisivel produtoselecionadoparcial_criarpedido"><%= stringprodutosparcial %> </span>
+        <% } else { %>
+            <span class =" usuarioselecionado_criarpedido " >-1</span>
+            <span class ="elementoinvisivel id_pedido" >-1</span>
+            <span class ="elementoinvisivel produtoselecionado_criarpedido">-1</span>
+        <% } %>
     </div>
 
 
@@ -32,28 +42,114 @@
                 <div class="cliente_criarpedido">
                     <div class="controle_criarpedido">
                         <div class="divflexvertical informacao_criarpedido">
-                            <label class="labelsimples" for="movimento">Data:</label>
-                            <input type="date"  name="movimento" class="movimento_campo">
+                            <% if(locals.pedido) { %>
+                                <label  for="pedido" class="labelsimples">Nª Pedido:</label>
+                                <span class="pedidoregistradoclass pedido_campo"><%= pedido.id %></span>
+                                <label  for="fase" class="labelsimples">Fase:</label>
+                                <span class="fase_campo"> <%= pedido.fase %> </span>
+                                <label class="labelsimples" for="movimento">Data:</label>
+                                <input type="date"  name="movimento" class="movimento_campo" value="<%= datamovimentopedido%>">
+                            <% } else { %>
+                                <label  for="pedido" class="labelsimples">Nª Pedido:</label>
+                                <span class="pedidonaoregistradoclass pedido_campo">-</span>
+                                <label  for="fase" class="labelsimples">Fase:</label>
+                                <span class="fase_campo"> PENDENTE </span>
+                                <label class="labelsimples" for="movimento">Data:</label>
+                                <input type="date"  name="movimento" class="movimento_campo">
+                        
+                            <% } %>
                         </div>
+                            
+                           
+                        <% if(locals.pedido) { %>
                         <div class="divflexvertical">
-                            <label  for="fase" class="labelsimples">Cliente cadastrado:</label>
-                            <span class="clientecadastrado_campo"> NÃO </span>
-                            <label  for="fase" class="labelsimples">Fase:</label>
-                            <span class="fase_campo"> 
-                                PENDENTE
-                            </span>
                             <label  for="status_pagamento" class="labelsimples"> Pagamento</label>
-                            <input type="checkbox" name="status_pagamento" class="status_pagamento_campo">
+                            <select name="status_pagamento" class="status_pagamento_campo" >
+                                <option  <%= (pedido.status_pagamento == "PAGO")?"selected":"" %>  value="PAGO">PAGO</option>
+                                <option  <%= (pedido.status_pagamento == "AVISTA")?"selected":"" %>  value="AVISTA">A VISTA</option>
+                                <option  <%= (pedido.status_pagamento == "CARTÃODECREDITO")?"selected":"" %>  value="CARTÃODECREDITO">CARTÃO DE CREDITOSTA</option>
+                                <option  <%= (pedido.status_pagamento == "PENDENTE")?"selected":"" %>  value="PENDENTE">PENDENTE</option>
+                              </select>
+                            <!-- <input type="checkbox" name="status_pagamento" class="status_pagamento_campo"> -->
                             <label  for="mododeentrega" class="labelsimples"> Entrega</label>
-                            <input type="checkbox" name="mododeentrega"  class="mododeentrega_campo">
+                            <select name="mododeentrega" class="mododeentrega_campo" >
+                                <option  <%= (pedido.mododeentrega == "COMENTREGA")?"selected":"" %> value="COMENTREGA">COM ENTREGA</option>
+                                <option  <%= (pedido.mododeentrega == "SEMENTREGA")?"selected":"" %> value="SEMENTREGA">SEM ENTREGA</option>
+                              </select>
+                            <!-- <input type="checkbox" name="mododeentrega"  class="mododeentrega_campo"> -->
                         </div>
                         <div class="divflexvertical botoes_criarpedido">
-                            <a href="#" class="botao novo_criarpedido">Novo cliente</a>
-                            <a href="#" class="botao criar_criarpedido">Criar Pedido</a>
+                            <a  class="botao novo_criarpedido">Limpar cliente</a>
+                            <a  class="botao buscarusuario_criarpedido">Buscar cliente</a>                                    
                         </div>
+                        <% }else { %>                        
+                        <div class="divflexvertical">
+                            <label  for="status_pagamento" class="labelsimples"> Pagamento</label>
+                            <select name="status_pagamento" class="status_pagamento_campo">
+                                <option   value="PAGO">PAGO</option>
+                                <option   value="AVISTA">A VISTA</option>
+                                <option   value="CARTÃODECREDITO">CARTÃO DE CREDITOSTA</option>
+                                <option   value="PENDENTE">PENDENTE</option>
+                              </select>
+                            <!-- <input type="checkbox" name="status_pagamento" class="status_pagamento_campo"> -->
+                            <label  for="mododeentrega" class="labelsimples"> Entrega</label>
+                            <select name="mododeentrega" class="mododeentrega_campo">
+                                <option   value="COMENTREGA">COM ENTREGA</option>
+                                <option   value="SEMENTREGA">SEM ENTREGA</option>
+                              </select>
+                            <!-- <input type="checkbox" name="mododeentrega"  class="mododeentrega_campo"> -->
+                        </div>
+                        <div class="divflexvertical botoes_criarpedido">
+                            <a  class="botao novo_criarpedido">Limpar cliente</a>
+                            <a  class="botao buscarusuario_criarpedido">Buscar cliente</a>                                    
+                        </div>
+                        <% } %>
                     </div>     
                     
-                    <a href="#" class="botao buscarusuario_criarpedido">Buscar cliente</a>
+                    <% if(locals.pedido) { %>
+                    <label  for="fase" class="labelsimples">Cliente cadastrado:</label>
+                    <span class="clientecadastrado_campo"> SIM </span>
+                    <div class="clientedados_criarpedido">
+                        <div class="divusuario">
+                            <div class="label-input-group">
+                                <label>Nome</label>
+                                <input class="dadosusuario_nome" value="<%= pedido.cliente.nome%>">
+                            </div>
+                            <div class="label-input-group">
+                                <label>Email</label>
+                                <input class="dadosusuario_email" value="<%= pedido.cliente.email%>">
+                            </div>
+                            <div class="label-input-group">
+                                <label>Telefone</label>
+                                <input class="dadosusuario_telefone" value="<%= pedido.cliente.telefone%>">
+                            </div>
+                            <div class="label-input-group">
+                                <label>Celular</label>
+                                <input class="dadosusuario_celular" value="<%= pedido.cliente.celular%>">
+                            </div>
+                            <div class="label-input-group">
+                                <label>Rua</label>
+                                <input class="dadosusuario_logradouro" value="<%= pedido.cliente.logradouro%>">
+                            </div>
+                            <div class="label-input-group">
+                                <label>Número</label>
+                                <input class="dadosusuario_numero" value="<%= pedido.cliente.numero%>">
+                            </div>
+                            <div class="label-input-group">
+                                <label>Cidade</label>
+                                <input class="dadosusuario_municipio" value="<%= pedido.cliente.municipio%>">
+                            </div>
+                        </div>
+                        
+                        <a  class="botao salvarpedido_criarpedido"> Salvar pedido</a>
+                        <a  class="botao finalizarpedido_criarpedido"> Finalizar Pedido</a>
+                        <a  class="botao cancelarpedido_criarpedido"> Cancelar Pedido</a>
+                        
+                    </div>
+                </div>
+                <% } else { %>
+                    <label  for="fase" class="labelsimples">Cliente cadastrado:</label>
+                    <span class="clientecadastrado_campo"> NÃO </span>
                     <div class="clientedados_criarpedido">
                         <div class="divusuario">
                             <div class="label-input-group">
@@ -84,13 +180,17 @@
                                 <label>Cidade</label>
                                 <input class="dadosusuario_municipio">
                             </div>
-
                         </div>
+                        <a  class="botao criar_criarpedido">Criar Pedido</a>
                     </div>
                 </div>
+                <% } %>
+
+
+
 
                 <div class="produto_criarpedido">
-                    <a href="#" class="botao buscarproduto_criarpedido">Buscar produto</a>
+                    <a class="botao buscarproduto_criarpedido">Buscar produto</a>
                     <div class="divlistaproduto_criarpedido">
                         <table class="tabelaproduto_criapedido">
                             <tr>
@@ -101,6 +201,39 @@
                                 <th>Preço</th>
                                 <th>Subtotal</th>
                             </tr>
+                        <% if(locals.pedido) { %>
+                            <% pedido.itens.forEach(itempedido => { %>
+                                <tr class="tr<%=itempedido.idproduto %>">
+                                    <td>
+                                        <a class="botaomenos botaomenos<%=itempedido.idproduto %>">-</a>
+                                    </td>
+
+                                    <td class="produto1 registroproduto idlistproduto_criarpedido elementoinvisivel"><%= itempedido.idproduto %></td>
+
+                                    <td>
+                                        <input  class="inputqtd inputtam input_qtd<%=itempedido.idproduto %>" value="<%= itempedido.quantidade%>">
+                                    </td>
+
+                                    <td>
+                                        <a>
+                                            <img class="img_criarpedido" src="<%=itempedido.produto.url %>">
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <%= itempedido.produto.nome %>
+                                    </td>
+
+                                    <td>
+                                        <input  class="inputtam input_preco<%=itempedido.idproduto %>" value="<%= itempedido.preco %>">
+                                    </td>
+
+                                    <td>
+                                        <input class="inputtam input_subtotal<%=itempedido.idproduto %>" readonly="" value="<%= itempedido.preco  %>">
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } %>
                         </table>
                     </div>
                     

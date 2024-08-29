@@ -20,7 +20,7 @@ let campos = [
     "dadosusuario_numero",
     "dadosusuario_municipio",
 ]
-function gestaopedido_limparcamposcliente(){
+function gestaopedido_limparcamposcliente(objparametros){
     let cliente =  document.querySelector(`.${class_idcliente}`);
     if(!cliente){
         console.log(`Não conseguiu localizar a classe ${class_idcliente}`);
