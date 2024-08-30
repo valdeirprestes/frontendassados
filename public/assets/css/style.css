@@ -244,3 +244,55 @@ html, body{
         width: 100%;
     }
 }
+
+.sucesso-tela{
+    border-color:green;
+    background-color: rgb(81, 153, 81);
+    color: white;
+    button{
+        border-color:white;
+        background-color: rgb(81, 153, 81);
+        color: white;
+        ;
+        &:hover{
+            border-color: green;
+            background-color:  white;
+            color: green;
+        }
+    }    
+}
+
+
+.exclamacao-tela{
+    border-color: yellow;
+    background-color: rgb(236, 236, 150);
+    color: black;
+    button{
+        border-color:black;
+        background-color: rgb(236, 236, 150);
+        color:black
+        ;
+        &:hover{
+            border-color:  yellow;
+            background-color: black;
+            color: yellow;
+        }
+    }    
+}
+
+.erro-tela{
+    border-color:red;
+    background-color: rgb(158, 65, 65);
+    color: white;
+    button{
+        border-color:white;
+        background-color: rgb(158, 65, 65);
+        color: white;
+        ;
+        &:hover{
+            border-color:red;
+            background-color:  white;
+            color: red;
+        }
+    }    
+}

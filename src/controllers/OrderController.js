@@ -33,6 +33,12 @@ class OrderController {
                 });
             }
             const datamovimentopedido = new Date(response.data.datamovimento);
+
+            let somasubtotal = 0;
+            response.data.itens.forEach(item =>{
+                somasubtotal += item.quantidade * item.preco;
+            });
+            somasubtotal = somasubtotal.toFixed(2);
             
             return res.status(200).render('gestaodepedido', 
                 {
@@ -40,7 +46,8 @@ class OrderController {
                      "pedido": response.data,
                      "datamovimentopedido":datamovimentopedido.toISOString().split('T')[0],
                      "stringprodutosid": listaprodutosid.join(),
-                     "stringprodutosparcial": listaprodutosparcial.join()
+                     "stringprodutosparcial": listaprodutosparcial.join(),
+                     "somasubtotal":somasubtotal
                 });
             
         }

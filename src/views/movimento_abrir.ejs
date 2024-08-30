@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("includes/assets"); %>
+    <!-- Se quiser fazer um CSS personalizado desta pagina-->
+    <!-- <link href="/public/assets/css/meucsspersonalizado.css" rel="stylesheet"/> -->
+    <link href="/public/assets/css/criarpedido.css" rel="stylesheet"/> 
+    <title>Abrir movimento</title>  <!--Não se esqueça de alterar o nome do titulo-->
+</head>
+<body>
+    <div class="main">
+        <%- include("includes/menubar"); %>
+        <div class="contents">
+            <form class="class-form_movimento_abrir_formdata" method="post" action="/movimento/executarabertura">
+                <h1>Escolha uma data de movimento para abrir.</h1>
+                <input type="date" name="movimento_data">
+                <button class="botao" type="submit">Sim</button>
+                <a href="/" class="botao">Não</a>
+            </form>
+        </div>
+    </div>
+    <%- include("includes/footer"); %>
+</body>
+</html>

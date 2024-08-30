@@ -235,6 +235,14 @@
                             <% }); %>
                         <% } %>
                         </table>
+                        <div class="divsubtotal">
+                            <label>Subtotal</label>
+                            <% if(locals.somasubtotal) {%>
+                                <span class="subtotal_criarpedido"><%= somasubtotal %></span>
+                            <% } else { %>
+                                <span class="subtotal_criarpedido">-</span>
+                            <% } %>
+                        </div>
                     </div>
                     
                 </div>

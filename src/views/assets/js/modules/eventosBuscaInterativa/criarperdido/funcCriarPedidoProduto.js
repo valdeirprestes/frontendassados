@@ -1,4 +1,5 @@
 import axios from "axios";
+import gestaopedido_SomaSubtotal from "../../pagefunctions/gestaopedido_SomaSubtotal";
 
 async function getProduct(id){
     const rota = `/produto/${id}`;
@@ -29,7 +30,10 @@ function removeElementclass(classname){
         return;
     }
     element.remove();
+    gestaopedido_SomaSubtotal();
 }
+
+
     
 function atualizarPreco(classqtd, classpreco, classsubtotal, unidade_parcial){
     let qtd = document.querySelector(`.${classqtd}`);
@@ -54,6 +58,7 @@ function atualizarPreco(classqtd, classpreco, classsubtotal, unidade_parcial){
     valor = preco.value;
     preco.value = valor.replace(",",".");
     subtotal.value =  (parseFloat(qtd.value) * parseFloat(preco.value)).toFixed(2);
+    gestaopedido_SomaSubtotal();
 }
 
 async function addIdTable(id){
@@ -171,6 +176,7 @@ async function addIdTable(id){
             `input_subtotal${id}`,
              unidade_parcial);
         taglinkremove.onclick = ()=> removeElementclass(`tr${id}`);
+        gestaopedido_SomaSubtotal();
 }
 
 async function funcCriarPedidoProduto(config){
@@ -192,10 +198,7 @@ async function funcCriarPedidoProduto(config){
     {
         addIdTable(lista[i]);
     }  
-    
-
-   
-    
+    gestaopedido_SomaSubtotal();
 }
 
 export default funcCriarPedidoProduto;

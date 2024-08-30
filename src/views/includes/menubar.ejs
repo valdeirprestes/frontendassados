@@ -30,6 +30,12 @@
         <% } else { %>
         <li><a href="/login">login</a></li>
         <% } %>
+        <% if(locals.movimento){ %>
+            <div class="class_movimento <%= classeavismo %>">
+                <span class="class_movimento_dia "><%= movimento %></span>
+                <span class="class_movimento_dia_semana "><%= movimento_dia %></span>
+            </div>
+        <% } %>
 
     </ul>
 </nav>

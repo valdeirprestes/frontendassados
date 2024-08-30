@@ -1,3 +1,4 @@
+import gestaopedido_SomaSubtotal from "./gestaopedido_SomaSubtotal";
 class GestaoPedido_carregarpedido{
     constructor(className){
         let spanids = document.querySelector(".produtoselecionado_criarpedido");
@@ -54,6 +55,7 @@ class GestaoPedido_carregarpedido{
             return;
         }
         element.remove();
+        gestaopedido_SomaSubtotal();
     }
     
     atualizarSubtotal( classqtd, classpreco, classsubtotal, unidade_parcial){
@@ -80,6 +82,7 @@ class GestaoPedido_carregarpedido{
         valor = preco.value;
         preco.value = valor.replace(",",".");
         subtotal.value =  (parseFloat(qtd.value) * parseFloat(preco.value)).toFixed(2);
+        gestaopedido_SomaSubtotal();
     }
 
 }

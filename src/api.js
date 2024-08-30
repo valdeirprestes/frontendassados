@@ -5,6 +5,7 @@ import homeroute from "./routes/HomeRoute";
 import costumerserviceroute from "./routes/CostumerServiceRoute";
 import usuarioroute from "./routes/UsuarioRoute"
 import controllernotfound404 from "./controllers/NotFound404Controller";
+import movimentroute from "./routes/MovimentRoute";
 import apiroute from "./routes/ApiRoute";
 import orderroute from "./routes/OrderRoute";
 import estoqueroute from "./routes/EstoqueRoute"
@@ -13,6 +14,7 @@ import categoriaroute from "./routes/CategoriaRoute"
 import path from "path";
 import session from "express-session";
 import cookiemiddlewares from "./middlewares/cookiemiddleware";
+import movimentOpenedmiddleware from "./middlewares/movimentOpenedmiddleware";
 
 
 class Api{
@@ -38,6 +40,8 @@ class Api{
         this.app.set('views', path.resolve(__dirname,"..","src",'views'));
         this.app.set('view engine', 'ejs');
         this.app.use(cookiemiddlewares);
+        this.app.use(movimentOpenedmiddleware);
+        
     }
     routes(){
         this.app.use("/", homeroute);
@@ -49,6 +53,7 @@ class Api{
         this.app.use("/produto", produtoroute);
         this.app.use("/categoria", categoriaroute);
         this.app.use("/api", apiroute);
+        this.app.use("/movimento", movimentroute);
         this.app.use("*",controllernotfound404.page); // Default is 404 page not found!
     }
     middleware(){

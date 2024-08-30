@@ -8,6 +8,7 @@ import ValidDesativarCategoria from "./modules/validform/ValidDesativarCategoria
 import ValidEditarUsuario from "./modules/validform/ValidEditarUsuario";
 import ValidEditarProduto from "./modules/validform/ValidEditarProduto";
 import ValidEditarCategoria from "./modules/validform/ValidEditarCategoria";
+import ValidMovimentoAbertura_formdata  from "./modules/validform/ValidMovimentoAbertura_formdata";
 
 
 
@@ -34,8 +35,6 @@ window.addEventListener('load', (e)=>{
         {
             botao.onclick = ()=> AtivarBuscaInterativa(objconfig);
         }
-        else 
-            console.log(`Classe ${objconfig.classBotao} não foi localizada`);
     });
 
 
@@ -52,6 +51,8 @@ window.addEventListener('load', (e)=>{
     listaJSClassePorHTMLClasse.push([ValidEditarCategoria, ".class-form-editarcategoria"]);
     listaJSClassePorHTMLClasse.push([ValidDesativarCategoria, ".class-form-desativarcategoria"]);
     listaJSClassePorHTMLClasse.push([GestaoPedido_carregarpedido, ".produtoselecionadoparcial_criarpedido"]);
+    listaJSClassePorHTMLClasse.push([ValidMovimentoAbertura_formdata, ".class-form_movimento_abrir_formdata"]);
+
     listaJSClassePorHTMLClasse.forEach( (Lista) =>{
         const [Classe, stringNameClasse] = Lista
         const instancia = new Classe(stringNameClasse);
