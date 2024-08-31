@@ -202,10 +202,29 @@ html, body{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-bottom: 3%;
-    padding-top: 1%;
+    padding: 5%;
+    margin-top: 0;
 }
 
+.pagina {
+    box-sizing: border-box; 
+    margin: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    &:hover{
+        border-color:var(--cor-botao-foco);
+        background-color: var(--cor-botao-foco);
+		color: var(--cor-botao-foco-texto);
+	}
+}
 
 
 
