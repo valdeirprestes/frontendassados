@@ -1,6 +1,13 @@
 <nav class="menubar">
     <ul>
-        <li><a href="/">Inicio</a></li>
+        <% if(permissaoatendente){ %>
+            <li>Pedidos
+                <ul>
+                    <li><a href="/">Atender</a></li>
+                    <li><a href="/pedido/criar">Criar Pedido</a></li>
+                </ul>
+            </li>
+        <% }%>
         <% if(permissaoatendente){ %>
         <li>Produtos
             <ul>
