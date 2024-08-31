@@ -17,7 +17,7 @@ class OrderController {
                     "estadoitens":"NORMAL"      
                 }
             });
-            console.log(response);
+            
             if(!response){
                 criatelaDialogo("divflexvertical", `Não encontrou o pedido ${req.params.id}`, -1 );
                 console.log(`Não encontrou o pedido ${req.params.id}`);

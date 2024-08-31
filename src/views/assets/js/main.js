@@ -15,9 +15,13 @@ import ValidMovimentoAbertura_formdata  from "./modules/validform/ValidMovimento
 
 import configCriarPedido from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedido";
 import configCriarPedidoProduto from "./modules/eventosBuscaInterativa/criarperdido/configCriarPedidoProduto";
+import configTelaEstoque_selecionar from "./modules/eventosBuscaInterativa/criarperdido/configTelaEstoque_selecionar";
+
+
 import { gestaopedido_registrarnovopedido } from "./modules/pagefunctions/gestaopedido_registrarpedido";
 import gestaopedido_limparcamposcliente from "./modules/pagefunctions/gestaopedido_limparcamposcliente";
 import gestaopedido_cancelar from "./modules/pagefunctions/gestaopedido_cancelar";
+import gestaodepedido_fecharpedido from "./modules/pagefunctions/gestaopedido_fecharpedido";
 
 
 import { AtivarBuscaInterativa } from "./buscaInterativa";
@@ -28,6 +32,7 @@ window.addEventListener('load', (e)=>{
     const listSearch = [];
     listSearch.push(configCriarPedido);
     listSearch.push(configCriarPedidoProduto);
+    listSearch.push(configTelaEstoque_selecionar);
     let botao;
     listSearch.forEach((objconfig)=>{
         let botao = document.querySelector(`.${objconfig.classBotao}`);
@@ -66,6 +71,7 @@ window.addEventListener('load', (e)=>{
     listpagefunctions.push(["salvarpedido_criarpedido", "onclick", gestaopedido_registrarnovopedido, {}]);
     listpagefunctions.push(["novo_criarpedido", "onclick", gestaopedido_limparcamposcliente, {}]);
     listpagefunctions.push(["cancelarpedido_criarpedido", "onclick", gestaopedido_cancelar, {}]);
+    listpagefunctions.push(["finalizarpedido_criarpedido", "onclick", gestaodepedido_fecharpedido, {}]);
     
     
     listpagefunctions.forEach(Obj =>{
