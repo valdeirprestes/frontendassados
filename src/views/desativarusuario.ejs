@@ -14,10 +14,10 @@
 
         <div class="contents, quadrado_centralizado_css " >
             <% if(locals.usuario) { %>
-            <form class="class-form-deativarusuario" method="get" action="/usuario/listar">
+            <form class="class-form-deativarusuario" method="get" action="/usuario/listar/1">
                 <input type="hidden" value="<%= usuario.id %>" name="id">
                 <p>Você deseja desativar o usuario <%= usuario.nome %></p>
-                <button class="botao">Sim</button> <a href="/usuario/listar" class="botao">Não</a>
+                <button class="botao">Sim</button> <a href="/usuario/listar/1" class="botao">Não</a>
             </form>
             <% } %>
         </div>
