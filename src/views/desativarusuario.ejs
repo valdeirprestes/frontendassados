@@ -11,7 +11,8 @@
 <body>
     <div class="main">
         <%- include("includes/menubar"); %>
-        <div class="contents">
+
+        <div class="contents, quadrado_centralizado_css " >
             <% if(locals.usuario) { %>
             <form class="class-form-deativarusuario" method="get" action="/usuario/listar">
                 <input type="hidden" value="<%= usuario.id %>" name="id">
