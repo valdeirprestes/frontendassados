@@ -280,8 +280,10 @@ html, body{
     z-index: 2;
     width: 800px;
     height: 500px;  
-    background: linear-gradient( var(--cor-menubar), var(--cor-secoes),  var(--cor-menubar));
     transition: 500ms;
+    padding: 1%;
+    border-radius: 5px;
+    background-color: white;
 }
 .divbusca{
     display: flex;
