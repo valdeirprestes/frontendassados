@@ -17,6 +17,7 @@ class CostumerServiControllers{
                 "datamovimento":res.locals.movimento_dia_html,
                 "mododeentrega":"SEMENTREGA",
                 "estado":"NORMAL",
+                "fase":"PENDENTE",
                 "itens":{"estado":"NORMAL"}
             });
             let myfiltre;
@@ -25,6 +26,7 @@ class CostumerServiControllers{
             listorder = await request.post("/pedido/todospedidosdetalhados",{
                 "datamovimento":res.locals.movimento_dia_html,
                 "mododeentrega":"COMENTREGA",
+                "fase":"PENDENTE",
                 "estado":"NORMAL",
                 "itens":{"estado":"NORMAL"}
             });
@@ -47,6 +49,39 @@ class CostumerServiControllers{
             return res.redirect('404');
         }
     }
+
+    async index2(req, res){
+        try
+        {
+            const {movimentoid} = res.locals;
+            if(!movimentoid)
+            return res.status(200).render('telainformacao',{
+                "telainformacao_tipo":"erro-tela",
+                "telainformacao_msg":`Você precisa abrir um movimento para gerenciar pedidos`
+            });
+            const request = axios.create(axiosConfig.configcontroller(req, res));
+            let listorder = await request.post("/pedido/todospedidosdetalhados",{
+                "datamovimento":res.locals.movimento_dia_html,
+                "estado":"NORMAL",
+                "fase":"PENDENTE",
+                "itens":{"estado":"NORMAL"}
+            });            
+            return res.render("costumerservice", listorder.data);
+        }  
+        catch(e)
+        {
+            console.log(e);
+            const response = e.response;
+            if(response.data.errors ){
+                if(response.data.errors.includes(ErrorsList.EXPIRETOKEN) || 
+                    response.data.errors.includes(ErrorsList.NOLOGIN))
+                    return res.redirect('/login');
+            }
+            return res.redirect('404');
+        }
+    }
+
+
 }
 
 export default new CostumerServiControllers();

@@ -12,12 +12,19 @@ export default async (req, res, next) => {
         res.locals.movimento = d2//.toISOString().split('T')[0]//d.toLocaleDateString(); 
         res.locals.movimento_dia = dia[d.getDay()+1];
         res.locals.movimento_dia_html = d.toISOString().substring(0,10)
-        let data_atual = new Date(new Date().toISOString().substring(0,10));
+        let data_atual = new Date();
         res.locals.movimentoid = response.data[0].id
         
         d = new Date(d.toISOString().substring(0,10));
-        
-        
+        data_atual = new Date(data_atual.toISOString().substring(0,10));
+        /*
+        data_atual = data_atual.toLocaleString(
+            'default',
+            {year:"numeric"}) + '-' +
+            data_atual.toLocaleString('default',{month:'2-digit'}) + '-' +
+            data_atual.toLocaleString('default', {day:'2-digit'}) ;*/
+       // console.log("data_atual", data_atual);
+        //console.log("d", d);
         if(data_atual > d )
         {
             

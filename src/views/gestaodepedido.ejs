@@ -22,13 +22,14 @@
         <span class="elementoinvisivel iduser"><%= iduser %></span>
         <% if(locals.pedido){ %>
             <span class =" usuarioselecionado_criarpedido" ><%= pedido.idcliente %></span>
-            <span class ="elementoinvisivel id_pedido" > <%= pedido.id  %>  </span>
             <span class ="elementoinvisivel produtoselecionado_criarpedido"><%= stringprodutosid %> </span>
             <span class ="elementoinvisivel produtoselecionadoparcial_criarpedido"><%= stringprodutosparcial %> </span>
+            <span class = "alterar_dados_usuario">-1</span>
         <% } else { %>
             <span class =" usuarioselecionado_criarpedido " >-1</span>
             <span class ="elementoinvisivel id_pedido" >-1</span>
             <span class ="elementoinvisivel produtoselecionado_criarpedido">-1</span>
+            <span class = "alterar_dados_usuario">-1</span>
         <% } %>
     </div>
 
@@ -44,7 +45,13 @@
                         <div class="divflexvertical informacao_criarpedido">
                             <% if(locals.pedido) { %>
                                 <label  for="pedido" class="labelsimples">Nª Pedido:</label>
-                                <span class="pedidoregistradoclass pedido_campo"><%= pedido.id %></span>
+                                <span class="pedidoregistradoclass pedido_campo id_pedido"><%= pedido.id %></span>
+                                <label  for="estado" class="labelsimples">Estado:</label>
+                                <% if(pedido.estado == "NORMAL") { %>
+                                    <span class="pedidoregistradoclass estado_campo"><%= pedido.estado %></span>
+                                <% } else { %>
+                                    <span class="pedidoregistradoclass estado_campo gestaopedido_pedidocancelado"><%= pedido.estado %></span>
+                                <% } %>
                                 <label  for="fase" class="labelsimples">Fase:</label>
                                 <span class="fase_campo"> <%= pedido.fase %> </span>
                                 <label class="labelsimples" for="movimento">Data:</label>
@@ -52,6 +59,8 @@
                             <% } else { %>
                                 <label  for="pedido" class="labelsimples">Nª Pedido:</label>
                                 <span class="pedidonaoregistradoclass pedido_campo">-</span>
+                                <label  for="estado" class="labelsimples">Estado:</label>
+                                <span class="pedidoregistradoclass estado_campo">-</span>
                                 <label  for="fase" class="labelsimples">Fase:</label>
                                 <span class="fase_campo"> PENDENTE </span>
                                 <label class="labelsimples" for="movimento">Data:</label>

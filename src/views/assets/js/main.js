@@ -22,6 +22,7 @@ import { gestaopedido_registrarnovopedido } from "./modules/pagefunctions/gestao
 import gestaopedido_limparcamposcliente from "./modules/pagefunctions/gestaopedido_limparcamposcliente";
 import gestaopedido_cancelar from "./modules/pagefunctions/gestaopedido_cancelar";
 import gestaodepedido_fecharpedido from "./modules/pagefunctions/gestaopedido_fecharpedido";
+import gestaopedido_alterarcampousuario from "./modules/pagefunctions/gestaopedido_alterarcampousuario";
 
 
 import { AtivarBuscaInterativa } from "./buscaInterativa";
@@ -72,7 +73,13 @@ window.addEventListener('load', (e)=>{
     listpagefunctions.push(["novo_criarpedido", "onclick", gestaopedido_limparcamposcliente, {}]);
     listpagefunctions.push(["cancelarpedido_criarpedido", "onclick", gestaopedido_cancelar, {}]);
     listpagefunctions.push(["finalizarpedido_criarpedido", "onclick", gestaodepedido_fecharpedido, {}]);
-    
+    listpagefunctions.push(["dadosusuario_nome", "change", gestaopedido_alterarcampousuario, {}]);
+    listpagefunctions.push(["dadosusuario_email", "change", gestaopedido_alterarcampousuario, {}]);
+    listpagefunctions.push(["dadosusuario_telefone", "change", gestaopedido_alterarcampousuario, {}]);
+    listpagefunctions.push(["dadosusuario_celular", "change", gestaopedido_alterarcampousuario, {}]);
+    listpagefunctions.push(["dadosusuario_logradouro", "change", gestaopedido_alterarcampousuario, {}]);
+    listpagefunctions.push(["dadosusuario_numero", "change", gestaopedido_alterarcampousuario, {}]);
+    listpagefunctions.push(["dadosusuario_municipio", "change", gestaopedido_alterarcampousuario, {}]);
     
     listpagefunctions.forEach(Obj =>{
         const [ nameclass, stringevent, func, params ] = Obj;
@@ -85,6 +92,14 @@ window.addEventListener('load', (e)=>{
             
         }
         else if(stringevent == "onkeyup"){
+            let taghtml = document.querySelector(`.${nameclass}`);
+            if(!taghtml);
+                //console.log(`Erro ao tentar acessar a class ${nameclass}`);
+            else
+                taghtml.onkeyup = ()=> func(params);
+            
+        }
+        else if(stringevent == "change"){
             let taghtml = document.querySelector(`.${nameclass}`);
             if(!taghtml);
                 //console.log(`Erro ao tentar acessar a class ${nameclass}`);

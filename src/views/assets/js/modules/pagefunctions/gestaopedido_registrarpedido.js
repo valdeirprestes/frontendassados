@@ -8,6 +8,7 @@ const class_idcliente = "usuarioselecionado_criarpedido";
 const listClassprod ="idlistproduto_criarpedido";
 const class_idusuario= "iduser";
 const class_pedido_campo  = 'pedido_campo';
+const class_alterar_usuario = 'dadosusuario_nome';
 
 
 
@@ -57,8 +58,7 @@ function validarcampos(){
     -1);
         return false;
     }
-    console.log("tagdatamovimento.value", tagdatamovimento.value);
-    console.log("tagdatamovimento.innerText", tagdatamovimento.innerText);
+
     if(tagdatamovimento.value.length< 1){
         criatelaDialogo("divflexvertical",
         "Preencha o dia do pedido no campo data",
@@ -138,7 +138,6 @@ async function gravardadospedido(obj, modo){
         let rota;
         const parametros= obj;
         let response;
-        console.log("modo", modo)
         if(modo == 1){
             rota= "/pedido/criar2";
             response = await axios.post('/api', {data:{ "rota":rota, "parametros":parametros}});
@@ -150,9 +149,7 @@ async function gravardadospedido(obj, modo){
             return response;
         }
         else
-            return null;
-        
-        
+            new Error();       
         
     } catch (e) {
         const {errors} = e.response.data;
@@ -160,11 +157,36 @@ async function gravardadospedido(obj, modo){
             errors.forEach((erro)=>{
                 console.log("Erro:", erro);
                 criatelaDialogo("divflexvertical",erro,0);
-            })
+            });
         }
+        criatelaDialogo(divflexvertical,"Erra ao tentar os ler os dados do pedido", -1);
+        return;
     }
 }
 
+async function atualizarCliente(id){
+    try{
+        const rota = `/usuario/${id}`;
+        let parametros = gerarobjcliente();
+        parametros = {...parametros, "id":id};
+        const response = await axios.put("/api", {data:{ rota , parametros}});
+        if(response.status != 200)
+            new Error();
+        return response;
+    }catch(e){
+        const {errors} = e.response.data;
+        if(errors){
+            errors.forEach((erro)=>{
+                console.log("Erro:", erro);
+                criatelaDialogo("divflexvertical",erro,-1);
+            })
+            return null;
+        }
+        console.log(`Erra ao tentr os dados do usuario`);
+        criatelaDialogo(divflexvertical,"Erra ao tentar os dados do usuario", -1)
+        return;
+    }
+}
 async function gestaopedido_registrarnovopedido(objparametros){
     if(!validarcampos()){
         console.log("Erro na validação de dados do usuário");
@@ -179,13 +201,30 @@ async function gestaopedido_registrarnovopedido(objparametros){
     let tagstatus_pagamento = document.querySelector(`.${classe_status_pagamento}`);
     let tagdatamovimento = document.querySelector(`.${classe_movimento}`);
     let tagpedido = document.querySelector(`.${class_pedido_campo}`);
+    let tagalterarusuario = document.querySelector(`.${class_alterar_usuario}`);
 
     let mododeentrega = tagmododeentrega.value
     let status_pagamento = tagstatus_pagamento.value
 
     let objneworder={};
+    if(!tagidcliente)
+        {
+            console.log(`Não conseguiu acessar a classe ${class_idcliente}`);
+            return;
+        }
     if(tagidcliente.innerText > 0){
         objneworder = {"idcliente":tagidcliente.innerText};
+        if(!tagalterarusuario)
+        {
+            console.log(`Não conseguiu acessar a classe ${class_alterar_usuario}`);
+            return;
+        }
+        if(tagalterarusuario.innerText != -1)
+        {
+           let response =  await atualizarCliente(tagidcliente.innerText);
+           if(!response)
+            return;
+        }
     }
     let pedidoval = parseInt(tagpedido.innerText) || 0;
     if(pedidoval)
@@ -200,7 +239,6 @@ async function gestaopedido_registrarnovopedido(objparametros){
         "datamovimento":tagdatamovimento.value
     }
     let listid = getlistidproduto();
-    console.log("listid", listid);
     let objproduct = {};
     let listprod=[];
     listid.forEach(tmpid =>{
@@ -216,9 +254,8 @@ async function gestaopedido_registrarnovopedido(objparametros){
         let objcliente = { "cliente": gerarobjcliente()};
         objneworder = { ...objneworder, ...objcliente};
     }
-    console.log(objneworder);
+    
     let response;
-    console.log("tagpedido", tagpedido);
     let pedido;
     if(parseInt(tagpedido.innerText) > 0) {
         response = await gravardadospedido(objneworder, 2 ); // Atualizar novo
@@ -233,7 +270,6 @@ async function gestaopedido_registrarnovopedido(objparametros){
         
         response = await gravardadospedido(objneworder, 1 ); //criar um novo
         pedido = response.data;
-        console.log(response.data);
         criatelaDialogo("divflexvertical",` O pedido ${pedido.id} foi gerado!`,1);
     }
     document.location = `/pedido/${pedido.id}`;

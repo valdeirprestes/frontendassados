@@ -295,3 +295,7 @@
     width: 10%;
     text-align: center;
 }
+
+.gestaopedido_pedidocancelado{
+    background-color: red;
+}
