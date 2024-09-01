@@ -226,7 +226,22 @@ html, body{
 	}
 }
 
-
+.quadrado_centralizado_css {
+    width: 300px; /* Largura do quadrado /
+    height: 200px; / Altura do quadrado /
+    background-color: white; / Cor de fundo branca /
+    margin: 0 auto; / Centralizar horizontalmente /
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; / Garantir que padding e border sejam incluídos nas dimensões */
+    margin-top: 20%;
+    margin-bottom: 30%; 
+    border-radius: 3%;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #f5f5f5;
+    padding: 1%;
+}
 
 
 
