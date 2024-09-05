@@ -4,8 +4,23 @@ class UsuarioController {
     cadastrar(req, res) {
         return res.render("cadastrousuarios");
     }
-    async efetuarlogin(req, res) {
-        return res.redirect("/login");
+    async redirecionar(req, res) {
+        try {
+            //console.log("id", req.params.id);
+            const filter = {"email":req.body.email};
+            const axios = Axios.create(axiosconfig.configcontroller(req, res));
+            const response = await axios.post('/usuario/todos', filter);
+            //console.log("data", response.data);
+            let {updated_at, ...resto} = response.data[0];
+            let tmp = new Date(updated_at);
+            updated_at = tmp.toLocaleString('pt-BR', { timezone: 'UTC-3'});
+            const newdata = {updated_at, ...resto};
+            console.log({updated_at, ...resto});
+            return res.render("editarusuario", {"usuario":newdata});
+        } catch (e) {
+            console.log(e);
+            return res.redirect('notfound404');
+        }
     }
     async listar(req, res) {
         try {
@@ -61,7 +76,7 @@ class UsuarioController {
             let tmp = new Date(updated_at);
             updated_at = tmp.toLocaleString('pt-BR', { timezone: 'UTC-3'});
             const newdata = {updated_at, ...resto};
-
+            console.log(newdata);
             return res.render("editarusuario", {"usuario":newdata});
         } catch (e) {
             console.log(e);
