@@ -66,7 +66,11 @@ class CostumerServiControllers{
                 "fase":"PENDENTE",
                 "itens":{"estado":"NORMAL"}
             });            
-            return res.render("costumerservice", listorder.data);
+            return res.render("atendimento", 
+            {
+                "pedidos":listorder.data, 
+                "movimento_dia": res.locals.movimento_dia_html
+            });
         }  
         catch(e)
         {

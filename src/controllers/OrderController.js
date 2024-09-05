@@ -69,5 +69,60 @@ class OrderController {
     editar(req, res) {
         return res.render('editarpedido');
     }
+    async cancelarpedido( req, res){
+        try {
+            console.log(req.params);
+            const {id} = req.params;
+            const request  = axios.create(axiosConfig.configcontroller(req, res));   
+            const response = await request.get(`/pedido/${id}`, 
+            {
+                params:{}
+            });
+            if(!response.data){
+                return res.status(200).render('telainformacao',{
+                    "telainformacao_tipo":"erro-tela",
+                    "telainformacao_msg":`O pedido ${id} não foi localizado`
+                });
+            }
+            if(response.data.estado == "CANCELADO"){
+                return res.status(200).render('telainformacao',{
+                    "telainformacao_tipo":"erro-tela",
+                    "telainformacao_msg":`O pedido ${id} já foi cancelado`
+                });
+            } 
+            return res.status(200).render('cancelarpedido', {pedido: response.data});
+        } catch (e) {
+            console.log(e);
+            return res.status(400).redirect('/login');
+        }
+    }
+
+    async finalizarpedido( req, res){
+        try {
+            console.log(req.params);
+            const {id} = req.params;
+            const request  = axios.create(axiosConfig.configcontroller(req, res));   
+            const response = await request.get(`/pedido/${id}`, 
+            {
+                params:{}
+            });
+            if(!response.data){
+                return res.status(200).render('telainformacao',{
+                    "telainformacao_tipo":"erro-tela",
+                    "telainformacao_msg":`O pedido ${id} não foi localizado`
+                });
+            }
+            if(response.data.estado == "CANCELADO"){
+                return res.status(200).render('telainformacao',{
+                    "telainformacao_tipo":"erro-tela",
+                    "telainformacao_msg":`O pedido ${id} já foi cancelado`
+                });
+            } 
+            return res.status(200).render('finalizarpedido', {pedido: response.data});
+        } catch (e) {
+            console.log(e);
+            return res.status(400).redirect('/login');
+        }
+    }
 }
 export default new OrderController();

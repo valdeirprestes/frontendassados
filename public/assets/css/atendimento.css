@@ -1,0 +1,26 @@
+.atendimento_styleclass_divbusca{
+    display: block;
+}
+
+.atendimento_styleclass_divtabela{
+    display: block;
+    table, tr, th, td{
+        border: 1px solid;
+    };
+}
+
+.divflexvertical{/* Para inserir objetos no lado diretio(linha). Por padrão div coloca objeto uma abaixo do outro(coluna)*/
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.elementoinvisivel{ /* Para guarda valores para o ja capturar*/
+    display: none;
+}
+

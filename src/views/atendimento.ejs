@@ -5,14 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include("includes/assets"); %>
     <!-- Se quiser fazer um CSS personalizado desta pagina-->
-    <!-- <link href="/public/assets/css/meucsspersonalizado.css" rel="stylesheet"/> -->
+    
+    <link href="/public/assets/css/atendimento.css" rel="stylesheet"/>
     <title>titulo</title>  <!--Não se esqueça de alterar o nome do titulo-->
 </head>
 <body>
     <div class="main">
         <%- include("includes/menubar"); %>
-        <div class="contents">
-            <div class="styleclass_"></div>
+
+        <div class="tagvariaveis  elementoinvisivel"> 
+            <span class="atendimento_campo_pagina_atual">1</span>
+            <span class="atendimento_campo_pagina_quantidade">5</span>
+            <span class="atendimento_campo_movimento_filtro"><%= movimento_dia %></span>
+        </div>
+
+
+        <div class="main_div">
+            <div class="divflexvertical atendimento_styleclass_divbusca">
+                <div class="group-class">
+                    <label>Com entrega</label>
+                    <input type="checkbox" checked="checked" class="js_atendimento_campo_comentrega">
+                </div>
+                <div class="group-class">
+                    <label>Retirar no local</label>
+                    <input type="checkbox" checked="checked" class="js_atendimento_campo_sementrega">
+                </div>
+                <div class="group-class">
+                    <label>Estado normal</label>
+                    <input type="checkbox" checked="checked" class="js_atendimento_campo_estadonormal">
+                </div>
+                <div class="group-class">
+                    <label>Estado cancelado</label>
+                    <input type="checkbox" class="js_atendimento_campo_estadocancelado">
+                </div>
+                <div class="group-class">
+                    <label>Concluído</label>
+                    <input type="checkbox" class="js_atendimento_campo_fase_concluido">
+                </div>
+                <div class="group-class">
+                    <label>Busca</label>
+                    <input type="text" class="js_atendimento_campo_busca">
+                </div>
+            </div>
+            <div class="atendimento_styleclass_divtabela">
+                <table class="js_atendimento_tabela_table">
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Cliente</th>
+                        <th>Telefone</th>
+                        <th>Celular</th>
+                        <th>Email</th>
+                        <th>Retirada</th>
+                        <th>Estado</th>
+                        <th>Fase</th>
+                        <th>Ações</th>
+                    </tr>
+                    <tr class="atendimento_tr"></tr>
+                    <% if(locals.pedidos){ %>
+                        <% pedidos.forEach(pedido =>{ %>
+                            <tr class="atendimento_tr">
+                                <td><%= pedido.id %></td>
+                                <td><%= pedido.cliente.nome %></td>
+                                <td><%= pedido.cliente.telefone %></td>
+                                <td><%= pedido.cliente.celular %></td>
+                                <td><%= pedido.cliente.email %></td>
+                                <td><%= pedido.mododeentrega %></td>
+                                <td><%= pedido.estado %></td>
+                                <td><%= pedido.fase %></td>
+                                <td>
+                                    <a href="/pedido/finalizar/<%= pedido.id %>" class="botao"> Finalizar</a>
+                                    <a href="/pedido/<%= pedido.id %>" class="botao"> Editar</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } %>
+                </table>
+            </div>
+            <div class="atendimento_paginacao_div">
+                <li class="js_atendimento_paginacao">
+
+                </li>
+            </div>
         </div>
     </div>
     <%- include("includes/footer"); %>
