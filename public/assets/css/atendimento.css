@@ -1,13 +1,4 @@
-.atendimento_styleclass_divbusca{
-    display: block;
-}
 
-.atendimento_styleclass_divtabela{
-    display: block;
-    table, tr, th, td{
-        border: 1px solid;
-    };
-}
 
 .divflexvertical{/* Para inserir objetos no lado diretio(linha). Por padrão div coloca objeto uma abaixo do outro(coluna)*/
     display: flex;
@@ -24,3 +15,52 @@
     display: none;
 }
 
+
+.tabela_atendimento{
+    width: 100%;
+    th:first-child{
+        text-align: center;
+    }
+    th:not(:first-child){
+        text-align: left;
+    }
+}
+
+.janela_atendimento {
+    background-color: var(--cor-tabelas) ;
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    border-radius: 3px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+.janela_cabecalho_atendimento {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: var(--cor-menubar);
+    color: var(--cor-menubar-text);
+    button{
+        margin-right: 3%;
+    }
+}
+.tabelas_atendimento {
+    border-collapse: collapse;
+    width: 100%;
+    tr{
+        border-bottom: 1px solid rgb(231, 231, 231);
+    }
+    td{
+        padding:1%;
+    }
+    th{
+        padding:1%;
+    }
+    tr:hover{
+        background-color: rgb(238, 238, 238);
+    }
+            
+}

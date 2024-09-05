@@ -88,10 +88,10 @@ async function atendimento_geraTr(){
         if(!check_estado_normal.checked && !check_estado_cancelado.checked)
             parametros = {...parametros,"estado":"-"};
         
-        if(check_concluidos.checked)
-            parametros = {...parametros, "fase":"CONCLUIDO"};
-        else
+        if(!check_concluidos.checked)
             parametros = {...parametros, "fase":"PENDENTE"};
+        
+            
 
         if(input_busca.value.length > 0)
         {
