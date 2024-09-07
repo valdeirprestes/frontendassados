@@ -26,41 +26,75 @@
     }
 }
 
-.janela_atendimento {
+.atendimento_pedidos {
     background-color: var(--cor-tabelas) ;
-    width: 100%;
+    width: 98%;
     margin-top: 5%;
     margin-bottom: 15%;
     border-radius: 3px;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
 }
-.janela_cabecalho_atendimento {
+.atendimento_filtros {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: var(--cor-menubar);
-    color: var(--cor-menubar-text);
+    background-color: var(--cor-botao);
+    color: var(--cor-botao-texto);
     button{
         margin-right: 3%;
     }
 }
-.tabelas_atendimento {
+
+.atendimento_grupo_label_input:hover{
+    background-color: var(--cor-botao-foco);
+    color: var(--cor-botao-foco-texto);
+}
+.atendimento_tabela {
     border-collapse: collapse;
-    width: 100%;
     tr{
+        background-color: var(--cor-tabelas);
         border-bottom: 1px solid rgb(231, 231, 231);
     }
     td{
         padding:1%;
     }
     th{
+        background-color: var(--cor-menubar);
+        color : var(--cor-menubar-text);    
         padding:1%;
     }
     tr:hover{
         background-color: rgb(238, 238, 238);
     }
             
+}
+.atendimento_itens_fechamento{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--cor-tabelas);
+    box-sizing: border-box;
+    height: 20%;
+}
+.atendimento_produto{
+    display: block;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: black;
+    border-radius: 5%;
+    margin: 2%;
+}
+
+.atendimento_label_span_item{
+    display: block;
+    margin: 10px;
+}
+
+.atendimento_item_saldo_negativo{
+    background: rgb(252, 89, 89);
+}
+
+.atendimento_item_saldo_positivo{
+    background: rgb(156, 228, 156);
 }

@@ -89,8 +89,8 @@
 @keyframes aviso_movimento {
   0%   { border: 10px solid var(--cor-menubar); }
   50%   { border: 10px solid var(--cor-menubar); }   
-  51% { border: 10px solid var(--cor-menuhover);  }
-  100% { border: 10px solid var(--cor-menuhover);  }
+  51% { border: 10px solid var(--cor-aviso);  }
+  100% { border: 10px solid var(--cor-aviso);  }
 }
 .aviso_movimento{
   text-align: center;

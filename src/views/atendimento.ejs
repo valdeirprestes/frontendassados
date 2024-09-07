@@ -18,45 +18,107 @@
             <span class="atendimento_campo_pagina_quantidade">5</span>
             <span class="atendimento_campo_movimento_filtro"><%= movimento_dia %></span>
         </div>
+        <div class="atendimento_itens_fechamento">
+            <div class=" atendimento_produto atendimento_item_saldo_negativo jsitem_1">
+                <div class="atendimento_label_span_item">
+                    <label>Produto</label>
+                    <span class="js_atendimento_nome_1">Produto 1</span>
+                </div>
+                <div class="atendimento_label_span_item">
+                    <label>Estoque</label>
+                    <span class="js_atendimento_saldo_estoque_1"> 10</span>
+                </div>
+                <div class="atendimento_label_span_item">
+                    <label>Pedidos</label>
+                    <span class="js_atendimento_total_pedido_1">78</span>
+                </div>   
+                <div class="atendimento_label_span_item">
+                    <label>Saldo</label>
+                    <span class="js_atendimento_saldo_1">-68</span>
+                </div>
+            </div>
+
+            <div class=" atendimento_produto atendimento_item_saldo_negativo jsitem_1">
+                <div class="atendimento_label_span_item">
+                    <label>Produto</label>
+                    <span class="js_atendimento_nome_1">Produto 1</span>
+                </div>
+                
+                <div class="atendimento_label_span_item">
+                    <label>Estoque</label>
+                    <span class="js_atendimento_saldo_estoque_1"> 10</span>
+                </div>
+                <div class="atendimento_label_span_item">
+                    <label>Pedidos</label>
+                    <span class="js_atendimento_total_pedido_1">78</span>
+                </div>
+                <div class="atendimento_label_span_item">
+                    <label>Saldo</label>
+                    <span class="js_atendimento_saldo_1">-68</span>
+                </div>
+            </div>
+
+            <div class=" atendimento_produto atendimento_item_saldo_positivo jsitem_1">
+                <div class="atendimento_label_span_item">
+                    <label>Produto</label>
+                    <span class="js_atendimento_nome_1">Produto 1</span>
+                </div>
+                
+                <div class="atendimento_label_span_item">
+                    <label>Salto estoque</label>
+                    <span class="js_atendimento_saldo_estoque_1"> 10</span>
+                </div>
+                
+                <div class="atendimento_label_span_item">
+                    <label>Pedidos</label>
+                    <span class="js_atendimento_total_pedido_1">8</span>
+                </div>
+                
+                <div class="atendimento_label_span_item">
+                    <label>Saldo</label>
+                    <span class="js_atendimento_saldo_1">2</span>
+                </div>
+            </div>
+        </div>
 
 
-        <div class="janela_atendimento">
-            <div class="divflexvertical  janela_cabecalho_atendimento">
-                <div class="group-class">
+        <div class="atendimento_pedidos">
+            <div class="divflexvertical  atendimento_filtros">
+                <div class="atendimento_grupo_label_input">
                     <label>Busca</label>
                     <input type="text" class="js_atendimento_campo_busca">
                 </div>
-                <div class="group-class">
+                <div class="atendimento_grupo_label_input">
                     <label>Com entrega</label>
                     <input type="checkbox" checked="checked" class="js_atendimento_campo_comentrega">
                 </div>
-                <div class="group-class">
+                <div class="atendimento_grupo_label_input">
                     <label>Retirar no local</label>
                     <input type="checkbox" checked="checked" class="js_atendimento_campo_sementrega">
                 </div>
-                <div class="group-class">
-                    <label>Estado normal</label>
+                <div class="atendimento_grupo_label_input">
+                    <label>Pedido normal</label>
                     <input type="checkbox" checked="checked" class="js_atendimento_campo_estadonormal">
                 </div>
-                <div class="group-class">
-                    <label>Estado cancelado</label>
+                <div class="atendimento_grupo_label_input">
+                    <label>Pedido cancelado</label>
                     <input type="checkbox" class="js_atendimento_campo_estadocancelado">
                 </div>
-                <div class="group-class">
+                <div class="atendimento_grupo_label_input">
                     <label>Concluído</label>
                     <input type="checkbox" class="js_atendimento_campo_fase_concluido">
                 </div>
             </div>
             <div class="atendimento_styleclass_divtabela">
-                <table class="js_atendimento_tabela_table tabelas tabela_atendimento">
+                <table class="js_atendimento_tabela_table tabelas atendimento_tabela">
                     <tr>
                         <th>Pedido</th>
                         <th>Cliente</th>
                         <th>Telefone</th>
                         <th>Celular</th>
                         <th>Email</th>
-                        <th>Retirada</th>
-                        <th>Estado</th>
+                        <th>Entrega</th>
+                        <th>Estado do pedido</th>
                         <th>Fase</th>
                         <th>Ações</th>
                     </tr>
