@@ -219,6 +219,7 @@ html, body{
     background-color: red;
     color: white;
     text-decoration: none;
+    font-weight: bold;
     &:hover{
         border-color:var(--cor-botao-foco);
         background-color: var(--cor-botao-foco);
