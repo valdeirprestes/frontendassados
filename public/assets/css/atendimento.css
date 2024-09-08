@@ -75,8 +75,11 @@
     display: flex;
     flex-direction: row;
     background-color: var(--cor-tabelas);
-    box-sizing: border-box;
+    
     height: 20%;
+    margin: 1%;
+    
+    
 }
 .atendimento_produto{
     display: block;
@@ -84,11 +87,15 @@
     color: black;
     border-radius: 5%;
     margin: 2%;
+    width: 15%;
 }
 
 .atendimento_label_span_item{
     display: block;
-    margin: 10px;
+    margin: 5%;
+    span{
+        margin-left: 1%;
+    }
 }
 
 .atendimento_item_saldo_negativo{

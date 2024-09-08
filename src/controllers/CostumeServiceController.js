@@ -69,7 +69,7 @@ class CostumerServiControllers{
             return res.render("atendimento", 
             {
                 "pedidos":listorder.data, 
-                "movimento_dia": res.locals.movimento_dia_html
+                "movimento_dia_html": res.locals.movimento_dia_html
             });
         }  
         catch(e)

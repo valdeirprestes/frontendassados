@@ -1,4 +1,5 @@
 import axios from "axios";
+import { atendimento_atualizarpainel } from "./atendimento_dadospainel";
 
 const class_atendimento_paginacao_li = "js_atendimento_paginacao";
 const class_atendimento_busca_input = "js_atendimento_campo_busca";
@@ -7,11 +8,11 @@ const class_atendimento_sementrega_input = 'js_atendimento_campo_sementrega';
 const class_atendimento_estadonormal_input = 'js_atendimento_campo_estadonormal';
 const class_atendimento_estadocancelado_input = 'js_atendimento_campo_estadocancelado';
 const class_atendimento_fase_concluidos = 'js_atendimento_campo_fase_concluido';
-const class_atendimento_pagina_atual = 'atendimento_campo_pagina_atual';
-const class_atendimento_pagina_quantidade = 'atendimento_campo_pagina_quantidade';
+const class_atendimento_pagina_atual = 'jsatendimento_campo_pagina_atual';
+const class_atendimento_pagina_quantidade = 'jsatendimento_campo_pagina_quantidade';
 const class_atendimento_tabela_table  = 'js_atendimento_tabela_table';
 const class_atendimento_tr = 'atendimento_tr';
-const class_atendimento_movimento = 'atendimento_campo_movimento_filtro';
+const class_atendimento_movimento = 'jsatendimento_campo_movimento_filtro';
 
 
 function limparTable(){
@@ -109,7 +110,7 @@ async function atendimento_geraTr(){
 
         let rota = "/pedido/quantidade";
         let args_api = {"data":{"rota":rota, "parametros":parametros}}
-        console.log(args_api);
+        
         
         let request = await axios.post("/api",args_api);
 
@@ -138,7 +139,7 @@ async function atendimento_geraTr(){
         let tagtd;
         let taglink1, taglink2;
         
-        console.log(data)
+        
         data.forEach(pedido => {
             tagtr = document.createElement("tr");
             tagtr.classList.add(class_atendimento_tr);
@@ -197,6 +198,9 @@ async function atendimento_geraTr(){
             tagtable.appendChild(tagtr);
             
         });
+
+
+        atendimento_atualizarpainel();
 
     } catch (error) {
         console.log(error);

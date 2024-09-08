@@ -30,6 +30,8 @@ import { AtivarBuscaInterativa } from "./buscaInterativa";
 import GestaoPedido_carregarpedido from "./modules/pagefunctions/gestaopedido_carregarpedido";
 import atendimento_busca_pedido from "./modules/pagefunctions/atendimento_busca_pedido";
 
+import { ClassStatusProdutosPainelAtendimento } from "./modules/pagefunctions/atendimento_classeinitpainel";
+
 window.addEventListener('load', (e)=>{
     /*  Cria dialogo de busca de seleção de objetos*/
     const listSearch = [];
@@ -62,6 +64,8 @@ window.addEventListener('load', (e)=>{
     listaJSClassePorHTMLClasse.push([ValidMovimentoAbertura_formdata, ".class-form_movimento_abrir_formdata"]);
     listaJSClassePorHTMLClasse.push([ValidCancelarPedido, ".class-form-cancelarpedido"]);
     listaJSClassePorHTMLClasse.push([ValidFinalizarPedido, ".class-form-finalizarpedido"]);
+    listaJSClassePorHTMLClasse.push([ClassStatusProdutosPainelAtendimento, ""]);
+
     
 
     listaJSClassePorHTMLClasse.forEach( (Lista) =>{
