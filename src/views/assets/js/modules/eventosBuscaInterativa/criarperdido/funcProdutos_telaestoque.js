@@ -1,28 +1,66 @@
-import { manterEntidade } from "../../../manterEntidade";
+import axios from "axios";
 
-import configTelaEstoqueCarregaProduto from "../../eventosManterentidade/criarpedido/configTelaEstoqueCarregaProduto";
+async function dadosdoproduto(idproduto){
+    try {
+        const rota = "/estoque/saldo";
+        const parametros = {"idproduto":idproduto};
+        const request = await axios.post("/api", {data:{
+            "rota":rota,
+            "parametros":parametros
+        }});
+        return request.data[0];
+        
+    } catch (e) {
+        console.log(e);
+        return null;
+        
+    }
+
+}
+
+
+
 export default async function(myconfig){
-    const labeldiv = 'selecionado'; 
-    
-    let inputoption = document.querySelector(`.${myconfig.classInputSelecionado}`);
-    if(!inputoption){
-        console.log(`Classe ${myconfig.classInputSelecionado} não foi localizada`)
+    const idproduto = document.querySelector(`.telaestoque_produtoid`);
+    if(!idproduto){
+        console.log("Não foi possível acessar a varável telaestoque_produtoid");
         return;
     }
-    let newdiv;
-    let olddiv = document.querySelector(`.${labeldiv}`);
-    if(olddiv)
-        olddiv.remove();
-
-    let clientecadastrado_campo = document.querySelector(`.clientecadastrado_campo`);
-    if(!inputoption){
-        console.log(`Classe ${clientecadastrado_campo} não foi localizada`)
+    const tagproduto = document.querySelector(`.telaestoque_campo_nome`);
+    if(!tagproduto)
+    {
+        console.log("Não conseguiu acessar a classe telaestoque_campo_nome");
         return;
     }
-    clientecadastrado_campo.innerText = "SIM"
-    
-    let config = configTelaEstoqueCarregaProduto;
-    config.axios.rota_Ler=`/produto/${inputoption.value}`;
-    config.axios.metodo_Ler="get"
-    new manterEntidade(config);
+    const tagitemfechamento = document.querySelector(`.telaestoque_campo_itemfechamento`);
+    if(!tagitemfechamento)
+    {
+        console.log("Não conseguiu acessar a classe telaestoque_campo_itemfechamento");
+        return;
+    }
+    const tagitemparcial = document.querySelector(`.telaestoque_campo_unidadeparcial`);
+    if(!tagitemparcial)
+    {
+        console.log("Não conseguiu acessar a classe telaestoque_campo_unidadeparcial");
+        return;
+    }
+    const tagcategoria = document.querySelector(`.telaestoque_campo_category`);
+    if(!tagcategoria)
+    {
+        console.log("Não conseguiu acessar a classe telaestoque_campo_category");
+        return;
+    }
+    const tagestoqueatual = document.querySelector(`.telaestoque_campo_quantidade`);
+    if(!tagestoqueatual)
+    {
+        console.log("Não conseguiu acessar a classe telaestoque_campo_category");
+        return;
+    }
+    const dados = await dadosdoproduto(idproduto.value);
+    console.log("dados", dados);
+    tagproduto.value = dados.produto.nome;
+    tagestoqueatual.value = (dados.sub_entrada - dados.sub_saida).toFixed(2);
+    tagitemfechamento.value = dados.produto.item_fechamento;
+    tagitemparcial.value = dados.produto.unidade_parcial;
+    tagcategoria.value = dados.produto.categoria.nome;
 }

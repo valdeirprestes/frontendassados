@@ -65,11 +65,20 @@ class CostumerServiControllers{
                 "estado":"NORMAL",
                 "fase":"PENDENTE",
                 "itens":{"estado":"NORMAL"}
-            });            
+            });
+            let qtdtotalpedidos = await request.post("/pedido/quantidade",{
+                "datamovimento":res.locals.movimento_dia_html,
+                "estado":"NORMAL",
+                "fase":"PENDENTE",
+                "itens":{"estado":"NORMAL"}
+            });
             return res.render("atendimento", 
             {
                 "pedidos":listorder.data, 
-                "movimento_dia_html": res.locals.movimento_dia_html
+                "movimento_dia_html": res.locals.movimento_dia_html,
+                "jsatendimento_campo_pagina_quantidade": 2,
+                "jsatendimento_campo_pagina_atual": 1,
+                "jsatendimento_campo_quantidade_total": qtdtotalpedidos.data
             });
         }  
         catch(e)

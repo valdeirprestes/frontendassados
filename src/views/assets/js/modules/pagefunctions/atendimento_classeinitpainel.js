@@ -1,10 +1,10 @@
-import { atendimento_atualizarpainel } from "./atendimento_dadospainel";
+import {atendimento_busca_pedido }  from "./atendimento_busca_pedido";
 class ClassStatusProdutosPainelAtendimento{
     constructor( args){
 
     }
     init(){
-        atendimento_atualizarpainel();
+        atendimento_busca_pedido();
     }
 }
 

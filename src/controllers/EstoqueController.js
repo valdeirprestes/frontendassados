@@ -5,7 +5,7 @@ class EstoqueController{
         return res.render('gerenciarestoque');
     }
     adicionarestoque(req, res){
-        return res.render('estoque_adicionar');
+        return res.render('gestaoestoque');
     }
 }
 

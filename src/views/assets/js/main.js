@@ -24,11 +24,12 @@ import { gestaopedido_registrarnovopedido } from "./modules/pagefunctions/gestao
 import gestaopedido_limparcamposcliente from "./modules/pagefunctions/gestaopedido_limparcamposcliente";
 import gestaopedido_cancelar from "./modules/pagefunctions/gestaopedido_cancelar";
 import gestaopedido_alterarcampousuario from "./modules/pagefunctions/gestaopedido_alterarcampousuario";
+import { estoque_processar } from "./modules/pagefunctions/estoque_processar";
 
 
 import { AtivarBuscaInterativa } from "./buscaInterativa";
 import GestaoPedido_carregarpedido from "./modules/pagefunctions/gestaopedido_carregarpedido";
-import atendimento_busca_pedido from "./modules/pagefunctions/atendimento_busca_pedido";
+import { atendimento_busca_pedido } from "./modules/pagefunctions/atendimento_busca_pedido";
 
 import { ClassStatusProdutosPainelAtendimento } from "./modules/pagefunctions/atendimento_classeinitpainel";
 
@@ -80,6 +81,7 @@ window.addEventListener('load', (e)=>{
     listpagefunctions.push(["criar_criarpedido", "onclick", gestaopedido_registrarnovopedido, {}]);
     listpagefunctions.push(["salvarpedido_criarpedido", "onclick", gestaopedido_registrarnovopedido, {}]);
     listpagefunctions.push(["novo_criarpedido", "onclick", gestaopedido_limparcamposcliente, {}]);
+    listpagefunctions.push(["telaestoque_botaoconfirmar", "onclick", estoque_processar, {}]);
     //remover
     /*listpagefunctions.push(["cancelarpedido_criarpedido", "onclick", gestaopedido_cancelar, {}]);*/
     

@@ -6,16 +6,18 @@
     <%- include("includes/assets"); %>
     <!-- Se quiser fazer um CSS personalizado desta pagina-->
     <!-- <link href="/public/assets/css/meucsspersonalizado.css" rel="stylesheet"/> -->
+    <link href="/public/assets/css/criarpedido.css" rel="stylesheet"/>
     <title>Estoque</title>  <!--Não se esqueça de alterar o nome do titulo-->
 </head>
 <body>
+    <%- include("includes/menubar"); %>
     <div class="main">
-        <%- include("includes/menubar"); %>
         <div class="contents">
             <!--Coloque seu conteúdo novo           -->
             
             <div class="div_form telaestoque_div " style="margin-bottom: 10%;margin-top: 3%; padding:  2% ;">
                 <input type="hidden" class="telaestoque_produtoid">
+                <input type="hidden" class="datamovimento" value="<%=movimento_dia_html %>">
                 <h1>Estoque</h1>
                 <a class="botao telaestoque_botaoselecionar">Selecionar produto</a>
                 <div class="form-group">    
@@ -41,7 +43,7 @@
                 <hr>
                 <div class="form-group">
                     <label>Ação</label>
-                    <select>
+                    <select class="telaestoque_campo_opcao">
                         <option value="adicionar">Adionar estoque</option>
                         <option value="estornar">Estornar estoque</option>
                     </select>
