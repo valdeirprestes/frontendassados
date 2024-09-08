@@ -39,13 +39,13 @@
                         </tr>
                         <% listausuario.forEach(usuario=> { %>
                             <tr>
-                                <td>
+                                <td style="width: 10%;">
                                     <%= usuario.id %>
                                 </td>
-                                <td>
+                                <td style="width: 50%;">
                                     <%= usuario.nome %>
                                 </td>
-                                <td>
+                                <td style="width: 16%;">
                                     <%= usuario.estado %>
                                 </td>
                                 <td><a href="/usuario/<%= usuario.id %>/desativar"><button>Desativar</button></a>

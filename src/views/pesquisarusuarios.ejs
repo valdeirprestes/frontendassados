@@ -24,7 +24,7 @@
                         <form class=" listarusuario, janela_cabecalho" method="post" action="/usuario/pesquisar/1">
                             <h1 style="width: 50%; padding-left: 5%;">Lista de Clientes</h1>
                             <input name="nome" style="width: 25%;" placeholder="Pesquise o cliente aqui">
-                            <button class="botao" style="width: 10%;">Pesquisar</button>
+                            <button class="botao" style="width: fit-content; margin-left:20px;">Pesquisar</button>
                         </form>
                     </div>
 
@@ -43,13 +43,13 @@
                         </tr>
                         <% listausuario.forEach(usuario=> { %>
                             <tr>
-                                <td>
+                                <td style="width: 10%;">
                                     <%= usuario.id %>
                                 </td>
-                                <td>
+                                <td style="width: 50%;">
                                     <%= usuario.nome %>
                                 </td>
-                                <td>
+                                <td style="width: 16%;">
                                     <%= usuario.estado %>
                                 </td>
                                 <td><a href="/usuario/<%= usuario.id %>/desativar"><button>Desativar</button></a>

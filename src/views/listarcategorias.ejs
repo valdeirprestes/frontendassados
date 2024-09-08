@@ -13,7 +13,7 @@
 <body>
     <%- include("includes/menubar"); %>
         <% if(locals.listacategorias){ %>
-            <div class="main, alinhamento_tabela_lista_usuarios " style="margin-bottom: 30%; margin-top: 10%;">
+            <div class="main, alinhamento_tabela_lista_usuarios " style="margin-bottom: 30%;">
                 
                 <!--Janela-->
                 <div class="janela" >
@@ -43,13 +43,13 @@
                         </tr>
                         <% listacategorias.forEach(categoria=> { %>
                             <tr>
-                                <td>
+                                <td style="width: 10%;">
                                     <%= categoria.id %>
                                 </td>
-                                <td>
+                                <td style="width: 40%;">
                                     <%= categoria.nome %>
                                 </td>
-                                <td>
+                                <td style="width: 20%;">
                                     <%= categoria.estado %>
                                 </td>
                                 <td><a href="/categoria/<%= categoria.id %>/desativar"><button>Desativar</button></a>

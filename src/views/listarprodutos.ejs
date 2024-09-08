@@ -16,7 +16,7 @@
             <div class="main, alinhamento_tabela_lista_usuarios" >
                 
                 <!--Janela-->
-                <div class="janela" style="margin-bottom: 30%;">
+                <div class="janelaproduto" style="margin-bottom: 30%;">
 
 
                     <!--Cabeçalho-->
@@ -24,7 +24,7 @@
                         <form class=" listarusuario, janela_cabecalho" method="post" action="/produto/pesquisar/1">
                             <h1 style="width: 50%; padding-left: 5%;">Lista de Produtos</h1>
                             <input name="nome" style="width: 25%;" placeholder="Pesquise o produto aqui">
-                            <button class="botao" style="width: fit-content; margin-left:20px;">Pesquisar</button>
+                            <button class="botao" style="width: 10%;">Pesquisar</button>
                         </form>
                     </div>
 
@@ -46,22 +46,22 @@
                         </tr>
                         <% listaprodutos.forEach(produto=> { %>
                             <tr>
-                                <td>
+                                <td style="width: 5%;">
                                     <%= produto.id %>
                                 </td>
-                                <td>
+                                <td style="width: 28%;">
                                     <%= produto.nome %>
                                 </td>
-                                <td>
+                                <td style="width: 7%;">
                                     <%= produto.preco %>
                                 </td>
-                                <td>
+                                <td style="width: 21%;">
                                     <%= produto.item_fechamento %>
                                 </td>
-                                <td>
+                                <td style="width: 11%;">
                                     <%= produto.categoria.nome %>
                                 </td>
-                                <td>
+                                <td style="width: 12%;">
                                     <%= produto.estado %>
                                 </td>
                                 <td><a href="/produto/<%= produto.id %>/desativar"><button>Desativar</button></a>
