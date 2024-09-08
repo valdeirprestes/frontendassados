@@ -227,6 +227,37 @@ html, body{
 	}
 }
 
+.paginacaopesquisar {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-top: 0;
+}
+
+.paginapesquisar {
+    box-sizing: border-box; 
+    margin: 5px;
+    margin-bottom: 5px;
+    border: 1px solid;
+    border-radius: 7px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    &:hover{
+        border-color:var(--cor-botao-foco);
+        background-color: var(--cor-botao-foco);
+		color: var(--cor-botao-foco-texto);
+	}
+}
+
 .quadrado_centralizado_css {
     width: 300px; /* Largura do quadrado /
     height: 200px; / Altura do quadrado /
