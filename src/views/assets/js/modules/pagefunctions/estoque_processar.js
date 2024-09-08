@@ -2,21 +2,29 @@ import criatelaDialogo from "../utils/criatelaDialogo";
 import axios from "axios";
 
 
-async function  adicionarEstoque(){
-    const rota="";
-    const parametros = {};
-    const request = await axios.post()
-
-}
-
-async function  estornarEstoque(){
-    console.log("estornar");
-
-}
+const divdialog = "contents"
 
 
-function estoque_processar(){
+async function estoque_processar(){
     const tagproduto = document.querySelector('.telaestoque_produtoid');
+    let rota = "";
+    let parametros={};
+    let resquest;
+
+    let taguser = document.querySelector(".iduser");
+    if(!taguser)
+    {
+        console.log(`Não conseguiu acessar classe iduser`);
+        return;
+    }
+    let tagdatamovimento = document.querySelector(".datamovimento");
+    if(!tagdatamovimento)
+    {
+        console.log(`Não conseguiu acessar classe .datamovimento`);
+        return;
+    }
+
+    
     if(!tagproduto)
     {
         console.log(`Não conseguiu acessar classe telaestoque_produtoid`);
@@ -44,25 +52,45 @@ function estoque_processar(){
     }
     console.log("estoque_processar");
     if(tagproduto.value < 1){
-        criatelaDialogo("contents", `Escolha um produto`, -1);
+        criatelaDialogo(divdialog, `Escolha um produto`, -1);
         return;
     }
     if(tagquantidade.value <= 0){
-        criatelaDialogo("contents", `Valor tem que ser maior que zero`, -1);
+        criatelaDialogo(divdialog, `Valor tem que ser maior que zero`, -1);
         return;
     }
     if(tagdescricao.value.length < 1)
     {
-        criatelaDialogo("contents", `Coloque uma descrição`, -1);
+        criatelaDialogo(divdialog, `Coloque uma descrição`, -1);
         return;
     }
-    if(tagopcao.value == "adicionar")
-        adicionarEstoque();
-    else
-        estornarEstoque();
+    if(tagopcao.value == "adicionar"){
+        parametros = {
+            "entrada":tagquantidade.value,
+            "idproduto":tagproduto.value,
+            "descricao":tagdescricao.value,
+            "idusuario":taguser.value,
+            "datamovimento":tagdatamovimento.value
+        };
+        resquest = await axios.post("/api", {data:{ "rota": "/estoque/adicionar", "parametros":parametros}});
+        criatelaDialogo(divdialog, `Adicição de estoque concluída`, 1);
+        tagquantidade.value =0;
+        tagdescricao.value= "";
 
-
-
+    }      
+    else{      
+        parametros = {
+            "saida":tagquantidade.value,
+            "idproduto":tagproduto.value,
+            "descricao":tagdescricao.value,
+            "idusuario":taguser.value,
+            "datamovimento":tagdatamovimento.value
+        };
+        resquest = await axios.post("/api", {data:{ "rota": "/estoque/remover", "parametros":parametros}});
+        criatelaDialogo(divdialog, `Estorno no estoque efetivado`, 1);
+        tagquantidade.value =0;
+        tagdescricao.value= ""; 
+    }
 }
 
 export {estoque_processar};

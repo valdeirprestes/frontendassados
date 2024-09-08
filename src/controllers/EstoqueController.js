@@ -5,7 +5,10 @@ class EstoqueController{
         return res.render('gerenciarestoque');
     }
     adicionarestoque(req, res){
-        return res.render('gestaoestoque');
+        return res.render('gestaoestoque',
+        {
+            "iduser":res.locals.user.id
+        });
     }
 }
 

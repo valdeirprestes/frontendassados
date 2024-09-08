@@ -3,10 +3,10 @@ import axiosConfig from "../config/axiosConfig";
 class ApiController{
     async get(req, res){
         try {
-            //console.log("func body:", req.body);
-            //console.log("func query:", req.query);
+            console.log("func body:", req.body);
+            console.log("func query:", req.query);
             const {rota, parametros} = req.query.data;
-            //console.log('rota', rota, 'parametros', parametros);
+            console.log('rota', rota, 'parametros', parametros);
             const request = axios.create(axiosConfig.configcontroller(req, res));
             let resapi = await request.get(rota, parametros);
             return res.status(resapi.status).json(resapi.data);

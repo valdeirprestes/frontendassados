@@ -1,9 +1,10 @@
 import axios from "axios";
 
-async function dadosdoproduto(idproduto){
+async function dadosdoestoque(idproduto){
     try {
         const rota = "/estoque/saldo";
         const parametros = {"idproduto":idproduto};
+        console.log("rota", rota, "parametros", parametros);
         const request = await axios.post("/api", {data:{
             "rota":rota,
             "parametros":parametros
@@ -17,6 +18,29 @@ async function dadosdoproduto(idproduto){
     }
 
 }
+
+async function dadosdoproduto(idproduto){
+    try {
+        const rota = "/produto/" + idproduto;
+        const parametros = {idproduto};
+        console.log("rota", rota, "parametros", parametros);
+        const request = await axios.get("/api", {
+            params: {
+                data: { "rota":rota, "parametros": parametros}
+            }});
+        return request.data;
+        
+    } catch (e) {
+        console.log(e);
+        return null;
+        
+    }
+
+}
+
+
+
+
 
 
 
@@ -56,11 +80,19 @@ export default async function(myconfig){
         console.log("Não conseguiu acessar a classe telaestoque_campo_category");
         return;
     }
+    console.log("idproduto", idproduto.value);
     const dados = await dadosdoproduto(idproduto.value);
     console.log("dados", dados);
-    tagproduto.value = dados.produto.nome;
-    tagestoqueatual.value = (dados.sub_entrada - dados.sub_saida).toFixed(2);
-    tagitemfechamento.value = dados.produto.item_fechamento;
-    tagitemparcial.value = dados.produto.unidade_parcial;
-    tagcategoria.value = dados.produto.categoria.nome;
+    const estoque = await dadosdoestoque(idproduto.value);
+    console.log("estoque", estoque);
+    tagproduto.value = dados.nome;
+    if(!estoque)
+        tagestoqueatual.value = 0
+    else
+        tagestoqueatual.value = (estoque.sub_entrada - estoque.sub_saida).toFixed(2);
+    tagitemfechamento.value = dados.item_fechamento;
+    tagitemparcial.value = dados.unidade_parcial;
+    tagcategoria.value = dados.categoria.nome;
+
+    
 }
