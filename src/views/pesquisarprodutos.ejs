@@ -46,22 +46,22 @@
                         </tr>
                         <% listaprodutos.forEach(produto=> { %>
                             <tr>
-                                <td>
+                                <td style="width: 5%;">
                                     <%= produto.id %>
                                 </td>
-                                <td>
+                                <td style="width: 28%;">
                                     <%= produto.nome %>
                                 </td>
-                                <td>
+                                <td style="width: 7%;">
                                     <%= produto.preco %>
                                 </td>
-                                <td>
+                                <td style="width: 21%;">
                                     <%= produto.item_fechamento %>
                                 </td>
-                                <td>
+                                <td style="width: 11%;">
                                     <%= produto.categoria.nome %>
                                 </td>
-                                <td>
+                                <td style="width: 12%;">
                                     <%= produto.estado %>
                                 </td>
                                 <td><a href="/produto/<%= produto.id %>/desativar"><button>Desativar</button></a>
