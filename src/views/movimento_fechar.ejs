@@ -6,12 +6,12 @@
     <%- include("includes/assets"); %>
     <!-- Se quiser fazer um CSS personalizado desta pagina-->
     <!-- <link href="/public/assets/css/meucsspersonalizado.css" rel="stylesheet"/> -->
-    <title>titulo</title>  <!--Não se esqueça de alterar o nome do titulo-->
+    <title>Fechar Movimento</title>  <!--Não se esqueça de alterar o nome do titulo-->
 </head>
 <body>
     <div class="main">
         <%- include("includes/menubar"); %>
-        <div class="contents">
+        <div class="contents quadrado_centralizado_css" style="width:40%; height:20%; padding:2%;">
             <form method="post" action="/movimento/executarfechamento">
                 <input type="hidden" value="<%= movimentoid%>" name="movimentoid">
                 <h1>Deseja realmente fechar o movimento do dia <%= movimento%></h1>

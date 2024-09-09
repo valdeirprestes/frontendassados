@@ -16,11 +16,14 @@ html, body{
 }
 .contents{
     display: flex;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
     min-height: 100%;
     box-sizing: border-box; 
     margin: 0;
+    width:40%; height:20%; padding:2%;
+
 } 
 
 .quadrado_centralizado_css {
@@ -319,6 +322,8 @@ html, body{
 }
 
 .telaselecao{
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
     display: block;
     position: absolute;
     margin: 0 auto;
@@ -383,6 +388,7 @@ html, body{
     border-color:red;
     background-color: rgb(158, 65, 65);
     color: white;
+    
     button{
         border-color:white;
         background-color: rgb(158, 65, 65);
