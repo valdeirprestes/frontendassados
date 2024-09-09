@@ -25,6 +25,11 @@ html, body{
 
 } 
 
+.criar_pedido_altura{                                                                         /*léo aqui !!!!!!!!!*/
+    /*margin-top: 10% !important;*/
+    height:510px !important ;
+}
+
 .quadrado_centralizado_css {
     width: 300px; /* Largura do quadrado */
     height: 200px; /* Altura do quadrado */
