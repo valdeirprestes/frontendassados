@@ -291,7 +291,7 @@ async function atendimento_geraTr(){
         });
 
 
-        atendimento_atualizarpainel();
+        
 
     } catch (error) {
         console.log(error);
@@ -303,6 +303,7 @@ function atendimento_busca_pedido(arg){
     limparPaginacao();
     limparTable();
     atendimento_geraTr();
+    atendimento_atualizarpainel();
     //criaPaginacao();
 }
 
