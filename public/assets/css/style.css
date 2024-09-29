@@ -312,9 +312,32 @@ html, body{
     
     margin: auto;
     margin-top: 1%;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 5px;
+    border-radius: 3px;
+    width: 100%;
+    border: 1px solid var(--cor-secoes);
+    height: 400px;
+    padding: 3px;
+    th{
+        background-color: var(--cor-menubar);
+        color: var(--cor-menubar-text);
+    }
+    /*
+    tr :hover{
+        background-color : yellow;
+        height: auto;
+    }*/
+    td:first-child{
+        text-align: center;
+    }
+    td:not(:first-child){
+        text-align: left;
+    }
+    th:first-child{
+        text-align: center;
+    }
+    th:not(:first-child){
+        text-align: left;
+    }
    
 }
 .divpaginador{
@@ -339,6 +362,10 @@ html, body{
     border-radius: 5px;
     background-color: white;
 }
+.tabelaselecao{
+    width: 100%;
+}
+
 .divbusca{
     display: flex;
     flex-direction: row;

@@ -204,7 +204,8 @@ async function atualizarestoque(){
                 newitem.item_nome.innerText = itemestoque.produto.nome;
                 newitem.item_estoque.innerText = (parseFloat(itemestoque.sub_entrada) - parseFloat(itemestoque.sub_saida)).toFixed(2); 
                 newitem.item_totalpedido.innerText = 0;
-                let saldo = newitem.item_estoque.innerText - newitem.item_totalpedido.innerText;
+                let saldo = (newitem.item_estoque.innerText - newitem.item_totalpedido.innerText).toFixed(2);
+                
                 newitem.item_saldo.innerText = saldo
                 if(saldo < 0 )
                 {
@@ -251,7 +252,7 @@ async function atualizarprodudosdepedidos(){
             {
                 let newitem = new ClassItem(itensdepedido.idproduto);
                 newitem.item_totalpedido.innerText = itensdepedido.sub_quantidade;
-                let saldo = newitem.item_estoque.innerText - newitem.item_totalpedido.innerText;
+                let saldo = (newitem.item_estoque.innerText - newitem.item_totalpedido.innerText).toFixed(2);
                 newitem.item_saldo.innerText = saldo
                 if(saldo < 0 )
                 {

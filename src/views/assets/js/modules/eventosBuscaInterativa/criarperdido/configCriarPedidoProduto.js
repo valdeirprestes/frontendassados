@@ -11,7 +11,7 @@ const config = {
         metodo_dados:"post",
         filtragemestatica:[
             {"campo":"estado", "valor":"NORMAL"},
-            {"campo":"qtdpagina", "valor":5},
+            {"campo":"qtdpagina", "valor":7},
         ],
         
         filtragemdinamica:[

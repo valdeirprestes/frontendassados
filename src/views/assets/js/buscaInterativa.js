@@ -37,9 +37,28 @@ class buscaInterativa {
         }
         this.criadivtabela();
         this.inputbusca.focus();
+        this.listrun = 0;
+        this.semaforofree = true;
     }
 
+    addListRun()
+    {
+        this.listrun += 1;
+        if( this.listrun == 1 ){
+            this.execListRun();
+        }
 
+    }
+    execListRun()
+    {
+        if(this.listrun > 0 && this.semaforofree == true){
+            this.semaforofree = false;
+            this.criardivtableporparametros();
+            this.semaforofree = true;
+            this.listrun -= 1;
+            this.execListRun();
+        }
+    }
     criabusca(){
         
         this.divbusca = document.createElement("div");
@@ -53,7 +72,7 @@ class buscaInterativa {
         this.inputbusca.classList.add("inputbusca");
         this.divbusca.appendChild(this.labelbusca);
         this.divbusca.appendChild(this.inputbusca);
-        this.inputbusca.onkeyup = () => this.criardivtableporparametros();
+        this.inputbusca.onkeyup = () => this.addListRun();
 
         let tagA = document.createElement("a");
         tagA.innerText=this.config.labelbuscarcancel|| "Cancelar";
@@ -90,7 +109,7 @@ class buscaInterativa {
             this.divtable.classList.add('divtabela');
             this.telaselecao.appendChild(this.divtable);
             this.table = document.createElement("table");
-            this.table.classList.add('tabela');
+            this.table.classList.add('tabelaselecao');
             this.divtable.appendChild(this.table);
             if(this.config.tabelacabecalho.length > 0){
                 let tr = document.createElement("tr");
@@ -121,12 +140,10 @@ class buscaInterativa {
 
 
 
-    async criardivtableporparametros ( ){ 
+    async criardivtableporparametros ( ){
         this.numeroderegistros = 0;
         this.paginaselecionada = 1; 
         this.criadivtabela();
-        
-
     }
 
     
@@ -135,8 +152,8 @@ class buscaInterativa {
         let trselect = document.getElementsByClassName('trselect');
         
         if(trselect.length>0){
-            for(let i=0; i < trselect.length; i++ )
-                trselect[i].remove();
+            while(trselect.length > 0)
+                trselect[0].remove();
         }
         if(this.numeroderegistros > 0 ){
             const response = await this.responseDados(); 
@@ -219,6 +236,7 @@ class buscaInterativa {
                 tagA.innerText=`${i+1}`;
                 tagA.href = "#";
                 tagA.classList.add('aPagina');
+                tagA.classList.add('pagina');
                 tagA.onclick = ()=> this.mudarPagina(i+1);
                 tagli.appendChild(tagA);
                 this.paginadotagul.appendChild(tagli);

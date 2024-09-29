@@ -25,10 +25,10 @@
 
     box-sizing: border-box;
     display: block;
-    /*width: 35%;*/
-    height: 600px;
+    width: 35%;
+    height: 700px;
     margin: 0 auto;
-    border: 1px solid;
+    /*border: 1px solid;*/
     
 }
 .produto_criarpedido{
@@ -37,13 +37,13 @@
     padding: 1%;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     
-    height:600px !important ;
+    height: 700px;
 
     box-sizing: border-box;
     display: block;
     width: 55%;
     margin: 0 auto;
-    border: 1px solid;
+    /*border: 1px solid;*/
 }
 
 .botao_produto_criarpedido_css{
@@ -255,7 +255,6 @@
         border-color:white;
         background-color: rgb(81, 153, 81);
         color: white;
-        ;
         &:hover{
             border-color: green;
             background-color:  white;
@@ -301,13 +300,59 @@
 
 .pedidoregistradoclass{
     display: block;
-    width: 10%;
-    background-color: green;
+    width: 15%;
+    background-color: rgb(164, 201, 164);
     text-align: center;
 }
 
 .pedidonaoregistradoclass{
     display: block;
-    width: 10%;
+    width: 15%;
     text-align: center;
+}
+
+.selecttag {
+    position: relative;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 3px;
+}
+
+.tabelaproduto{
+    height: 600px;
+    background-color:  white;
+    border: 1px solid var(--cor-secoes);
+}
+
+
+.tabelaproduto_criapedido{
+    background-color:  white;
+    width: 100%;
+    
+    
+    th{
+        background-color: var(--cor-menubar);
+        color: var(--cor-menubar-text);
+    }
+    /*
+    tr :hover{
+        background-color : yellow;
+        height: auto;
+    }*/
+    td:first-child{
+        text-align: center;
+    }
+    td:not(:first-child){
+        text-align: left;
+    }
+    th:first-child{
+        text-align: center;
+    }
+    th:not(:first-child){
+        text-align: left;
+    }          
+}
+
+.divsubtotal{
+    margin-right: 0;
 }

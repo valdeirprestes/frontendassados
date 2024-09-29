@@ -44,7 +44,7 @@
                     <div class="controle_criarpedido">
                         <div class="divflexvertical informacao_criarpedido">
                             <% if(locals.pedido) { %>
-                                <label  for="pedido" class="labelsimples">Nª Pedido:</label>
+                                <label  for="pedido" class="labelsimples">Pedido:</label>
                                 <span class="pedidoregistradoclass pedido_campo id_pedido"><%= pedido.id %></span>
                                 <label  for="estado" class="labelsimples">Estado:</label>
                                 <% if(pedido.estado == "NORMAL") { %>
@@ -57,7 +57,7 @@
                                 <label class="labelsimples" for="movimento">Data:</label>
                                 <input type="date"  name="movimento" class="movimento_campo" value="<%= datamovimentopedido%>">
                             <% } else { %>
-                                <label  for="pedido" class="labelsimples">Nª Pedido:</label>
+                                <label  for="pedido" class="labelsimples">Pedido:</label>
                                 <span class="pedidonaoregistradoclass pedido_campo">-</span>
                                 <label  for="estado" class="labelsimples">Estado:</label>
                                 <span class="pedidoregistradoclass estado_campo">-</span>
@@ -73,15 +73,15 @@
                         <% if(locals.pedido) { %>
                         <div class="divflexvertical">
                             <label  for="status_pagamento" class="labelsimples"> Pagamento</label>
-                            <select name="status_pagamento" class="status_pagamento_campo" >
+                            <select name="status_pagamento" class="selecttag status_pagamento_campo" >
                                 <option  <%= (pedido.status_pagamento == "PAGO")?"selected":"" %>  value="PAGO">PAGO</option>
                                 <option  <%= (pedido.status_pagamento == "AVISTA")?"selected":"" %>  value="AVISTA">A VISTA</option>
-                                <option  <%= (pedido.status_pagamento == "CARTÃODECREDITO")?"selected":"" %>  value="CARTÃODECREDITO">CARTÃO DE CREDITOSTA</option>
+                                <option  <%= (pedido.status_pagamento == "CARTÃODECREDITO")?"selected":"" %>  value="CARTÃODECREDITO">CARTÃO DE CREDITO</option>
                                 <option  <%= (pedido.status_pagamento == "PENDENTE")?"selected":"" %>  value="PENDENTE">PENDENTE</option>
                               </select>
                             <!-- <input type="checkbox" name="status_pagamento" class="status_pagamento_campo"> -->
                             <label  for="mododeentrega" class="labelsimples"> Entrega</label>
-                            <select name="mododeentrega" class="mododeentrega_campo" >
+                            <select name="mododeentrega" class="selecttag mododeentrega_campo" >
                                 <option  <%= (pedido.mododeentrega == "COMENTREGA")?"selected":"" %> value="COMENTREGA">COM ENTREGA</option>
                                 <option  <%= (pedido.mododeentrega == "SEMENTREGA")?"selected":"" %> value="SEMENTREGA">SEM ENTREGA</option>
                               </select>
@@ -94,7 +94,7 @@
                         <% }else { %>                        
                         <div class="divflexvertical">
                             <label  for="status_pagamento" class="labelsimples"> Pagamento</label>
-                            <select name="status_pagamento" class="status_pagamento_campo">
+                            <select  name="status_pagamento" class="selecttag status_pagamento_campo">
                                 <option   value="PAGO">PAGO</option>
                                 <option   value="AVISTA">A VISTA</option>
                                 <option   value="CARTÃODECREDITO">CARTÃO DE CREDITOSTA</option>
@@ -102,7 +102,7 @@
                               </select>
                             <!-- <input type="checkbox" name="status_pagamento" class="status_pagamento_campo"> -->
                             <label  for="mododeentrega" class="labelsimples"> Entrega</label>
-                            <select name="mododeentrega" class="mododeentrega_campo">
+                            <select name="mododeentrega" class="selecttag  mododeentrega_campo">
                                 <option   value="COMENTREGA">COM ENTREGA</option>
                                 <option   value="SEMENTREGA">SEM ENTREGA</option>
                               </select>
@@ -201,6 +201,7 @@
                 <div class="produto_criarpedido">
                     <a class="botao buscarproduto_criarpedido botao_produto_criarpedido_css" >Buscar produto</a>
                     <div class="divlistaproduto_criarpedido">
+                        <div class="tabelaproduto">
                         <table class="tabelaproduto_criapedido">
                             <tr>
                                 <th>-</th>
@@ -244,6 +245,7 @@
                             <% }); %>
                         <% } %>
                         </table>
+                        </div>
                         <div class="divsubtotal">
                             <label>Subtotal</label>
                             <% if(locals.somasubtotal) {%>

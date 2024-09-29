@@ -89,7 +89,7 @@ function limparPaginacao(){
         console.log(`Não conseguiu acessar ${class_atendimento_paginacao_li_page}`);
         return;
     }
-    console.log("Clean paginacao", tagul.length);
+    
     while(tagul.length > 0)
     {
         tagul[0].remove();
